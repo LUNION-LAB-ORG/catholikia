@@ -70,5 +70,6 @@ export async function loadMessages(locale: string) {
     // Lancer la fonction récursive directement sur le dossier de locale
     // et retourner le résultat
     const messages = await buildMessagesFromDir(localeDir);
+    console.log(`Messages chargés pour la locale ${locale}:`, messages);
     return messages;
 }

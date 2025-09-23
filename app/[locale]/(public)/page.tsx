@@ -14,7 +14,7 @@ export default async function Home() {
   const t = await getTranslations("home.hero");
 
   return (
-    <Content>
+    <Content className="bg-black">
       <div className="flex flex-col items-center justify-center gap-4">
         <div className="inline-block max-w-xl text-center justify-center mt-16">
           <Title color="blue">{t("title")}</Title>

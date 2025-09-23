@@ -8,7 +8,12 @@ export const Logo: React.FC<IconSvgProps> = ({
 	                                             height,
 	                                             ...props
                                              }) => (
-	<svg {...props} width={size || width} height={size || height} viewBox="0 0 217 73" fill="none">
+	<svg {...props}
+	     width={width || size}
+	     height={height || (width ? Number(width) * 73 / 216 : size)}
+	     viewBox="0 0 217 73"
+	     fill="none"
+	>
 		<path
 			d="M21.6752 28.9028V33.1769H9.6404C7.628 33.1769 7.0808 34.1076 7.0808 37.7466V47.605C7.0808 49.7633 7.5428 51.0749 8.4668 51.5396C8.8844 51.7513 10.3532 51.8754 12.8696 51.8754C13.748 51.8754 15.134 51.8353 17.312 51.8353H21.6752V56.0217H7.4588C2.552 56.0217 0.5 53.7369 0.5 47.1378V37.7466C0.5 31.1877 2.552 28.9028 7.4588 28.9028H21.6752Z"
 			fill="black"/>
