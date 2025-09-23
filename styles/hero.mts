@@ -3,7 +3,9 @@ export default heroui({
     themes: {
         light: {
             colors: {
-
+                primary: "#FFC107",
+                secondary:"#1B2D46",
+                background:"#FFFFFF"
             }
         },
         dark: {
