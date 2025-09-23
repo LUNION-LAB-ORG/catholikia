@@ -1,57 +1,44 @@
-import { Code } from "@heroui/code";
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { button as buttonStyles } from "@heroui/theme";
-
-import { GithubIcon } from "@/components/icons";
+import {Link} from "@heroui/link";
 import Content from "@/components/primitives/Content";
-import Subtitle from "@/components/primitives/Subtitle";
 import Title from "@/components/primitives/Title";
-import { siteConfig } from "@/config/site";
-import { getTranslations } from "next-intl/server";
+import {getTranslations} from "next-intl/server";
+import HeroSection from "@/components/(public)/accueil/hero-section";
+import Section from "@/components/primitives/Section";
+import {actualitesFakeData} from "@/app/api/actualites";
+import ActualiteCard from "@/components/(public)/actualites/actualite-card";
+import {Button} from "@heroui/button";
 
 export default async function Home() {
-  const t = await getTranslations("home.hero");
+	const t = await getTranslations("actualites");
 
-  return (
-    <Content className="bg-black">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <div className="inline-block max-w-xl text-center justify-center mt-16">
-          <Title color="blue">{t("title")}</Title>
-          <Subtitle className="mt-4">{t("subtitle")}</Subtitle>
-        </div>
-
-        <div className="flex gap-3">
-          <Link
-            isExternal
-            className={buttonStyles({
-              color: "primary",
-              radius: "full",
-              variant: "shadow",
-            })}
-            href={siteConfig.links.docs}
-          >
-            {t("documentation")}
-          </Link>
-          <Link
-            isExternal
-            className={buttonStyles({ variant: "bordered", radius: "full" })}
-            href={siteConfig.links.github}
-          >
-            <GithubIcon size={20} />
-            {t("github")}
-          </Link>
-        </div>
-
-        <div className="mt-8">
-          <Snippet hideCopyButton hideSymbol variant="bordered">
-            <span className="text-primary">
-              {t("snippet_text")}{" "}
-              <Code color="primary">{t("snippet_file")}</Code>
-            </span>
-          </Snippet>
-        </div>
-      </div>
-    </Content>
-  );
+	return (
+		<>
+			<HeroSection/>
+			<Content>
+				<Section className="custom-container">
+					<Title className="font-bebas text-[#151515]">
+						{t("actualites_title")}
+					</Title>
+					<div className="flex flex-col">
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-8">
+							{actualitesFakeData.map((actualite, i) => (
+								<ActualiteCard
+									actualite={actualite}
+									key={i}
+								/>
+							))}
+						</div>
+						<Button
+							as={Link}
+							href="/actualites"
+							color="primary"
+							className="rounded-full mx-auto uppercase text-[#151515] text-sm font-bold mt-8"
+						>
+							{t("voir_plus")}
+						</Button>
+					</div>
+				</Section>
+			</Content>
+		</>
+	);
 }

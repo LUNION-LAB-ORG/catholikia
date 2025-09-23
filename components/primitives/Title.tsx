@@ -2,7 +2,7 @@ import React from "react";
 import { tv } from "tailwind-variants";
 
 export const titleStyle = tv({
-  base: "tracking-tight inline font-semibold",
+  base: "tracking-tight inline font-semibold font-bebas",
   variants: {
     color: {
       violet: "from-violet-500 to-pink-500",

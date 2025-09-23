@@ -3,8 +3,8 @@ export type SiteConfig = typeof siteConfig;
 export const locales = ["fr"];
 
 export const siteConfig = {
-  name: "Next-STARTER",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Catholikia",
+  description: "Le média catholique de l'Afrique francophone",
   navItems: [
     {
       key: "actualites",

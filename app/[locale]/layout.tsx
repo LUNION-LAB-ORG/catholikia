@@ -5,7 +5,7 @@ import {Metadata, Viewport} from "next";
 import {ThemeProviders} from "@/providers/theme.provider";
 
 import {NuqsAdapter} from "nuqs/adapters/next/app";
-import {fontSans} from "@/config/fonts";
+import {fontSans, fontBarlow, fontAnton, fontBebas} from "@/config/fonts";
 import {siteConfig} from "@/config/site";
 import AuthProvider from "@/providers/auth.provider";
 import QueryProvider from "@/providers/query-provider";
@@ -19,68 +19,71 @@ import {notFound} from "next/navigation";
 import {getLangDir} from "rtl-detect";
 
 export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  icons: {
-    icon: "/favicon.ico",
-  },
+	title: {
+		default: siteConfig.name,
+		template: `%s - ${siteConfig.name}`,
+	},
+	description: siteConfig.description,
+	icons: {
+		icon: "/favicon.ico",
+	},
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+	themeColor: [
+		{media: "(prefers-color-scheme: light)", color: "white"},
+		{media: "(prefers-color-scheme: dark)", color: "black"},
+	],
 };
 
 export default async function RootLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+	                                         children,
+	                                         params,
+                                         }: {
+	children: React.ReactNode;
+	params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    return notFound();
-  }
-  const messages = await getMessages();
-  const direction = getLangDir(locale);
+	const {locale} = await params;
+	if (!hasLocale(routing.locales, locale)) {
+		return notFound();
+	}
+	const messages = await getMessages();
+	const direction = getLangDir(locale);
 
-  return (
-    <html lang="fr" dir={direction} suppressHydrationWarning>
-      <head />
-      <body
-        className={cn(
-          "min-h-screen text-foreground bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <QueryProvider>
-            <ThemeProviders
-              themeProps={{ attribute: "class", defaultTheme: "dark" }}
-            >
-              <ToastProvider
-                placement="top-center"
-                toastProps={{ shouldShowTimeoutProgress: true }}
-              />
-              <NuqsAdapter>
-                <AuthProvider>
-                  <MountedProvider>
-                    <DirectionProvider direction={direction}>
-                      {children}
-                    </DirectionProvider>
-                  </MountedProvider>
-                </AuthProvider>
-              </NuqsAdapter>
-            </ThemeProviders>
-          </QueryProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html lang="fr" dir={direction} suppressHydrationWarning>
+		{/*<head/>*/}
+		<body
+			className={cn(
+				"min-h-screen text-foreground bg-background font-sans antialiased",
+				fontSans.variable,
+				fontBarlow.variable,
+				fontAnton.variable,
+				fontBebas.variable
+			)}
+		>
+		<NextIntlClientProvider messages={messages} locale={locale}>
+			<QueryProvider>
+				<ThemeProviders
+					themeProps={{attribute: "class", defaultTheme: "dark"}}
+				>
+					<ToastProvider
+						placement="top-center"
+						toastProps={{shouldShowTimeoutProgress: true}}
+					/>
+					<NuqsAdapter>
+						<AuthProvider>
+							<MountedProvider>
+								<DirectionProvider direction={direction}>
+									{children}
+								</DirectionProvider>
+							</MountedProvider>
+						</AuthProvider>
+					</NuqsAdapter>
+				</ThemeProviders>
+			</QueryProvider>
+		</NextIntlClientProvider>
+		</body>
+		</html>
+	);
 }
