@@ -15,43 +15,7 @@ export default async function Home() {
 
   return (
     <Content>
-      <div className="flex flex-col items-center justify-center gap-4">
-        <div className="inline-block max-w-xl text-center justify-center mt-16">
-          <Title color="blue">{t("title")}</Title>
-          <Subtitle className="mt-4">{t("subtitle")}</Subtitle>
-        </div>
-
-        <div className="flex gap-3">
-          <Link
-            isExternal
-            className={buttonStyles({
-              color: "primary",
-              radius: "full",
-              variant: "shadow",
-            })}
-            href={siteConfig.links.docs}
-          >
-            {t("documentation")}
-          </Link>
-          <Link
-            isExternal
-            className={buttonStyles({ variant: "bordered", radius: "full" })}
-            href={siteConfig.links.github}
-          >
-            <GithubIcon size={20} />
-            {t("github")}
-          </Link>
-        </div>
-
-        <div className="mt-8">
-          <Snippet hideCopyButton hideSymbol variant="bordered">
-            <span className="text-primary">
-              {t("snippet_text")}{" "}
-              <Code color="primary">{t("snippet_file")}</Code>
-            </span>
-          </Snippet>
-        </div>
-      </div>
+     
     </Content>
   );
 }
