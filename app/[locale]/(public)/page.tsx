@@ -3,6 +3,7 @@ import HeroSection from "@/components/(public)/accueil/hero-section";
 import ActualitesRecentesSection from "@/components/(public)/accueil/actualites-recentes-section";
 import Publicite from "@/components/(public)/publicites";
 import ActualitesVaticanSection from "@/components/(public)/accueil/actualites-vatican-section";
+import FlashInfo from "@/components/(public)/accueil/flash-infos";
 
 export default async function Home() {
 
@@ -11,7 +12,7 @@ export default async function Home() {
 			<HeroSection/>
 			<Content fullWidth>
 				<ActualitesRecentesSection/>
-				{/*<FlashInfo/>*/}
+				<FlashInfo/>
 				<Publicite
 					position="ACCUEIL_MIDDLE"
 					orientation="horizontal"
