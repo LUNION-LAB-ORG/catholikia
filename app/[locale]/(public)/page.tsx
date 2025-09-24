@@ -16,7 +16,7 @@ export default async function Home() {
 			<HeroSection/><Content fullWidth>
 			<Content fullWidth>
 				<ActualitesRecentesSection/>
-				{/*<FlashInfo/>*/}
+				<FlashInfo/>
 				<Publicite
 					position="ACCUEIL_MIDDLE"
 					orientation="horizontal"
