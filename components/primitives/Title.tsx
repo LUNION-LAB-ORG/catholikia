@@ -2,7 +2,7 @@ import React from "react";
 import { tv } from "tailwind-variants";
 
 export const titleStyle = tv({
-  base: "tracking-tight inline font-semibold font-bebas",
+  base: "font-black font-barlow text-foreground text-left",
   variants: {
     color: {
       violet: "from-violet-500 to-pink-500",
@@ -11,17 +11,17 @@ export const titleStyle = tv({
       cyan: "from-cyan-500 to-teal-500",
       green: "from-green-500 to-emerald-500",
       pink: "from-pink-500 to-red-500",
-      foreground: "dark:from-[#FFFFFF] dark:to-[#4B4B4B]",
     },
     size: {
       xs: "text-2xl lg:text-3xl",
       sm: "text-3xl lg:text-4xl",
-      md: "text-[2.3rem] lg:text-5xl",
+      md: "text-3xl lg:text-4xl xl:text-5xl",
       lg: "text-4xl lg:text-6xl",
     },
     fullWidth: {
       true: "w-full block",
     },
+   
   },
   defaultVariants: {
     size: "md",
@@ -35,7 +35,6 @@ export const titleStyle = tv({
         "cyan",
         "green",
         "pink",
-        "foreground",
       ],
       class: "bg-clip-text text-transparent bg-gradient-to-b",
     },

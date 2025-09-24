@@ -31,8 +31,8 @@ export const sectionStyle = tv({
     },
   },
   defaultVariants: {
-    spacing: "md",
-    padding: "none",
+    spacing: "none",
+    padding: "md",
     size: "md",
     bg: "default",
   },

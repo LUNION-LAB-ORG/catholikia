@@ -1,14 +1,16 @@
 import Image from "next/image";
+import Title from "../primitives/Title";
+import Section from "../primitives/Section";
 
 export default function InvolvementSection() {
   return (
-    <div className="min-h-[90vh] bg-white  px-">
+    <Section className="min-h-[90vh] bg-white">
       {/* Main container */}
       <div className="max-w-3xl mx-auto ">
         {/* Main heading */}
-        <h1 className="text-3xl lg:text-4xl xl:text-5xl font-black text-gray-900 mb-12 text-left">
+        <Title  className="mb-12">
           IMPLIQUEZ-VOUS
-        </h1>
+        </Title>
 
         {/* Cards container */}
         <div className=" lg:pl-6 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -63,6 +65,6 @@ export default function InvolvementSection() {
           </div>
         </div>
       </div>
-    </div>
+    </Section>
   );
 }

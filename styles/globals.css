@@ -105,4 +105,8 @@
 
 .custom-container {
   @apply w-full mx-auto md:max-w-[800px] lg:max-w-[1100px] xl:max-w-[1280px]
+
+}
+h1,h2{
+   @apply font-bebas
 }

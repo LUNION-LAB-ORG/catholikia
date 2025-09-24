@@ -6,6 +6,8 @@ import ActualitesVaticanSection from "@/components/(public)/accueil/actualites-v
 import Publicite from "@/components/(public)/publicites";
 import InvolvementSection from "@/components/don/InvolvementSection";
 import MediaPartnersLogos from "@/components/don/MediaPartnersLogos";
+import EvenementList from "@/components/(public)/evenement/EvenementList";
+import EvenementsSection from "@/components/(public)/evenement/EvenementsSection";
 
 export default async function Home() {
   return (
@@ -14,6 +16,8 @@ export default async function Home() {
       <ActualitesRecentesSection />
       <ActualitesVaticanSection />
       <InvolvementSection />
+	  <EvenementList />
+	  {/* <EvenementsSection/> */}
       <MediaPartnersLogos />
     </Content>
   );
