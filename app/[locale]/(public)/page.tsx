@@ -13,9 +13,14 @@ export default async function Home() {
 
 	return (
 		<>
-			<HeroSection/>
+			<HeroSection/><Content fullWidth>
 			<Content fullWidth>
 				<ActualitesRecentesSection/>
+				{/*<FlashInfo/>*/}
+				<Publicite
+					position="ACCUEIL_MIDDLE"
+					orientation="horizontal"
+				/>
 				<FlashInfo/>
 				<Publicite
 					position="ACCUEIL_MIDDLE"
