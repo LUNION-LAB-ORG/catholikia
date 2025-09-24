@@ -25,7 +25,6 @@ type PropsCard = {
 }
 
 function ActualiteCard({actualite, orientation, options}: PropsCard) {
-	console.log(orientation);
 	return (
 		<div className="flex flex-col justify-between space-y-2 h-full">
 			<Link
