@@ -25,5 +25,5 @@ export default async function Home() {
 			<InvolvementSection/>
 			<MissionSignup/>
 		</Content>
-	);
+    );
 }
