@@ -13,7 +13,7 @@ interface EventCardProps {
 
 const EventCard = ({ dayNumber, month, title, description, image, imageAlt, day }: EventCardProps) => {
   return (
-    <div className="event-card bg-white w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start p-6 rounded-3xl gap-6">
+    <div className="event-card bg-white w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center p-6 rounded-3xl gap-6">
       {/* Date Section */}
       <div className="date-section text-center md:text-left md:min-w-[80px]">
         <div className="text-[#1D1D1D] text-sm md:text-base">{day}</div>
