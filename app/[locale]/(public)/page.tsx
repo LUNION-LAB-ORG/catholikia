@@ -6,18 +6,9 @@ import ActualitesVaticanSection from "@/components/(public)/accueil/actualites-v
 
 export default async function Home() {
 
-	return (
-		<>
-			<HeroSection/>
-			<Content fullWidth>
-				<ActualitesRecentesSection/>
-				{/*<FlashInfo/>*/}
-				<Publicite
-					position="ACCUEIL_MIDDLE"
-					orientation="horizontal"
-				/>
-				<ActualitesVaticanSection />
-			</Content>
-		</>
-	);
+  return (
+    <Content>
+     
+    </Content>
+  );
 }
