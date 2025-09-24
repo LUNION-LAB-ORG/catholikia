@@ -22,7 +22,7 @@ export default async function Home() {
 			/>
 			<ActualitesVaticanSection/>
 			<EvenementList/>
-			<InvolvementSection/>
+			<InvolvementSection />
 			<MissionSignup/>
 		</Content>
 	);
