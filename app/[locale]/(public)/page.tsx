@@ -10,20 +10,17 @@ import MissionSignup from "@/components/don/MissionSignup";
 import React from "react";
 
 export default async function Home() {
+  return (
+    <Content fullWidth className="pt-0">
+      <HeroSection />
 
-	return (
-		<Content fullWidth className="pt-0">
-			<HeroSection/>
-			<ActualitesRecentesSection/>
-			<FlashInfo/>
-			<Publicite
-				position="ACCUEIL_MIDDLE"
-				orientation="horizontal"
-			/>
-			<ActualitesVaticanSection/>
-			<EvenementList/>
-			<InvolvementSection/>
-			<MissionSignup/>
-		</Content>
-    );
+      <ActualitesRecentesSection />
+      <FlashInfo />
+      <Publicite position="ACCUEIL_MIDDLE" orientation="horizontal" />
+      <ActualitesVaticanSection />
+      <EvenementList />
+      <InvolvementSection />
+      <MissionSignup />
+    </Content>
+  );
 }
