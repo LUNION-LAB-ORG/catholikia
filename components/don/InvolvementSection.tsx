@@ -4,9 +4,9 @@ export default function InvolvementSection() {
   return (
     <div className="min-h-[90vh] bg-white  px-">
       {/* Main container */}
-      <div className="max-w-3xl mx-auto border-2 border-blue-600">
+      <div className="max-w-3xl mx-auto ">
         {/* Main heading */}
-        <h1 className="text-3xl border-2  border-red-600 lg:text-4xl xl:text-5xl font-black text-gray-900 mb-12 text-left">
+        <h1 className="text-3xl lg:text-4xl xl:text-5xl font-black text-gray-900 mb-12 text-left">
           IMPLIQUEZ-VOUS
         </h1>
 
