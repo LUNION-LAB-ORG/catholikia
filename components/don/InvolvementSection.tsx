@@ -2,16 +2,16 @@ import Image from "next/image";
 
 export default function InvolvementSection() {
   return (
-    <div className="min-h-screen bg-white py-1 px-4">
+    <div className="min-h-[90vh] bg-white  px-">
       {/* Main container */}
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto border-2 border-blue-600">
         {/* Main heading */}
-        <h1 className="text-3xl lg:text-4xl xl:text-5xl font-black text-gray-900 mb-12 text-left">
+        <h1 className="text-3xl border-2  border-red-600 lg:text-4xl xl:text-5xl font-black text-gray-900 mb-12 text-left">
           IMPLIQUEZ-VOUS
         </h1>
 
         {/* Cards container */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className=" lg:pl-6 grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left card - Rejoignez un petit groupe */}
           <div className="bg-gray-50 rounded-3xl p-6 text-center aspect-square flex flex-col justify-between">
             <div>

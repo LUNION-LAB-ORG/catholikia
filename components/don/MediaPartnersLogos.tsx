@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function MediaPartnersLogos() {
   return (
-    <div className="bg-white py-8 px-4">
+    <div className="bg-white py-6 px-2">
       {/* Container for logos */}
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 lg:gap-8">

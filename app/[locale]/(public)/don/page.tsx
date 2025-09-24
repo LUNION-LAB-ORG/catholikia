@@ -10,8 +10,7 @@ const Page = () => {
         <div>
             <TitleBanner title='don'  />
             <MissionSignup />
-            <InvolvementSection/>
-            <MediaPartnersLogos />
+            
         </div>
     );
 }
