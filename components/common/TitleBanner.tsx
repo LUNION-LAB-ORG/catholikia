@@ -59,14 +59,14 @@ const TitleBanner: React.FC<TitleBannerProps> = ({
         )}
 
         {/* Bouton Retour */}
-        <button
-          className="absolute bottom-3 left-4 sm:left-6 border cursor-pointer 
-          border-white text-white px-4 py-1 sm:px-6 sm:py-2 rounded-md 
-          hover:bg-white/10 transition z-10 text-sm sm:text-base"
-          onClick={() => router.back()}
-        >
-          Retour
-        </button>
+        {/*<button*/}
+        {/*  className="absolute bottom-3 left-4 sm:left-6 border cursor-pointer */}
+        {/*  border-white text-white px-4 py-1 sm:px-6 sm:py-2 rounded-md */}
+        {/*  hover:bg-white/10 transition z-10 text-sm sm:text-base"*/}
+        {/*  onClick={() => router.back()}*/}
+        {/*>*/}
+        {/*  Retour*/}
+        {/*</button>*/}
       </div>
     </div>
   );
