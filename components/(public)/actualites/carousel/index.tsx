@@ -45,20 +45,19 @@ const CarouselActualite = () => {
 				</div>
 			</div>
 
-        <Carousel setApi={setApi} className="w-full">
-          <CarouselContent className="gap-4">
-            {Array.from({ length: 3 }).map((_, index) => (
-              <CarouselItem
-                key={index}
-                className="relative w-full sm:w-[48%]  overflow-hidden lg:w-full rounded-2xl overflow-hidden "
-              >
-                <Image
-                  src={`/assets/carousel-img/event${index + 1}.png`}
-                  alt="item-image"
-                  className="w-full h-64 sm:h-72 lg:h-96 overflow-hidden object-cover rounded-2xl  "
-                  width={400}
-                  height={400}
-                />
+			<Carousel setApi={setApi} className="w-full">
+				<CarouselContent className="gap-4">
+					{Array.from({length: 3}).map((_, index) => (
+						<CarouselItem
+							key={index}
+							className="relative w-full sm:w-[48%] lg:w-full rounded-2xl overflow-hidden" >
+							<Image
+								src={`/assets/carousel-img/event${index + 1}.png`}
+								alt="item-image"
+								className="w-full h-64 sm:h-72 lg:h-96 xl:h-[550px] overflow-hidden object-cover rounded-2xl"
+								width={400}
+								height={400}
+							/>
 
 							<div
 								className="absolute bottom-0 w-full bg-gray-200/90 overflow-hidden bg-opacity-90 px-3 py-2 sm:px-6 sm:py-3 lg:px-6 lg:py-6  rounded-b-2xl">
