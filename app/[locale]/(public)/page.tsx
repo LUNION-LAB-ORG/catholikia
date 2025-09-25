@@ -12,20 +12,18 @@ import React from "react";
 export default async function Home() {
 
 	return (
-		<>
+		<Content fullWidth className="pt-0">
 			<HeroSection/>
-			<Content fullWidth>
-				<ActualitesRecentesSection/>
-				<FlashInfo/>
-				<Publicite
-					position="ACCUEIL_MIDDLE"
-					orientation="horizontal"
-				/>
-				<ActualitesVaticanSection />
-				<EvenementList />
-				<InvolvementSection />
-				<MissionSignup />
-			</Content>
-		</>
+			<ActualitesRecentesSection/>
+			<FlashInfo/>
+			<Publicite
+				position="ACCUEIL_MIDDLE"
+				orientation="horizontal"
+			/>
+			<ActualitesVaticanSection/>
+			<EvenementList/>
+			<InvolvementSection/>
+			<MissionSignup/>
+		</Content>
 	);
 }

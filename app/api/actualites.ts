@@ -10,7 +10,9 @@ export const actualitesFakeData: IActualite[] = [
 		category: 'Technologie',
 		country: 'France',
 		authorName:'Jean Dupont',
-		tags: ['application', 'prière', 'lancement']
+		tags: ['application', 'prière', 'lancement'],
+		content: `<p>Une nouvelle application de prière a été lancée pour aider les croyants à rester connectés spirituellement tout au long de la journée. L'application offre des fonctionnalités telles que des rappels de prière, des méditations guidées et une communauté en ligne pour partager des expériences de foi.</p>
+		<p>Les développeurs de l'application espèrent qu'elle deviendra un outil précieux pour les personnes cherchant à approfondir leur relation avec Dieu.</p>`
 	},
 	{
 		id: '2',
