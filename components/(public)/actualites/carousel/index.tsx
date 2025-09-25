@@ -2,28 +2,28 @@
 import React from "react";
 import Section from "@/components/primitives/Section";
 import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
+	Carousel,
+	CarouselApi,
+	CarouselContent,
+	CarouselItem,
 } from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
+import {cn} from "@/lib/utils";
 import Image from "next/image";
 import Title from "@/components/primitives/Title";
 
 const CarouselActualite = () => {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
+	const [api, setApi] = React.useState<CarouselApi>();
+	const [current, setCurrent] = React.useState(0);
 
-  React.useEffect(() => {
-    if (!api) return;
+	React.useEffect(() => {
+		if (!api) return;
 
-    setCurrent(api.selectedScrollSnap() + 1);
+		setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
+		api.on("select", () => {
+			setCurrent(api.selectedScrollSnap() + 1);
+		});
+	}, [api]);
 
   return (
     <Section className="flex flex-col overflow-hidden">
