@@ -6,6 +6,8 @@ import Title from "@/components/primitives/Title";
 import {actualitesFakeData} from "@/app/api/actualites";
 import ActualiteContentDescription from "@/components/(public)/actualites/details/actualite-content-description";
 import AutresActualites from "@/components/(public)/actualites/details/autres-actualites";
+import ActualiteCommentairesSection from "@/components/(public)/actualites/details/actualite-commentaires-section";
+import MissionSignup from "@/components/don/MissionSignup";
 
 function ActualiteDetailsPage() {
 	const actualite = actualitesFakeData[0]; // Simulating fetching the actual news item based on slug
@@ -33,6 +35,8 @@ function ActualiteDetailsPage() {
 				/>
 				<AutresActualites actualites={actualitesFakeData.slice(0,3)}/>
 			</Section>
+			<ActualiteCommentairesSection/>
+			<MissionSignup/>
 		</Content>
 	);
 }
