@@ -13,7 +13,6 @@ export default async function Home() {
   return (
     <Content fullWidth className="pt-0">
       <HeroSection />
-
       <ActualitesRecentesSection />
       <FlashInfo />
       <Publicite position="ACCUEIL_MIDDLE" orientation="horizontal" />
