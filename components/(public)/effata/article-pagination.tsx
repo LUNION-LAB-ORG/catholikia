@@ -7,7 +7,7 @@ interface NewsPaginationProps {
   onPageChange: (page: number) => void;
 }
 
-export const NewsPagination = ({ 
+export const ArticlePagination = ({ 
   currentPage, 
   totalPages, 
   onPageChange 
@@ -22,10 +22,10 @@ export const NewsPagination = ({
           variant={currentPage === page ? "default" : "ghost"}
           size="sm"
           className={`
-            w-10 h-10 rounded-full 
+            w-10 h-10 rounded-full font-medium
             ${currentPage === page 
-              ? "bg-primary hover:bg-news-pagination-yellow font-bold text-white" 
-              : "text-muted-foreground hover:text-foreground hover:bg-secondary/50 font-bold"
+              ? "bg-red-500 hover:bg-news-pagination-yellow text-white" 
+              : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
             }
           `}
           onClick={() => onPageChange(page)}

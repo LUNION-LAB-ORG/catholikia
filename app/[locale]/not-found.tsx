@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center text-center py-20 bg-background">
       <Image
-        src="/assets/images/all-img/logo.png"
+        src="/assets/images/logo/logo.png"
         alt=""
         height={300}
         width={300}

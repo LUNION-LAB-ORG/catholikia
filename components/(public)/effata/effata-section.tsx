@@ -1,13 +1,14 @@
-import Section from "@/components/primitives/Section";import effataBackground from "/assets/effata/back.png";
+import Section from "@/components/primitives/Section";
+
 
 export const EffataSection = () => {
   return (
     <Section
-      className="relative h-screen w-full bg-cover bg-center bg-no-repeat flex items-center justify-center "
+      className="relative h-screen w-full bg-cover bg-center bg-no-repeat bg-gradient-to-t from-white to-black/10 flex items-center justify-center "
       style={{ backgroundImage: `url(/assets/effata/hero_effata.jpg)` }}
     >
       {/* Overlay pour améliorer la lisibilité */}
-      <div className="absolute bg-black/30 inset-0 bg-effata-overlay" />
+      <div className="absolute bg-black/30 inset-0 bg-effata-overlay " />
       
       {/* Contenu principal */}
       <div className="relative z-10 text-center text-white max-w-4xl px-6">
@@ -35,7 +36,7 @@ export const EffataSection = () => {
         </p>
        
       </div>
-       <div className="absolute  bottom-0 w-full bg-gradient-to-t from-white to-black/10 overflow-hidden  px-3 py-2 sm:px-6 sm:py-3 lg:px-6 lg:py-6  ">
+       <div className="absolute  bottom-0 w-full bg-gradient-to-t from-white to-black/10 overflow-hidden  px-3 py-70 sm:px-6 sm:py-3 lg:px-6 lg:py-6 opacity-60  ">
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 items-start sm:items-center">
                     
                   </div>

@@ -41,9 +41,9 @@ export default function Error({
         <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/20 p-8 md:p-12 text-center transform transition-all duration-500 hover:scale-[1.02]">
           {/* Icon with animation */}
           <div className="relative mb-8">
-            <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-orange-400 rounded-full blur-xl opacity-30 animate-pulse"></div>
-            <div className="relative bg-gradient-to-r from-red-500 to-orange-500 w-24 h-24 mx-auto rounded-full flex items-center justify-center shadow-2xl transform transition-all duration-300 hover:rotate-12">
-              <Image src={"/assets/images/all-img/logo.png"} alt="" width={200} height={200} />
+            <div className="absolute inset-0  opacity-30 animate-pulse"></div>
+            <div className="relative  w-24 h-24 mx-auto rounded-full flex items-center justify-center shadow-2xl transform transition-all duration-300 hover:rotate-12">
+              <Image src={"/assets/logo/logo.png"} alt="" width={200} height={200} />
             </div>
           </div>
 

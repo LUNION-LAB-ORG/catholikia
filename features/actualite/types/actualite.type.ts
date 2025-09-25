@@ -1,3 +1,4 @@
+
 export interface IActualite {
 	id: string;
 	title: string;
@@ -9,4 +10,5 @@ export interface IActualite {
 	country?: string;
 	category?: string;
 	authorName?: string;
+	description?:string
 }

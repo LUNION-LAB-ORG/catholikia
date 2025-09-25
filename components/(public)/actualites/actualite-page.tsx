@@ -21,7 +21,7 @@ export const ActualitesPage = () => {
 
   return (
     <Section className="min-h-screen bg-background custom-container py-12 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         {/* Titre principal */}
         <h1 className="text-4xl font-bold text-news-title-dark mb-12 tracking-wide">
           ACTUALITÉS

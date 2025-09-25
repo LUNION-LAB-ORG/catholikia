@@ -14,7 +14,7 @@ function ActualiteImageDecoration({actualite, options}: {actualite:IActualite,op
 
 			{(options?.withCountry && actualite.country) && <ActualiteCountryBadge
 				country={actualite.country}
-				className="absolute bottom-2 right-2"
+				className="absolute bottom-2 left-2"
 			/>}
 		</>
 	);

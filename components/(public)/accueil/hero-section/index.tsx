@@ -30,7 +30,7 @@ function HeroSection() {
 		<div className="flex-1 flex flex-col items-center justify-center relative min-h-screen">
 			<div className="absolute inset-0">
 				<img
-					src="https://images.unsplash.com/photo-1522252234503-e356532cafd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxjb2RlfGVufDB8MHx8fDE2OTQwOTg0MTZ8MA&ixlib=rb-4.0.3&q=80&w=1080"
+					src="/assets/hero/hero_img.jpg"
 					alt="Background Image" className="object-cover object-center w-full h-full"/>
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</div>
