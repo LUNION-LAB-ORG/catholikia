@@ -58,7 +58,7 @@ const CarouselActualite = () => {
                 <Image
                   src={`/assets/carousel-img/event${index + 1}.png`}
                   alt=""
-                  className="w-full h-72 sm:h-72 lg:h-96 overflow-hidden object-cover rounded-2xl  "
+                  className="w-full h-64 sm:h-72 lg:h-96 overflow-hidden object-cover rounded-2xl  "
                   width={400}
                   height={400}
  />
