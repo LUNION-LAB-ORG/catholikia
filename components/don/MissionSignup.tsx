@@ -20,7 +20,7 @@ export default function MissionSignup() {
 
           {/* Left side - Text content */}
           <div className="space-y-6 lg:space-y-8 w-full md:w-1/2 lg:w-3/5 text-center">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-3xl font-black text-gray-900 leading-tight max-xl:max-w-xl mx-auto">
+            <h1 className="text-2xl sm:text-3xl lg:text-5xl xl:text-3xl font-black text-gray-900 leading-tight max-xl:max-w-xl mx-auto">
               RESTEZ CONNECTÉS. INSPIREZ-VOUS
             </h1>
 

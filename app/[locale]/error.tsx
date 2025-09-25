@@ -1,5 +1,6 @@
 "use client";
 import { AlertTriangle, RefreshCw, Home, ArrowLeft } from "lucide-react";
+import Image from "next/image";
 
 interface ErrorPageProps {
   error?: Error & { digest?: string };
@@ -42,7 +43,7 @@ export default function Error({
           <div className="relative mb-8">
             <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-orange-400 rounded-full blur-xl opacity-30 animate-pulse"></div>
             <div className="relative bg-gradient-to-r from-red-500 to-orange-500 w-24 h-24 mx-auto rounded-full flex items-center justify-center shadow-2xl transform transition-all duration-300 hover:rotate-12">
-              <AlertTriangle className="w-12 h-12 text-white animate-bounce" />
+              <Image src={"/assets/images/all-img/logo.png"} alt="" width={200} height={200} />
             </div>
           </div>
 
