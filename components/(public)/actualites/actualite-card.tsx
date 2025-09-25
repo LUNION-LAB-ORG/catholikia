@@ -69,7 +69,7 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 							<ul className="flex items-center space-x-2">
 								{options?.withTags && actualite.tags.map(tag => (
 									<li key={tag}>
-										<Badge variant="outline" className="text-[#FFC107] border-primary rounded-full">
+										<Badge variant="outline" className="text-primary border-primary rounded-full">
 											{tag}
 										</Badge>
 									</li>
@@ -80,12 +80,14 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 				</article>
 			</Link>
 			<div className="flex justify-end">
-				<Button variant="bordered" className={cn("uppercase text-[#1D1D1D] font-bold border", options?.withShare ? 'rounded-l-full border-r-0' : 'rounded-full')}>
+				<Button variant="bordered"
+				        className={cn("uppercase text-[#1D1D1D] font-bold border", options?.withShare ? 'rounded-l-full border-r-0' : 'rounded-full')}>
 					Details
 				</Button>
-				{options?.withShare && <Button variant="bordered" className="rounded-r-full uppercase text-[#1D1D1D] font-bold border border-l-0">
-					Partager
-				</Button>}
+				{options?.withShare &&
+					<Button variant="bordered" className="rounded-r-full uppercase text-[#1D1D1D] font-bold border border-l-0">
+						Partager
+					</Button>}
 			</div>
 		</div>
 	);
