@@ -3,7 +3,11 @@ import createIntlMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import { auth } from "@/lib/auth";
 
+<<<<<<< HEAD
 export const publicRoutes = ["/", "/auth", "/don", "/blog", "/docs", "/actualites", "/effata","/annuaire","/vie-de-foi","/tribunes"];
+=======
+export const publicRoutes = ["/", "/auth", "/actualites","/don", "/blog", "/docs", "/actualites", "/effata"];
+>>>>>>> 5196317 (US-LUNION-256: Mettre en place le contenu de l'actualités (CATHOLIKIA))
 
 // Middleware d'internationalisation
 const intlMiddleware = createIntlMiddleware(routing);
