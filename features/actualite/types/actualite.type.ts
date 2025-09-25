@@ -9,4 +9,5 @@ export interface IActualite {
 	country?: string;
 	category?: string;
 	authorName?: string;
+	content?:string
 }

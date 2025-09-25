@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ElementType} from "react";
 import { tv } from "tailwind-variants";
 
 export const titleStyle = tv({
@@ -17,11 +17,12 @@ export const titleStyle = tv({
       sm: "text-3xl lg:text-4xl",
       md: "text-3xl lg:text-4xl xl:text-5xl",
       lg: "text-4xl lg:text-6xl",
+      xl: "text-5xl lg:text-7xl",
     },
     fullWidth: {
       true: "w-full block",
     },
-   
+
   },
   defaultVariants: {
     size: "md",
@@ -42,6 +43,7 @@ export const titleStyle = tv({
 });
 
 interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+  as?:ElementType;
   color?: keyof typeof titleStyle.variants.color;
   size?: keyof typeof titleStyle.variants.size;
   fullWidth?: boolean;
@@ -49,6 +51,7 @@ interface TitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 export default function Title({
+  as = "h1",
   color,
   size,
   fullWidth,
@@ -56,9 +59,10 @@ export default function Title({
   className,
   ...props
 }: TitleProps) {
+	const Tag = as || "h1";
   return (
-    <h1 className={titleStyle({ color, size, fullWidth, className })} {...props}>
+    <Tag className={titleStyle({ color, size, fullWidth, className })} {...props}>
       {children}
-    </h1>
+    </Tag>
   );
 }
