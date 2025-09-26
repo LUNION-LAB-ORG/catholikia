@@ -40,7 +40,7 @@ export const SearchForm = ({ onSearch }: SearchFormProps) => {
       <div className="flex flex-col gap-4 mb-4">
         {/* Ligne de recherche principale */}
         <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
-          {/* Champ recherche */}
+          {/* Champ recherche*/}
           <div className="w-full sm:w-[80%]">
             <Input
               id="name"
