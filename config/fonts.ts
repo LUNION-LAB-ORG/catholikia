@@ -1,4 +1,4 @@
-import {Fira_Code as FontMono, Inter as FontSans} from "next/font/google";
+import {Fira_Code as FontMono, Inter as FontSans, Geist} from "next/font/google";
 import localFont from 'next/font/local';
 
 export const fontSans = FontSans({
@@ -53,3 +53,8 @@ export const fontMono = FontMono({
 	subsets: ["latin"],
 	variable: "--font-mono",
 });
+export const geist=Geist({
+	variable:'--font-geist',
+	subsets: ['latin'],
+	weight:'500'
+})
