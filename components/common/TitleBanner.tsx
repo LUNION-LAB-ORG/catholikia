@@ -51,7 +51,7 @@ const TitleBanner: React.FC<TitleBannerProps> = ({
               max-w-[90%] sm:max-w-[70%] lg:max-w-[50%]
               text-center
               lg:text-left lg:absolute lg:top-65 lg:left-20
-              border-4 p-2
+              border-4 p-2 font-bebas
             "
           >
             {title}
