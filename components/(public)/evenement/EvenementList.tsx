@@ -54,7 +54,7 @@ const EvenementList = () => {
 						<Title className="text-white text-2xl sm:text-3xl lg:text-4xl">
 							EVENEMENT À VENIR
 						</Title>
-						<p className="text-white text-base sm:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">
+						<p className="text-white text-base sm:text-lg lg:text-xl max-w-6xl mx-auto leading-relaxed mt-10">
 							Restez informé(e) de l'actualité de l'Église communautaire ! Des veillées
 							de culte aux études bibliques, en passant par les programmes
 							d'évangélisation et les rassemblements fraternels, il y en a toujours pour

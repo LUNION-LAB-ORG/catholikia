@@ -10,5 +10,5 @@ export interface IActualite {
 	country?: string;
 	category?: string;
 	authorName?: string;
-	description?:string
+	content?:string
 }
