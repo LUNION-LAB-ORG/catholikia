@@ -26,7 +26,7 @@ const CarouselActualite = () => {
   }, [api]);
 
   return (
-    <Section className="flex flex-col     overflow-hidden">
+    <Section className="flex flex-col overflow-hidden">
       <div className="flex flex-col overflow-hidden">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
           <Title>DERNIÈRES NOUVELLES</Title>
@@ -51,17 +51,16 @@ const CarouselActualite = () => {
             {Array.from({ length: 3 }).map((_, index) => (
               <CarouselItem
                 key={index}
-                className="relative w-full sm:w-[48%]  overflow-hidden lg:w-full rounded-2xl overflow-hidden "  style={{
-          
-        }}
+                className="relative w-full sm:w-[48%]  overflow-hidden lg:w-full rounded-2xl overflow-hidden "
+            
               >
                 <Image
                   src={`/assets/carousel-img/event${index + 1}.png`}
-                  alt=""
+                  alt="item-image"
                   className="w-full h-64 sm:h-72 lg:h-96 overflow-hidden object-cover rounded-2xl  "
                   width={400}
                   height={400}
- />
+                />
 
                 <div className="absolute bottom-0 w-full bg-gray-200/90 overflow-hidden bg-opacity-90 px-3 py-2 sm:px-6 sm:py-3 lg:px-6 lg:py-6  rounded-b-2xl">
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 items-start sm:items-center">
@@ -69,8 +68,8 @@ const CarouselActualite = () => {
                       3 juin 2025
                     </div>
                     <div className="text-sm sm:text-base">
-                      Le Pape François appelle à une mobilisation mondiale pour la
-                      paix en Afrique
+                      Le Pape François appelle à une mobilisation mondiale pour
+                      la paix en Afrique
                     </div>
                   </div>
                 </div>

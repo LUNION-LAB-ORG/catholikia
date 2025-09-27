@@ -1,14 +1,15 @@
 import Index from '@/components/(public)/annuaire';
 import TitleBanner from '@/components/common/TitleBanner';
+import Content from '@/components/primitives/Content';
 import React from 'react';
 
-const Page = () => {
+const AnnuairePage = () => {
     return (
-        <div>
-              <TitleBanner className='' title="ANNUAIRE DES DIOCESES DE COTE D'IVOIRE" />
+        <Content>
+              <TitleBanner  title="ANNUAIRE DES DIOCESES DE COTE D'IVOIRE" />
             <Index />
-        </div>
+        </Content>
     );
 }
 
-export default Page;
+export default AnnuairePage;

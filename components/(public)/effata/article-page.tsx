@@ -59,24 +59,7 @@ export const ArticlesPage = () => {
               </button>
             </div>
 
-            {/* Categories */}
-
-            {/* Dropdown */}
-            {/* <div className="mb-8">
-              <Select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-80 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-              >
-                <SelectItem value="Voyages et événements du Pape">Voyages et événements du Pape</SelectItem>
-                <SelectItem value="Actualité des Églises locales">
-                  Actualité des Églises locales
-                </SelectItem>
-                <SelectItem value="Engagements sociaux et humanitaires">
-                  Engagements sociaux et humanitaires
-                </SelectItem>
-              </Select>
-            </div> */}
+            
           </div>
         </div>
         {/* Grille d'actualités */}

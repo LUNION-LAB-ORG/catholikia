@@ -4,11 +4,12 @@ import { FoiSection } from '@/components/(public)/vie-de-foi/foi-section';
 import { TestimonialsSection } from '@/components/(public)/vie-de-foi/testimonials-section';
 import { VideoTestimonialsSection } from '@/components/(public)/vie-de-foi/video-testimonial-section';
 import MissionSignup from '@/components/don/MissionSignup';
+import Content from '@/components/primitives/Content';
 import React from 'react';
 
-const Page = () => {
+const VieDeFoiPage = () => {
     return (
-        <div>
+        <Content>
             <FoiSection/>
             <VideoTestimonialsSection/>
             <FlashInfo/>
@@ -19,8 +20,8 @@ const Page = () => {
                             />
             <MissionSignup />
 
-        </div>
+        </Content>
     );
 }
 
-export default Page;
+export default VieDeFoiPage;

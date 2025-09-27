@@ -79,7 +79,7 @@ export const SearchForm = ({ onSearch }: SearchFormProps) => {
               </SelectContent>
             </Select>
           </div>
- <div className="w-full sm:w-[40%]">
+          <div className="w-full sm:w-[40%]">
             <Select name="sort">
               <SelectTrigger className="w-full rounded-2xl bg-[#FAFAFA]">
                 <SelectValue placeholder="Departement" />
@@ -90,7 +90,7 @@ export const SearchForm = ({ onSearch }: SearchFormProps) => {
                 <SelectItem value="za">Yamoussoukrou</SelectItem>
                 <SelectItem value="za">Daloa</SelectItem>
                 <SelectItem value="za">San-pedro</SelectItem>
-                 <SelectItem value="za">Korhogo</SelectItem>
+                <SelectItem value="za">Korhogo</SelectItem>
               </SelectContent>
             </Select>
           </div>

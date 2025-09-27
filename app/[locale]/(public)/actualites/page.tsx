@@ -3,16 +3,17 @@ import CarouselActualite from "@/components/(public)/actualites/carousel/index";
 import Publicite from "@/components/(public)/publicites";
 import TitleBanner from "@/components/common/TitleBanner";
 import MissionSignup from "@/components/don/MissionSignup";
+import Content from "@/components/primitives/Content";
 
 const Page = () => {
   return (
-    <div>
+    <Content>
       <TitleBanner title="actualité" />
       <CarouselActualite />
       <Publicite position="ACCUEIL_MIDDLE" orientation="horizontal" />
       <ActualitesPage />
-    <MissionSignup />
-    </div>
+      <MissionSignup />
+    </Content>
   );
 };
 

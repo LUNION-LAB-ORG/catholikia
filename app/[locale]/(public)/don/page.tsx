@@ -1,14 +1,15 @@
 import TitleBanner from '@/components/common/TitleBanner';
 import MissionSignup from '@/components/don/MissionSignup';
+import Content from '@/components/primitives/Content';
 import React from 'react';
 
-const Page = () => {
+const DonPage = () => {
     return (
-        <div>
+        <Content>
             <TitleBanner title='don'  />
             <MissionSignup />
-        </div>
+        </Content>
     );
 }
 
-export default Page;
+export default DonPage;
