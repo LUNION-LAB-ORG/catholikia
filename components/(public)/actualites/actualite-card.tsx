@@ -29,7 +29,7 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 	return (
 		<div className="flex flex-col justify-between space-y-2 h-full">
 			<Link
-				href={actualite.url}
+				href={actualite.slug}
 				className="group block h-full"
 			>
 				<article
@@ -66,7 +66,7 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 						</h4>
 						<div>
 							{options?.withDescription && <p className="font-medium text-[#6C7993] text-medium">
-								{actualite.shortDescription}
+								{actualite.description}
 							</p>}
 							{options?.withAuthor && <p className="font-bold text-[#6C7993] text-sm">
 								Par {actualite.authorName}

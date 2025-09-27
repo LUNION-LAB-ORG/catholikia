@@ -3,11 +3,11 @@ export interface IActualite {
 	title: string;
 	image: string;
 	publishedAt: string;
-	shortDescription?: string;
-	url: string;
+	slug: string;
 	tags: string[];
 	country?: string;
 	category?: string;
 	authorName?: string;
-	content?:string
+	content?:string;
+	description?:string;
 }
