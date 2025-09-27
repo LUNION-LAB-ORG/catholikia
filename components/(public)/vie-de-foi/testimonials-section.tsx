@@ -45,7 +45,7 @@ export const TestimonialsSection = () => {
         ))}
       </div>
 
-      {/* Pagination avec numéros */}
+      {/* Pagination avec numéro */}
       {totalPages > 1 && (
         <div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
           {[...Array(totalPages)].map((_, index) => (
