@@ -5,9 +5,19 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   images: {
     remotePatterns: [
+      // Localhost
       {
         protocol: "http",
-        hostname: "localhost:3000",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/**",
+      },
+      // YouTube thumbnails
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+        port: "",
+        pathname: "/vi/**",
       },
     ],
   },
