@@ -3,6 +3,8 @@ import mgrJeanDupont from "@/assets/mgr-jean-dupont.jpg";
 import drMarieLeblanc from "@/assets/dr-marie-leblanc.jpg";
 import pereAntoineMartin from "@/assets/pere-antoine-martin.jpg";
 import profJeanLucRousseau from "@/assets/prof-jean-luc-rousseau.jpg";
+import Title from "@/components/primitives/Title";
+import Section from "@/components/primitives/Section";
 
 const contributors = [
   {
@@ -33,13 +35,13 @@ const contributors = [
 
 export const Contributors = () => {
   return (
-    <section className="bg-background py-16">
+    <Section className="bg-background py-16">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-foreground mb-4 tracking-tight">
+        <div className=" mb-12">
+          <Title className="text- font-bold text-foreground mb-4 tracking-tight">
             NOS CONTRIBUTEURS
-          </h2>
-          <p className="text-muted-foreground text-base max-w-2xl mx-auto">
+          </Title>
+          <p className="text-muted-foreground text-base w-full mx-auto">
             Des voix autorisées pour éclairer les grands débats de notre temps
           </p>
         </div>
@@ -69,6 +71,6 @@ export const Contributors = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
