@@ -1,3 +1,4 @@
+import Section from "@/components/primitives/Section";
 import { Button } from "@/components/ui/button";
 
 interface ArticleCardProps {
@@ -12,7 +13,7 @@ interface ArticleCardProps {
 
 export const ArticleCard = ({ image, title, excerpt, author, date,theme }: ArticleCardProps) => {
   return (
-    <div className="bg-card rounded-lg shadow-sm overflow-hidden border border-border">
+    <Section className="bg-card rounded-lg shadow-sm overflow-hidden border border-border">
       <div className="aspect-[4/3] overflow-hidden">
         <img 
           src={image} 
@@ -29,15 +30,15 @@ export const ArticleCard = ({ image, title, excerpt, author, date,theme }: Artic
           {excerpt}
         </p>
         <div className="flex items-center justify-between mb-4">
-          <div className="text-xs text-muted-foreground">
-            <div>{author}</div>
+          <div className="text-xs">
+            <div className="font-bold text-[#4B5563] ">{author}</div>
             <div className="mt-1">{date}</div>
           </div>
         </div>
-        <Button variant="default"  size="sm" className="w-full cursor-pointer">
+        <Button variant="default"  size="sm" className="w-full rounded-2xl cursor-pointer">
           LIRE
         </Button>
       </div>
-    </div>
+    </Section>
   );
 };

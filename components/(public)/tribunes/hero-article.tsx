@@ -37,7 +37,7 @@ export const HeroArticle = () => {
           <p className="text-muted-foreground leading-relaxed">
             {articleUne?.excerpt}
           </p>
-          <Button variant="default" className="rounded-2xl" size="lg">
+          <Button variant="default" className="rounded-2xl cursor-pointer" size="lg">
             LIRE LA SUITE
           </Button>
         </div>
