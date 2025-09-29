@@ -19,7 +19,7 @@ const teamMembers: TeamMember[] = [
 
 const EditorialTeam = () => {
   return (
-    <Section className="min-h-screen text-[#a5a0a0] bg-background px-6 py-16 lg:px-16">
+    <Section className=" text-[#a5a0a0] bg-background px-6 py-16 lg:px-16">
       <Title className="mb-5">
         L'ÉQUIPE ÉDITORIALE
       </Title>

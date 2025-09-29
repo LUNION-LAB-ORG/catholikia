@@ -19,19 +19,19 @@ export default function ProposerTexte() {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto relative">
+      <div className="max-w-6xl mx-auto lg:mb-10 relative">
         {/* Header */}
         <Title className="text-2xl sm:text-3xl text-white md:text-4xl font-bold mb-4 uppercase text-center lg:text-left">
           PROPOSER UN TEXTE
         </Title>
-        <p className="text-gray-300 font-medium max-w-3xl mb-12 sm:mb-16 text-center lg:text-left mx-auto lg:mx-0">
+        <p className="text-gray-300 font-medium max-w-3xl mb-12 sm:mb-16 text-center  lg:text-left mx-auto lg:mx-0">
           Nous accueillons les contributions originales de chercheurs, prêtres,
           laïcs ou fidèles engagés qui souhaitent partager leur réflexion sur
           les enjeux contemporains.
         </p>
 
         {/* Card */}
-        <div className="rounded-xl bg-neutral-900 p-6 sm:p-8 flex flex-col lg:flex-row lg:justify-end relative gap-6">
+        <div className="rounded-xl bg-[#212121] p-6 sm:p-8 flex flex-col lg:flex-row lg:justify-end relative gap-6">
           {/* Texte + CTA */}
           <div className="flex flex-col w-full lg:w-[60%] space-y-4 sm:space-y-6 text-center lg:text-left">
             <h3 className="text-lg sm:text-xl font-bold">

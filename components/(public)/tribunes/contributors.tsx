@@ -11,25 +11,25 @@ const contributors = [
     id: 1,
     name: "Mgr Jean Dupont",
     title: "ARCHEVÊQUE DE LYON",
-    image: '/assets/tribunes/article1.png',
+       image: '/assets/tribunes/contributor1.jpg',
   },
   {
     id: 2,
     name: "Dr Marie Leblanc",
     title: "THÉOLOGIENNE, UNIVERSITÉ CATHOLIQUE",
-    image: '/assets/tribunes/article1.png',
+     image: '/assets/tribunes/contributor2.png',
   },
   {
     id: 3,
     name: "Père Antoine Martin",
     title: "CURÉ DE SAINT-SULPICE",
-    image: '/assets/tribunes/article1.png',
+ image: '/assets/tribunes/contributor1.jpg',
   },
   {
     id: 4,
     name: "Prof Jean-Luc Rousseau",
     title: "PHILOSOPHE, INSTITUT CATHOLIQUE",
-    image: '/assets/tribunes/article1.png',
+    image: '/assets/tribunes/contributor1.jpg',
   }
 ];
 
@@ -50,7 +50,7 @@ export const Contributors = () => {
           {contributors.map((contributor) => (
             <div key={contributor.id} className="text-center group">
               <div className="mb-4 flex justify-center">
-                <Avatar className="w-24 h-24 ring-2 ring-spiritual-orange/20 group-hover:ring-spiritual-orange/40 transition-all duration-300">
+                <Avatar className="w-24 h-24   group-hover:ring-spiritual-orange/40 transition-all duration-300">
                   <AvatarImage 
                     src={contributor.image} 
                     alt={`Portrait de ${contributor.name}`}

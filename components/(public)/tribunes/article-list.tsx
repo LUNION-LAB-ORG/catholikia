@@ -5,7 +5,7 @@ import { LatestContributions } from "./latest-contributions";
 
 const ArticleList = () => {
   return (
-    <Section className="min-h-screen bg-background">
+    <Section className="min-h-screen bg-background sm:p-0 ">
       {/* Header */}
       <header className="border-b border-border bg-background">
         <div className="container mx-auto px-6 py-8">

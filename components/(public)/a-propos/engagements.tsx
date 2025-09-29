@@ -82,7 +82,7 @@ const engagements: EngagementCard[] = [
 
 const Engagements = () => {
   return (
-    <section className="min-h-screen bg-background px-6 py-16 lg:px-16">
+    <section className=" bg-background px-6 py-16 lg:px-16">
       <div className="mx-auto max-w-7xl">
         <Title className="mb-16 text-4xl font-bold  lg:text-3xl tracking-tight text-start">
           NOS ENGAGEMENTS

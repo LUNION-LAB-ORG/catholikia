@@ -13,7 +13,7 @@ interface ArticleCardProps {
 
 export const ArticleCard = ({ image, title, excerpt, author, date,theme }: ArticleCardProps) => {
   return (
-    <Section className="bg-card rounded-lg shadow-sm overflow-hidden border border-border">
+    <section className="bg-card rounded-lg  shadow-sm overflow-hidden border border-border">
       <div className="aspect-[4/3] overflow-hidden">
         <img 
           src={image} 
@@ -21,8 +21,8 @@ export const ArticleCard = ({ image, title, excerpt, author, date,theme }: Artic
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
         />
       </div>
-      <div className="p-6">
-        <span className="p-1 px-2 text-xs border-1 rounded-2xl"> {theme} </span>
+      <div className="p-4">
+        <span className=" text-xs border-1 rounded-2xl"> {theme} </span>
         <h3 className="text-lg font-semibold text-foreground mb-3 line-clamp-2 leading-tight">
           {title}
         </h3>
@@ -39,6 +39,6 @@ export const ArticleCard = ({ image, title, excerpt, author, date,theme }: Artic
           LIRE
         </Button>
       </div>
-    </Section>
+    </section>
   );
 };

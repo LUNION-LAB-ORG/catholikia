@@ -10,7 +10,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <Content>
+    <Content fullWidth className="pt-0">
       <TitleBanner title="TRIBUNES" />
       <ArticleList />
       <Contributors />
