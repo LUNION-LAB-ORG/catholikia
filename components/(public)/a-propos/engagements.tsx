@@ -30,6 +30,7 @@ const engagements: EngagementCard[] = [
     variant: "dark",
   },
   {
+    
     type: "image",
      image: "/assets/about/engagemen3.jpg",
     title: "VIE COMMUNAUTAIRE",
