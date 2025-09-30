@@ -2,13 +2,14 @@
 import { articles } from "@/app/api/articles";
 import { ArticleCard } from "./article-card";
 import Title from "@/components/primitives/Title";
+import Section from "@/components/primitives/Section";
 
 
 
 export const LatestContributions = () => {
    const article= articles.filter((art)=>art.article_une==false)
   return (
-    <div>
+    <Section>
       <div className="text-2xl font-bold text-foreground mb-8 tracking-tight">
        <Title> Dernières contributions</Title>
       </div>
@@ -25,6 +26,6 @@ export const LatestContributions = () => {
           />
         ))}
       </div>
-    </div>
+    </Section>
   );
 };

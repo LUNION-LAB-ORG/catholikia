@@ -3,43 +3,45 @@ import mgrJeanDupont from "@/assets/mgr-jean-dupont.jpg";
 import drMarieLeblanc from "@/assets/dr-marie-leblanc.jpg";
 import pereAntoineMartin from "@/assets/pere-antoine-martin.jpg";
 import profJeanLucRousseau from "@/assets/prof-jean-luc-rousseau.jpg";
+import Title from "@/components/primitives/Title";
+import Section from "@/components/primitives/Section";
 
 const contributors = [
   {
     id: 1,
     name: "Mgr Jean Dupont",
     title: "ARCHEVÊQUE DE LYON",
-    image: '/assets/tribunes/article1.png',
+       image: '/assets/tribunes/contributor1.jpg',
   },
   {
     id: 2,
     name: "Dr Marie Leblanc",
     title: "THÉOLOGIENNE, UNIVERSITÉ CATHOLIQUE",
-    image: '/assets/tribunes/article1.png',
+     image: '/assets/tribunes/contributor2.png',
   },
   {
     id: 3,
     name: "Père Antoine Martin",
     title: "CURÉ DE SAINT-SULPICE",
-    image: '/assets/tribunes/article1.png',
+ image: '/assets/tribunes/contributor1.jpg',
   },
   {
     id: 4,
     name: "Prof Jean-Luc Rousseau",
     title: "PHILOSOPHE, INSTITUT CATHOLIQUE",
-    image: '/assets/tribunes/article1.png',
+    image: '/assets/tribunes/contributor1.jpg',
   }
 ];
 
 export const Contributors = () => {
   return (
-    <section className="bg-background py-16">
+    <Section className="bg-background py-16">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-foreground mb-4 tracking-tight">
+        <div className=" mb-12">
+          <Title className="text- font-bold text-foreground mb-4 tracking-tight">
             NOS CONTRIBUTEURS
-          </h2>
-          <p className="text-muted-foreground text-base max-w-2xl mx-auto">
+          </Title>
+          <p className="text-muted-foreground text-base w-full mx-auto">
             Des voix autorisées pour éclairer les grands débats de notre temps
           </p>
         </div>
@@ -48,7 +50,7 @@ export const Contributors = () => {
           {contributors.map((contributor) => (
             <div key={contributor.id} className="text-center group">
               <div className="mb-4 flex justify-center">
-                <Avatar className="w-24 h-24 ring-2 ring-spiritual-orange/20 group-hover:ring-spiritual-orange/40 transition-all duration-300">
+                <Avatar className="w-24 h-24   group-hover:ring-spiritual-orange/40 transition-all duration-300">
                   <AvatarImage 
                     src={contributor.image} 
                     alt={`Portrait de ${contributor.name}`}
@@ -69,6 +71,6 @@ export const Contributors = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };

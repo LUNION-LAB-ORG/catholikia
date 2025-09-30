@@ -4,13 +4,11 @@ import Image from "next/image";
 import {PUBLICITE_POSITIONS} from "@/features/publicite/types/publicite.type";
 import {publicitesFakeData} from "@/app/api/publicites";
 
-export default function Publicite({position, orientation, ...props}: React.HTMLAttributes<HTMLDivElement> & {
+export default function Publicite({position, orientation="horizontal", ...props}: React.HTMLAttributes<HTMLDivElement> & {
 	position: PUBLICITE_POSITIONS,
 	orientation?: 'horizontal' | 'vertical'
 }) {
-	const publicite = publicitesFakeData.filter(
-		(banner) => banner.position === position
-	)[0]
+	const publicite = publicitesFakeData[0]
 
 	if (!publicite) {
 		return null

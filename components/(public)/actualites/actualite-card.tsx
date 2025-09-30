@@ -25,25 +25,30 @@ type PropsCard = {
 }
 
 function ActualiteCard({actualite, orientation, options}: PropsCard) {
+	console.log(orientation);
 	return (
 		<div className="flex flex-col justify-between space-y-2 h-full">
 			<Link
-				href={actualite.url}
+				href={actualite.slug}
 				className="group block h-full"
 			>
-				<article className={`grid ${
-					orientation === 'horizontal'
-						? 'grid-cols-[minmax(100px,40%),1fr]'
-						: 'grid-cols-1'
-				} gap-4 items-stretch h-full transition transform duration-200`}>
+				<article
+					className={cn(
+						"grid gap-4 items-stretch h-full transition transform duration-200",
+						orientation === "horizontal"
+							? "grid-cols-[minmax(100px,40%)_1fr]"
+							: "grid-cols-1"
+					)}
+				>
 					<div
-						className={`relative ${orientation === 'vertical' ? 'aspect-video w-full' : 'min-h-[220px]'} overflow-hidden rounded-xl`}
+						className={`relative overflow-hidden rounded-xl ${orientation === 'vertical' ? 'aspect-video w-full' : 'min-h-[110px]'}`}
 					>
 						<Image
 							src={actualite.image}
 							alt={actualite.title}
-							fill
-							className="object-cover group-hover:scale-105 transition-transform duration-300"
+							className="h-full w-full group-hover:scale-105 transition-transform duration-300"
+							width={250}
+							height={200}
 						/>
 						{options && <ActualiteImageDecoration
 							options={options}
@@ -56,12 +61,12 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 							<span>{dateFormat(actualite.publishedAt)}</span>
 						</time>
 						<h4
-							className={cn("text-sm text-gray-800 font-semibold group-hover:text-gray-900 transition-colors duration-300 line-clamp-2 mb-2.5")}>
+							className={cn("group-hover:underline text-sm text-gray-800 font-semibold group-hover:text-gray-900 transition-colors duration-300 line-clamp-2 mb-2.5")}>
 							{actualite.title}
 						</h4>
 						<div>
 							{options?.withDescription && <p className="font-medium text-[#6C7993] text-medium">
-								{actualite.shortDescription}
+								{actualite.description}
 							</p>}
 							{options?.withAuthor && <p className="font-bold text-[#6C7993] text-sm">
 								Par {actualite.authorName}
@@ -79,7 +84,7 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 					</div>
 				</article>
 			</Link>
-			<div className="flex justify-end">
+			{orientation != 'horizontal' && <div className="flex justify-end">
 				<Button variant="bordered"
 				        className={cn("uppercase text-[#1D1D1D] font-bold border", options?.withShare ? 'rounded-l-full border-r-0' : 'rounded-full')}>
 					Details
@@ -88,7 +93,7 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 					<Button variant="bordered" className="rounded-r-full uppercase text-[#1D1D1D] font-bold border border-l-0">
 						Partager
 					</Button>}
-			</div>
+			</div>}
 		</div>
 	);
 }

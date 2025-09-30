@@ -7,7 +7,7 @@ export const HeroArticle = () => {
   const articleUne = articles.find((une) => une.article_une === true);
 
   return (
-    <Section className="">
+    <section className="">
       <div className="text-2xl font-bold text-foreground mb-8 tracking-tight">
        
           <Title>  ARTICLE À LA UNE</Title>
@@ -24,7 +24,7 @@ export const HeroArticle = () => {
         </div>
         <div className="order-1 lg:order-2 space-y-6">
           <div className="text-xs text-muted-foreground flex px-2 uppercase tracking-wider">
-            <span className="w-[29%] border-2 px-2 py-1 rounded-2xl ">
+            <span className="lg:w-[29%] w-[40%] border-2 px-2 py-1 rounded-2xl ">
               {articleUne?.theme}
             </span>
           </div>
@@ -37,11 +37,11 @@ export const HeroArticle = () => {
           <p className="text-muted-foreground leading-relaxed">
             {articleUne?.excerpt}
           </p>
-          <Button variant="default" className="rounded-2xl" size="lg">
+          <Button variant="default" className="rounded-2xl cursor-pointer" size="lg">
             LIRE LA SUITE
           </Button>
         </div>
       </div>
-    </Section>
+    </section>
   );
 };

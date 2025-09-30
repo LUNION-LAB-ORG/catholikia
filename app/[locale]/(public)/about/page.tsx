@@ -6,7 +6,7 @@ export default async function AboutPage() {
   const t = await getTranslations("about");
 
   return (
-    <Content>
+    <Content fullWidth className="pt-0">
       <Title>{t("title")}</Title>
     </Content>
   );

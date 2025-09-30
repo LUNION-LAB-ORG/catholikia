@@ -1,14 +1,13 @@
-
 export interface IActualite {
 	id: string;
 	title: string;
 	image: string;
 	publishedAt: string;
-	shortDescription?: string;
-	url: string;
+	slug: string;
 	tags: string[];
 	country?: string;
 	category?: string;
 	authorName?: string;
-	description?:string
+	content?:string;
+	description?:string;
 }
