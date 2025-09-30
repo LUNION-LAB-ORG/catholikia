@@ -43,8 +43,7 @@ const socialLinks = [
 	{icon: Facebook, label: "Facebook", href: data.facebookLink},
 	{icon: Instagram, label: "Instagram", href: data.instaLink},
 	{icon: Twitter, label: "Twitter", href: data.twitterLink},
-	{icon: Github, label: "GitHub", href: data.githubLink},
-	{icon: Dribbble, label: "Dribbble", href: data.dribbbleLink},
+	
 ];
 
 const aboutLinks = [
@@ -64,7 +63,7 @@ const serviceLinks = [
 
 export default function Footer4Col() {
 	return (
-		<footer className={cn("bg-secondary dark:bg-secondary/20 mb-0 w-full text-white place-self-end rounded-t-xl")}>
+		<footer className={cn("bg-secondary dark:bg-secondary/20 mb-0 w-full text-white place-self-end ")}>
 			<div className="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
 				<div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
 					<div>

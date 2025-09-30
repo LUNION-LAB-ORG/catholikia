@@ -70,19 +70,13 @@ export const Navbar = async () => {
 			</NavbarContent>
 
 			<NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-				<Link isExternal aria-label="Github" href={siteConfig.links.github}>
-					<GithubIcon className="text-default-500"/>
-				</Link>
-				<ThemeSwitch/>
+				<LocaleSwitcher/>
 				<NavbarMenuToggle/>
 			</NavbarContent>
 
 			<NavbarMenu>
 				<div className="mx-4 mt-2 flex flex-col gap-2">
-					<NavbarMenuItem className="flex items-center justify-end">
-						<LocaleSwitcher/>
-					</NavbarMenuItem>
-					{siteConfig.navMenuItems.map((item, index) => (
+					{siteConfig.navItems.map((item, index) => (
 						<NavbarMenuItem key={`${item}-${index}`}>
 							<Link
 								color={index === 2 ? "primary" : "foreground"}
@@ -93,7 +87,7 @@ export const Navbar = async () => {
 							</Link>
 						</NavbarMenuItem>
 					))}
-					<NavbarMenuItem className="mt-8">
+					{/* <NavbarMenuItem className="mt-8">
 						{isLoggedIn ? (
 							<Button
 								color="danger"
@@ -114,7 +108,7 @@ export const Navbar = async () => {
 								{t("buttons.login")}
 							</Button>
 						)}
-					</NavbarMenuItem>
+					</NavbarMenuItem> */}
 				</div>
 			</NavbarMenu>
 		</HeroUINavbar>
