@@ -30,16 +30,16 @@ export default function LocaleSwitcher() {
   };
 
   const locales = [
-    {
-      code: "ar",
-      label: t("ar"),
-      flag: "/images-examples/all-img/flag-2.png",
-    },
-    {
-      code: "en",
-      label: t("en"),
-      flag: "/images-examples/all-img/flag-1.png",
-    },
+    // {
+    //   code: "ar",
+    //   label: t("ar"),
+    //   flag: "/images-examples/all-img/flag-2.png",
+    // },
+    // {
+    //   code: "en",
+    //   label: t("en"),
+    //   flag: "/images-examples/all-img/flag-1.png",
+    // },
     {
       code: "fr",
       label: t("fr"),

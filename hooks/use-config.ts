@@ -8,8 +8,8 @@ export type Config = {
 }
 
 export const defaultConfig: Config = {
-  theme: "dark",
-  locale: "en",
+  theme: "light",
+  locale: "fr",
   isRtl: false,
 }
 

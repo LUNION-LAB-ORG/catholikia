@@ -1,36 +1,46 @@
 export type SiteConfig = typeof siteConfig;
 
-export const locales = ["ar", "en", "fr"];
+export const locales = ["fr"];
 
 export const siteConfig = {
-  name: "Next-STARTER",
-  description: "Make beautiful websites regardless of your design experience.",
+  name: "Catholikia",
+  description: "Le média catholique de l'Afrique francophone",
   navItems: [
     {
-      key: "home",
-      label: "Home",
-      href: "/",
+      key: "actualites",
+      label: "Actualités",
+      href: "/actualites",
     },
     {
-      key: "docs",
-      label: "Docs",
-      href: "/docs",
+      key: "effata",
+      label: "Effata",
+      href: "/effata",
     },
     {
-      key: "pricing",
+      key: "vie-de-foi",
       label: "Pricing",
-      href: "/pricing",
+      href: "/vie-de-foi",
     },
     {
-      key: "blog",
-      label: "Blog",
-      href: "/blog",
+      key: "parlons-en",
+      label: "Parlons-en",
+      href: "/parlons-en",
     },
     {
-      key: "about",
-      label: "About",
-      href: "/about",
+      key: "culturama",
+      label: "Culturama",
+      href: "/culturama",
     },
+    {
+      key: "tribunes",
+      label: "Tribunes",
+      href: "/tribunes",
+    },
+    {
+      key: "a-propos",
+      label: "A propos",
+      href: "/a-propos",
+    }
   ],
 
   navMenuItems: [

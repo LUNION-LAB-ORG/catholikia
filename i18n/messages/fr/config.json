@@ -5,6 +5,14 @@
     "fr": "Français"
   },
   "menu_links": {
+    "actualites": "Actualités",
+    "effata": "Effata",
+    "vie-de-foi": "Vie de foi",
+    "parlons-en": "Parlons-en",
+    "culturama": "Culturama",
+    "tribunes": "Tribunes",
+    "a-propos": "À propos",
+
     "home": "Accueil",
     "docs": "Documentation",
     "pricing": "Tarifs",

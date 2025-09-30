@@ -29,23 +29,25 @@ export const Navbar = async () => {
   const isLoggedIn = !!session;
 
   return (
-    <HeroUINavbar maxWidth="2xl" position="sticky">
+    <HeroUINavbar maxWidth="full" shouldHideOnScroll className="custom-container rounded-b-4xl bg-white fixed">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand as="li" className="gap-3 max-w-fit">
+        <NavbarBrand as="li" className="">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Logo
-              width={216}
-              height={73}
+              width={120}
             />
           </NextLink>
         </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium font-barlow"
                 )}
                 color="foreground"
                 href={item.href}
@@ -62,31 +64,17 @@ export const Navbar = async () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
-          <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-            <GithubIcon className="text-default-500" />
-          </Link>
           <LocaleSwitcher />
-          <ThemeSwitch />
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
-          {isLoggedIn ? (
-            <Button
-              color="danger"
-              onPress={logout}
-              startContent={<LogOutIcon />}
-            >
-              {t("buttons.logout")}
-            </Button>
-          ) : (
-            <Button
-              as={Link}
-              color="primary"
-              href={"/auth/login"}
-              startContent={<LogInIcon />}
-            >
-              {t("buttons.login")}
-            </Button>
-          )}
+          <Button
+            as={Link}
+            color="primary"
+            href={"/actualites"}
+            className="font-bold font-sans"
+          >
+            CATHOLIKIA Mag
+          </Button>
         </NavbarItem>
       </NavbarContent>
 
