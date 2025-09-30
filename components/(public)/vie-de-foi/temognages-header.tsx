@@ -16,7 +16,7 @@ export default function TemognagesHeader() {
   ];
 
   return (
-    <section className="w-full max-w-6xl mx-auto px-4 py-5">
+    <div className="py-5">
       {/* Titre principal */}
       <Title>
         DÉCOUVREZ PLUS DE TÉMOIGNAGES
@@ -58,6 +58,6 @@ export default function TemognagesHeader() {
       <p className="mt-6 text-xs sm:text-sm font-medium text-gray-700">
         6 TÉMOIGNAGES TROUVÉS
       </p>
-    </section>
+    </div>
   );
 }

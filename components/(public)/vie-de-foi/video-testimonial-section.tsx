@@ -6,6 +6,7 @@ import { VideoPlayerModal } from "./video-player";
 import { VideoTestimonialCard } from "./video-testimonial-card";
 import Title from "@/components/primitives/Title";
 import TestimonialHeader from "./testimonial-header";
+import Section from "@/components/primitives/Section";
 
 interface VideoTestimonial {
   id: string;
@@ -53,27 +54,26 @@ export const VideoTestimonialsSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 w-full mx-auto">
+    <Section className="py-16 custom-container">
       {/* Header */}
       <div className="mb-8">
-        <p className="   mb-2  text-center ">
+        <div className="mb-2 text-center">
           <TestimonialHeader/>
-        </p>
+        </div>
         <Title className="text-4xl font-bold mb-4 uppercase font-bebas tracking-wide">
           TÉMOIGNAGES INSPIRANTS
         </Title>
-        <p className="text-muted-foreground max-w-2xl">
+        <p className="text-muted-foreground">
           Des parcours exceptionnels où tout et chacune guide professionnelle de développement
         </p>
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:px-30">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {videoTestimonials.map((testimonial) => (
           <VideoTestimonialCard
             key={testimonial.id}
             testimonial={testimonial}
-          
           />
         ))}
       </div>
@@ -86,6 +86,6 @@ export const VideoTestimonialsSection = () => {
           onClose={handleCloseModal}
         />
       )}
-    </section>
+    </Section>
   );
 };

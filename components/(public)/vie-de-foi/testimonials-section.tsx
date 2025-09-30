@@ -31,7 +31,7 @@ export const TestimonialsSection = () => {
   );
 
   return (
-    <Section className="py-10 px-8 max-w-7xl mx-auto">
+    <Section className="custom-container">
       <TemognagesHeader />
 
       {/* Liste des témoignages */}

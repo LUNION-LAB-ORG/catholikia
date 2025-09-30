@@ -11,15 +11,13 @@ import {
 } from "@heroui/navbar";
 import NextLink from "next/link";
 
-import {GithubIcon, Logo,} from "@/components/icons";
-import {ThemeSwitch} from "@/components/theme-switch";
+import {Logo,} from "@/components/icons";
 import {siteConfig} from "@/config/site";
-import {LogInIcon, LogOutIcon} from "lucide-react";
 import LocaleSwitcher from "../locale-switch";
 import {auth} from "@/lib/auth";
-import {logout} from "@/features/auth/actions/auth.action";
 import {getTranslations} from "next-intl/server";
 import NavLink from "@/components/common/navbar/nav-link";
+import MobileNavLink from "@/components/common/navbar/mobile-nav-link";
 
 export const Navbar = async () => {
 	const t = await getTranslations("partials.navbar");
@@ -28,7 +26,7 @@ export const Navbar = async () => {
 	const isLoggedIn = !!session;
 
 	return (
-		<HeroUINavbar maxWidth="full" shouldHideOnScroll className="custom-container rounded-b-4xl bg-white fixed">
+		<HeroUINavbar maxWidth="full" shouldHideOnScroll className="custom-container md:rounded-b-4xl bg-white fixed">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="">
 					<NextLink className="flex justify-start items-center gap-1" href="/">
@@ -77,38 +75,8 @@ export const Navbar = async () => {
 			<NavbarMenu>
 				<div className="mx-4 mt-2 flex flex-col gap-2">
 					{siteConfig.navItems.map((item, index) => (
-						<NavbarMenuItem key={`${item}-${index}`}>
-							<Link
-								color={index === 2 ? "primary" : "foreground"}
-								href="#"
-								size="lg"
-							>
-								{tConfig("menu_links." + item.key)}
-							</Link>
-						</NavbarMenuItem>
+						<MobileNavLink item={item} key={`${item}-${index}`}/>
 					))}
-					{/* <NavbarMenuItem className="mt-8">
-						{isLoggedIn ? (
-							<Button
-								color="danger"
-								onPress={logout}
-								startContent={<LogOutIcon/>}
-								fullWidth
-							>
-								{t("buttons.logout")}
-							</Button>
-						) : (
-							<Button
-								as={Link}
-								color="primary"
-								href={"/auth/login"}
-								startContent={<LogInIcon/>}
-								fullWidth
-							>
-								{t("buttons.login")}
-							</Button>
-						)}
-					</NavbarMenuItem> */}
 				</div>
 			</NavbarMenu>
 		</HeroUINavbar>

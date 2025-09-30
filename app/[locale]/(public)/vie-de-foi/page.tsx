@@ -9,7 +9,7 @@ import React from "react";
 
 const VieDeFoiPage = () => {
   return (
-    <Content>
+    <Content fullWidth className="pt-0">
       <FoiSection />
       <VideoTestimonialsSection />
       <FlashInfo />
