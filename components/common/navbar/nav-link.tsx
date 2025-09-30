@@ -7,7 +7,7 @@ import clsx from "clsx";
 import {useTranslations} from "next-intl";
 import BaseNavItem, {BaseNavItemProps} from "@/components/common/navbar/base-nav-item";
 
-type NavLinkProps = Omit<BaseNavItemProps, 'as'>;
+type NavLinkProps = Omit<BaseNavItemProps, 'as' | 'children'>;
 
 function NavLink({item}: NavLinkProps) {
 	const tConfig = useTranslations("config");

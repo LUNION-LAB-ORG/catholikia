@@ -3,7 +3,7 @@ import {Link} from "@heroui/link";
 import BaseNavItem, {BaseNavItemProps} from "@/components/common/navbar/base-nav-item";
 import {useTranslations} from "next-intl";
 
-type MobileNavLinkProps = Omit<BaseNavItemProps, 'as'>;
+type MobileNavLinkProps = Omit<BaseNavItemProps, 'as' | 'children'>;
 
 function MobileNavLink({item}: MobileNavLinkProps) {
 	const tConfig = useTranslations("config");

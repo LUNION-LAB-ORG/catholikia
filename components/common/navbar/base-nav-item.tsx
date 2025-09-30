@@ -5,7 +5,7 @@ import {usePathname} from "@/i18n/navigation";
 import {cn} from "@/lib/utils";
 
 export type BaseNavItemProps = {
-	as: 'item' | 'menu';
+	as?: 'item' | 'menu';
 	item: {
 		key: string;
 		href: string;
