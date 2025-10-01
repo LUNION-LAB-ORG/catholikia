@@ -21,15 +21,20 @@ export const siteConfig = {
       label: "Pricing",
       href: "/vie-de-foi",
     },
+    // {
+    //   key: "parlons-en",
+    //   label: "Parlons-en",
+    //   href: "/parlons-en",
+    // },
     {
-      key: "parlons-en",
-      label: "Parlons-en",
-      href: "/parlons-en",
+      key: "lectio-divina",
+      label: "lectio-divina",
+      href: "/lectio-divina",
     },
     {
-      key: "culturama",
-      label: "Culturama",
-      href: "/culturama",
+      key: "annuaire",
+      label: "annuaire",
+      href: "/annuaire",
     },
     {
       key: "tribunes",

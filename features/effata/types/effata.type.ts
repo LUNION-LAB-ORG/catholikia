@@ -1,23 +1,23 @@
-export interface IActualite {
+export interface IEffata {
 	id: string;
-	titre: string;
+	title: string;
 	image: string;
-	date_publication: string;
+	publishedAt: string;
 	slug: string;
 	tags: string[];
 	country?: string;
 	category?: string;
 	authorName?: string;
-	contenu?: string;
+	content?: string;
 	description?: string;
 }
 
-export interface IActualiteParams {
+export interface IEffataParams {
 	page?: number;
 	limit?: number;
 	skip?: number;
 	country?: string;
 	category?: string;
 	tag?: string;
-	q?: string;
+	search?: string;
 }
