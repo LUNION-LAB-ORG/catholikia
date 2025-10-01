@@ -29,8 +29,6 @@ export default function LectioDivina() {
           </p>
         </div>
       </div>
-
-      {/* Four Cards Grid */}
     </Section>
   );
 }

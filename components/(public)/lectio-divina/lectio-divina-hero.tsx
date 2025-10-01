@@ -1,6 +1,5 @@
 "use client";
 
-import Section from "@/components/primitives/Section";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -23,9 +22,7 @@ const LectioDivinaHero: React.FC<TitleBannerProps> = ({
   return (
     <section className={`w-full custom-container ${className}`}>
       <div
-        className="relative w-full h-[40vh]  sm:h-[50vh] md:h-[65vh] lg:h-[85vh] xl:h-[90vh] 
-        bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center 
-         overflow-hidden"
+        className="relative w-full h-[40vh]  sm:h-[50vh] md:h-[65vh] lg:h-[85vh] xl:h-[90vh] bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${backgroundImage || "/assets/lectio/lectio_hero.jpg"})`,
         }}

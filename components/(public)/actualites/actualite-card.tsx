@@ -1,13 +1,13 @@
 import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import {cn} from "@/lib/utils";
-import {dateFormat} from "@/utils/date-utils";
-import {IActualite} from "@/features/actualite/types/actualite.type";
+import { cn } from "@/lib/utils";
+import { dateFormat } from "@/utils/date-utils";
+import { IActualite } from "@/features/actualite/types/actualite.type";
 import ActualiteImageDecoration from "@/components/(public)/actualites/actualite-image-decoration";
-import {IconCalendarWeekFilled} from "@tabler/icons-react";
-import {Button} from "@heroui/button";
-import {Badge} from "@/components/ui/badge";
+import { IconCalendarWeekFilled } from "@tabler/icons-react";
+import { Button } from "@heroui/button";
+import { Badge } from "@/components/ui/badge";
 
 export type ActualiteCardOptions = {
 	withShare?: boolean;
@@ -24,12 +24,11 @@ type PropsCard = {
 	options?: ActualiteCardOptions;
 }
 
-function ActualiteCard({actualite, orientation, options}: PropsCard) {
-	console.log(orientation);
+function ActualiteCard({ actualite, orientation, options }: PropsCard) {
 	return (
 		<div className="flex flex-col justify-between space-y-2 h-full">
 			<Link
-				href={actualite.slug}
+				href={`actualites/${actualite.slug}`}
 				className="group block h-full"
 			>
 				<article
@@ -45,7 +44,7 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 					>
 						<Image
 							src={actualite.image}
-							alt={actualite.title}
+							alt={actualite.titre}
 							className="h-full w-full group-hover:scale-105 transition-transform duration-300"
 							width={250}
 							height={200}
@@ -57,12 +56,12 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 					</div>
 					<div className={cn(orientation === 'vertical' ? 'mt-4' : '', "flex flex-col space-y-2")}>
 						<time className="text-[#595959] text-sm font-medium font-barlow flex items-center">
-							<span> <IconCalendarWeekFilled color="#0088FF" size={16} className="mr-1"/> </span>
-							<span>{dateFormat(actualite.publishedAt)}</span>
+							<span> <IconCalendarWeekFilled color="#0088FF" size={16} className="mr-1" /> </span>
+							<span>{dateFormat(actualite.date_publication)}</span>
 						</time>
 						<h4
 							className={cn("group-hover:underline text-sm text-gray-800 font-semibold group-hover:text-gray-900 transition-colors duration-300 line-clamp-2 mb-2.5")}>
-							{actualite.title}
+							{actualite.titre}
 						</h4>
 						<div>
 							{options?.withDescription && <p className="font-medium text-[#6C7993] text-medium">
@@ -86,7 +85,7 @@ function ActualiteCard({actualite, orientation, options}: PropsCard) {
 			</Link>
 			{orientation != 'horizontal' && <div className="flex justify-end">
 				<Button variant="bordered"
-				        className={cn("uppercase text-[#1D1D1D] font-bold border", options?.withShare ? 'rounded-l-full border-r-0' : 'rounded-full')}>
+					className={cn("uppercase text-[#1D1D1D] font-bold border", options?.withShare ? 'rounded-l-full border-r-0' : 'rounded-full')}>
 					Details
 				</Button>
 				{options?.withShare &&

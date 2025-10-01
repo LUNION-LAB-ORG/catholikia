@@ -1,23 +1,21 @@
 "use client";
-import { useState } from "react";
-import { actualitesFakeData } from "@/app/api/actualites";
+import Section from "@/components/primitives/Section";
+import { useActualiteList } from "@/features/actualite/hooks/useActualiteList";
 import ActualiteCard from "./actualite-card";
 import { NewsPagination } from "./new-pagination";
-import Section from "@/components/primitives/Section";
+import NoData from "@/components/common/no-data";
 
 export const ActualitesPage = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 9;
-  const totalPages = Math.ceil(actualitesFakeData.length / itemsPerPage);
 
-  // On calcule seulement les éléments de la page actuelle
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = actualitesFakeData.slice(startIndex, endIndex);
+  const { actualites, onPaginationChange, meta } = useActualiteList();
+  const totalPages = meta?.totalPages || 1;
+  const currentPage = meta?.page || 1;
 
-  const handleDetails = (id: number) => {
-    console.log("Voir détails pour l'article:", id);
-  };
+  if (actualites.length === 0) {
+    return (
+      <NoData message="Aucune actualité disponible pour le moment." />
+    );
+  }
 
   return (
     <Section className="min-h-screen bg-background custom-container py-12 px-4">
@@ -29,7 +27,7 @@ export const ActualitesPage = () => {
 
         {/* Grille d'actualités */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {currentItems.map((actualite) => (
+          {actualites.map((actualite) => (
             <ActualiteCard
               key={actualite.id}
               actualite={actualite}
@@ -42,7 +40,7 @@ export const ActualitesPage = () => {
         <NewsPagination
           currentPage={currentPage}
           totalPages={totalPages}
-          onPageChange={setCurrentPage}
+          onPageChange={(page) => onPaginationChange(page, 9)}
         />
       </div>
     </Section>

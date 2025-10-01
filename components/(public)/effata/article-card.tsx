@@ -41,7 +41,7 @@ function ArticleCard({actualite, orientation, options, type = 'actualites'}: Pro
 					>
 						<Image
 							src={actualite.image}
-							alt={actualite.title}
+							alt={actualite.titre}
 							fill
 							className="object-cover group-hover:scale-105 transition-transform duration-300"
 						/>
@@ -53,11 +53,11 @@ function ArticleCard({actualite, orientation, options, type = 'actualites'}: Pro
 					<div className={cn(orientation === 'vertical' ? 'mt-4' : '', "flex flex-col space-y-2")}>
 						<time className="text-[#595959] text-sm font-medium font-barlow flex items-center">
 							<span> <IconCalendarWeekFilled color="#0088FF" size={16} className="mr-1"/> </span>
-							<span>{dateFormat(actualite.publishedAt)}</span>
+							<span>{dateFormat(actualite.date_publication)}</span>
 						</time>
 						<h4
 							className={cn("text-gray-800 font-semibold group-hover:text-gray-900 transition-colors duration-300 line-clamp-2 mb-2.5 text-lg")}>
-							{actualite.title}
+							{actualite.titre}
 						</h4>
 						<div>
 							{options?.withDescription && <p className="font-medium text-[#6C7993] text-medium line-clamp-2">

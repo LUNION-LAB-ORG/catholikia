@@ -4,36 +4,31 @@ import ActualiteCard from "./article-card";
 
 import Section from "@/components/primitives/Section";
 
-import { ArticlePagination } from "./article-pagination";
 import { articlesFakeData } from "@/app/api/article";
+import { ArticlePagination } from "./article-pagination";
 
-import { Input, Select } from "@heroui/react";
-import { SelectItem } from "@/components/ui/select";
+import { useEffataList } from "@/features/effata/hooks/useEffataList";
+import { Input } from "@heroui/react";
 import { useState } from "react";
+import LoadingIndicator from "@/components/common/LoadingIndicator";
+import NoData from "@/components/common/no-data";
 
 export const ArticlesPage = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(
-    "Voyages et événements du Pape"
-  );
+  const { effatas, meta, isLoading, error, filters, onPaginationChange, onSearchChange } = useEffataList();
 
-  const categories = [
-    "Le Vatican et le Pape",
-    "Actualité des Églises locales",
-    "Engagements sociaux et humanitaires",
-  ];
-  const itemsPerPage = 9;
-  const totalPages = Math.ceil(articlesFakeData.length / itemsPerPage);
+  if (isLoading) {
+    return <LoadingIndicator />;
+  }
 
-  // On calcule seulement les éléments de la page actuelle
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = articlesFakeData.slice(startIndex, endIndex);
+  if (error) {
+    return <div className="text-red-500">Erreur lors du chargement des articles.</div>;
+  }
 
-  const handleDetails = (id: number) => {
-    console.log("Voir détails pour l'article:", id);
-  };
+  if (effatas.length === 0) {
+    return (
+      <NoData message="Aucun article disponible pour le moment." />
+    );
+  }
 
   return (
     <Section className="min-h-screen bg-background py-12 px-4">
@@ -45,25 +40,23 @@ export const ArticlesPage = () => {
         <div className="">
           <div className="py-8">
             {/* Search Bar */}
-            <div className="flex gap-4 mb-8">
+            {effatas.length > 0 && <div className="flex gap-4 mb-8">
               <Input
                 type="search"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                value={filters.search || ''}
+                onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="Rechercher un mot-clé"
                 className="w-full pl-4 pr-10 border-gray-50 rounded-3xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
               />
               <button className="bg-yellow-400 text-black px-8 py-3 rounded-full font-medium hover:bg-yellow-500 transition-colors">
                 Rechercher
               </button>
-            </div>
-
-            
+            </div>}
           </div>
         </div>
         {/* Grille d'actualités */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-          {currentItems.map((actualite) => (
+          {effatas.map((actualite) => (
             <ActualiteCard
               type="effata"
               key={actualite.id}
@@ -81,11 +74,11 @@ export const ArticlesPage = () => {
         </div>
 
         {/* Pagination */}
-        <ArticlePagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
+        {(meta && meta.totalPages > 1) && <ArticlePagination
+          currentPage={meta.page}
+          totalPages={meta.totalPages}
+          onPageChange={(page) => onPaginationChange(page, meta.limit)}
+        />}
       </div>
     </Section>
   );

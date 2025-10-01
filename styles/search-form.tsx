@@ -85,12 +85,12 @@ export const SearchForm = ({ onSearch }: SearchFormProps) => {
                 <SelectValue placeholder="Departement" />
               </SelectTrigger>
               <SelectContent className="w-full">
-                <SelectItem value="az">Abidjan</SelectItem>
-                <SelectItem value="za">Bouake</SelectItem>
-                <SelectItem value="za">Yamoussoukrou</SelectItem>
-                <SelectItem value="za">Daloa</SelectItem>
-                <SelectItem value="za">San-pedro</SelectItem>
-                <SelectItem value="za">Korhogo</SelectItem>
+                <SelectItem value="abidjan">Abidjan</SelectItem>
+                <SelectItem value="bouake">Bouake</SelectItem>
+                <SelectItem value="yamoussoukrou">Yamoussoukrou</SelectItem>
+                <SelectItem value="daloa">Daloa</SelectItem>
+                <SelectItem value="san-pedro">San-pedro</SelectItem>
+                <SelectItem value="korhogo">Korhogo</SelectItem>
               </SelectContent>
             </Select>
           </div>
