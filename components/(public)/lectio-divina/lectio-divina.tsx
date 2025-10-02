@@ -1,5 +1,3 @@
-// components/LectioDivina.tsx
-
 import Section from '@/components/primitives/Section';
 import Title from '@/components/primitives/Title';
 import Image from 'next/image';

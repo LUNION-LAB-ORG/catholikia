@@ -9,7 +9,7 @@ export const actualitesFakeData: IActualite[] = [
     date_publication: '2024-06-01',
     category: 'Technologie',
     country: 'France',
-    authorName:'Jean Dupont',
+    auteur:'Jean Dupont',
     tags: ['application', 'prière', 'lancement'],
 		contenu: `<p>Une nouvelle application de prière a été lancée pour aider les croyants à rester connectés spirituellement tout au long de la journée. L'application offre des fonctionnalités telles que des rappels de prière, des méditations guidées et une communauté en ligne pour partager des expériences de foi.</p>
 		<p>Les développeurs de l'application espèrent qu'elle deviendra un outil précieux pour les personnes cherchant à approfondir leur relation avec Dieu.</p>`
@@ -22,7 +22,7 @@ export const actualitesFakeData: IActualite[] = [
 		date_publication: '2024-06-05',
 		category: 'Événement',
 		country: 'Belgique',
-		authorName: 'Marie Lambert',
+		auteur: 'Marie Lambert',
 		tags: ['conférence', 'innovation', 'religion']
 	},
 	{
@@ -33,15 +33,15 @@ export const actualitesFakeData: IActualite[] = [
 		date_publication: '2024-06-10',
 		category: 'Média',
 		country: 'Suisse',
-		authorName: 'Paul Martin',
+		auteur: 'Paul Martin',
 		tags: ['podcast', 'chrétien', 'audio']
 	},
   // 7 autres actualités avec des id uniques
-  { id: '4', titre: 'Actualité 4', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-11', category: 'Média', country: 'Suisse', authorName:'Paul Martin', tags:['tag1'] },
-  { id: '5', titre: 'Actualité 5', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-12', category: 'Média', country: 'Suisse', authorName:'Paul Martin', tags:['tag1'] },
-  { id: '6', titre: 'Actualité 6', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-13', category: 'Média', country: 'Suisse', authorName:'Paul Martin', tags:['tag1'] },
-  { id: '7', titre: 'Actualité 7', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-14', category: 'Média', country: 'Suisse', authorName:'Paul Martin', tags:['tag1'] },
-  { id: '8', titre: 'Actualité 8', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-15', category: 'Média', country: 'Suisse', authorName:'Paul Martin', tags:['tag1'] },
-  { id: '9', titre: 'Actualité 9', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-16', category: 'Média', country: 'Suisse', authorName:'Paul Martin', tags:['tag1'] },
-  { id: '10', titre: 'Actualité 10', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-17', category: 'Média', country: 'Suisse', authorName:'Paul Martin', tags:['tag1'] },
+  { id: '4', titre: 'Actualité 4', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-11', category: 'Média', country: 'Suisse', auteur:'Paul Martin', tags:['tag1'] },
+  { id: '5', titre: 'Actualité 5', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-12', category: 'Média', country: 'Suisse', auteur:'Paul Martin', tags:['tag1'] },
+  { id: '6', titre: 'Actualité 6', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-13', category: 'Média', country: 'Suisse', auteur:'Paul Martin', tags:['tag1'] },
+  { id: '7', titre: 'Actualité 7', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-14', category: 'Média', country: 'Suisse', auteur:'Paul Martin', tags:['tag1'] },
+  { id: '8', titre: 'Actualité 8', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-15', category: 'Média', country: 'Suisse', auteur:'Paul Martin', tags:['tag1'] },
+  { id: '9', titre: 'Actualité 9', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-16', category: 'Média', country: 'Suisse', auteur:'Paul Martin', tags:['tag1'] },
+  { id: '10', titre: 'Actualité 10', image: '/images-examples/actualites/3.jpg', slug: '#', date_publication: '2024-06-17', category: 'Média', country: 'Suisse', auteur:'Paul Martin', tags:['tag1'] },
 ];

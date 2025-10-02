@@ -1,11 +1,11 @@
 "use server";
 
-import { ActionResponse, PaginatedResponse } from "@/types/api.type";
+import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
+import { handleServerActionError } from "@/utils/handleServerActionError";
 import { actualiteAPI } from "../apis/actualite.api";
 import { IActualite, IActualiteParams } from "../types/actualite.type";
-import { handleServerActionError } from "@/utils/handleServerActionError";
 
-export const obtenirToutesActualitesAction = async (params: IActualiteParams): Promise<ActionResponse<PaginatedResponse<IActualite>>> => {
+export const obtenirToutesActualitesAction = async (params: IActualiteParams): Promise<ActionResponse<LaravelPaginatedResponse<IActualite>>> => {
     try {
         const data = await actualiteAPI.obtenirToutesActualites(params);
         return {
@@ -23,8 +23,8 @@ export const obtenirActualiteParSlugAction = async (slug: string): Promise<Actio
         const data = await actualiteAPI.obtenirActualiteParSlug(slug);
         return {
             success: true,
-            data: data,
-            message: data ? "Actualité obtenue avec succès" : "Actualité non trouvée",
+            data: data?.data,
+            message: data?.data ? "Actualité obtenue avec succès" : "Actualité non trouvée",
         }
     } catch (error) {
         return handleServerActionError(error, "Erreur lors de la récupération de l'actualité");

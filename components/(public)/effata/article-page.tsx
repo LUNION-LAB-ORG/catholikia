@@ -4,14 +4,12 @@ import ActualiteCard from "./article-card";
 
 import Section from "@/components/primitives/Section";
 
-import { articlesFakeData } from "@/app/api/article";
 import { ArticlePagination } from "./article-pagination";
 
-import { useEffataList } from "@/features/effata/hooks/useEffataList";
-import { Input } from "@heroui/react";
-import { useState } from "react";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 import NoData from "@/components/common/no-data";
+import { useEffataList } from "@/features/effata/hooks/useEffataList";
+import { Input } from "@heroui/react";
 
 export const ArticlesPage = () => {
   const { effatas, meta, isLoading, error, filters, onPaginationChange, onSearchChange } = useEffataList();
@@ -74,10 +72,10 @@ export const ArticlesPage = () => {
         </div>
 
         {/* Pagination */}
-        {(meta && meta.totalPages > 1) && <ArticlePagination
-          currentPage={meta.page}
-          totalPages={meta.totalPages}
-          onPageChange={(page) => onPaginationChange(page, meta.limit)}
+        {(meta && meta.last_page > 1) && <ArticlePagination
+          currentPage={meta.current_page}
+          totalPages={meta.last_page}
+          onPageChange={(page) => onPaginationChange(page, meta.per_page)}
         />}
       </div>
     </Section>

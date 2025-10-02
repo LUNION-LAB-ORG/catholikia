@@ -9,7 +9,7 @@ export const FoiSection = () => {
     >
       {/* Overlay pour améliorer la lisibilité */}
       <div className="absolute bg-black/30 inset-0   " />
-      
+
       {/* Contenu principal */}
       <div className="relative z-10 text-center text-white max-w-4xl px-6">
         {/* Titre EFFATA dans un cadre */}
@@ -18,21 +18,12 @@ export const FoiSection = () => {
             VIE DE FOI
           </h1>
         </div>
-        
-        {/* Sous-titre en doré */}
-      
-        
-        {/* Titre descriptif */}
-       
-        {/* Paragraphe descriptif */}
-       
-       
       </div>
-       <div className="absolute  bottom-0 w-full bg-gradient-to-t from-white to-white/ overflow-hidden  px-3 py-70 sm:px-6 sm:py-3 lg:px-6 lg:py-6 opacity-60  ">
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 items-start sm:items-center">
-                    
-                  </div>
-                </div>
+      <div className="absolute  bottom-0 w-full bg-gradient-to-t from-white to-white/ overflow-hidden  px-3 py-70 sm:px-6 sm:py-3 lg:px-6 lg:py-6 opacity-60  ">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 items-start sm:items-center">
+
+        </div>
+      </div>
     </Section>
   );
 };

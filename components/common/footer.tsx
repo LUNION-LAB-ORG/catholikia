@@ -127,7 +127,7 @@ export const Footer = () => {
               </ul>
             </div>
 
-            <div className="text-center sm:text-left  w-80">
+            <div className="text-center sm:text-left md:w-80">
               <h6 className="text-xl font-bold ">Collecte de fonds</h6>
               <div className="mt-8 space-y-2 text-md">
                 <p className="">

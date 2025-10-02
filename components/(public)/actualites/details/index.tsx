@@ -52,12 +52,16 @@ export default function ActualiteDetails({ slug }: { slug: string }) {
     <Content fullWidth className="mt-[4rem]">
       <Publicite position="DETAILS_ACTUALITES_TOP" />
       <Section className="custom-container bg-white grid lg:grid-cols-6 gap-6">
-        <ActualiteContentDescription
-          title={actualite.title}
-          content={actualite.content!}
-          imageUrl={actualite.image}
-        />
-        <AutresActualites actualites={actualitesFakeData.slice(0, 3)} />
+        {actualite.titre &&
+          <>
+            <ActualiteContentDescription
+              title={actualite.titre}
+              content={actualite.contenu}
+              imageUrl={actualite.image}
+            />
+            <AutresActualites actualites={actualitesFakeData.slice(0, 3)} />
+          </>
+        }
       </Section>
       <ActualiteCommentairesSection />
       <MissionSignup />

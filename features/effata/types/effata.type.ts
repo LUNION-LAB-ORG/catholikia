@@ -1,15 +1,7 @@
-export interface IEffata {
-	id: string;
-	title: string;
-	image: string;
-	publishedAt: string;
-	slug: string;
-	tags: string[];
-	country?: string;
-	category?: string;
-	authorName?: string;
-	content?: string;
-	description?: string;
+import { IActualite } from "@/features/actualite/types/actualite.type";
+
+export interface IEffata extends IActualite {
+	published_at: string; // Date de publication
 }
 
 export interface IEffataParams {

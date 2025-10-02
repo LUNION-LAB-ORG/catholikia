@@ -1,24 +1,27 @@
-import {api} from "@/lib/api";
-import {IActualite, IActualiteParams} from "../types/actualite.type";
-import {PaginatedResponse} from "@/types/api.type";
-import {SearchParams} from "ak-api-http";
+import { api } from "@/lib/api";
+import { IActualite, IActualiteParams } from "../types/actualite.type";
+import { LaravelPaginatedResponse } from "@/types/api.type";
+import { SearchParams } from "ak-api-http";
 
 export interface IActualiteAPI {
-	obtenirToutesActualites(params: IActualiteParams): Promise<PaginatedResponse<IActualite>>;
-	obtenirActualiteParSlug(slug: string): Promise<IActualite | null>;
+	obtenirToutesActualites(params: IActualiteParams): Promise<LaravelPaginatedResponse<IActualite>>;
+	obtenirActualiteParSlug(slug: string): Promise<{ data: IActualite } | null>;
 }
 
 export const actualiteAPI: IActualiteAPI = {
-	obtenirToutesActualites(params: IActualiteParams): Promise<PaginatedResponse<IActualite>> {
-		return api.request<PaginatedResponse<IActualite>>({
+	obtenirToutesActualites(params: IActualiteParams): Promise<LaravelPaginatedResponse<IActualite>> {
+		return api.request<LaravelPaginatedResponse<IActualite>>({
 			endpoint: `/actualites`,
 			method: "GET",
-			searchParams: params as SearchParams,
+			searchParams: {
+				...params,
+				size: params.limit,
+			} as SearchParams,
 		});
 	},
 
-	obtenirActualiteParSlug(slug: string): Promise<IActualite | null> {
-		return api.request<IActualite | null>({
+	obtenirActualiteParSlug(slug: string): Promise<{ data: IActualite } | null> {
+		return api.request<{ data: IActualite } | null>({
 			endpoint: `/actualites/${slug}`,
 			method: "GET",
 		});

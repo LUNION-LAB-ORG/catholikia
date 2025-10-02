@@ -7,8 +7,15 @@ export interface IActualite {
 	tags: string[];
 	country?: string;
 	category?: string;
-	authorName?: string;
-	contenu?: string;
+	auteur:{
+		id: string;
+		name: string;
+		email: string;
+		phone: string;
+		created_at: string;
+		updated_at: string;
+	};
+	contenu: string;
 	description?: string;
 }
 

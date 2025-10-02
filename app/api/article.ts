@@ -9,7 +9,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-01",
 		category: "Technologie",
 		country: "France",
-		authorName: "Jean Dupont",
+		auteur: "Jean Dupont",
 		tags: ["application", "prière", "lancement"],
 		description: "Salutation du Saint-Père au Patriarche bouddhiste le jeudi 21 novembre 2019 au Temple Wat Ratchabophit Sathit Maha Simaram (Bangkok).",
 	},
@@ -21,7 +21,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-05",
 		category: "Événement",
 		country: "Belgique",
-		authorName: "Marie Lambert",
+		auteur: "Marie Lambert",
 		tags: ["conférence", "innovation", "religion"],
 	},
 	{
@@ -32,7 +32,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-10",
 		category: "Média",
 		country: "Suisse",
-		authorName: "Paul Martin",
+		auteur: "Paul Martin",
 		tags: ["podcast", "chrétien", "audio"],
 	},
 	// 7 autres actualités avec des id uniques
@@ -44,7 +44,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-11",
 		category: "Média",
 		country: "Suisse",
-		authorName: "Paul Martin",
+		auteur: "Paul Martin",
 		tags: ["tag1"],
 	},
 	{
@@ -55,7 +55,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-12",
 		category: "Média",
 		country: "Suisse",
-		authorName: "Paul Martin",
+		auteur: "Paul Martin",
 		tags: ["tag1"],
 	},
 	{
@@ -66,7 +66,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-13",
 		category: "Média",
 		country: "Suisse",
-		authorName: "Paul Martin",
+		auteur: "Paul Martin",
 		tags: ["tag1"],
 	},
 	{
@@ -77,7 +77,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-14",
 		category: "Média",
 		country: "Suisse",
-		authorName: "Paul Martin",
+		auteur: "Paul Martin",
 		tags: ["tag1"],
 	},
 	{
@@ -88,7 +88,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-15",
 		category: "Média",
 		country: "Suisse",
-		authorName: "Paul Martin",
+		auteur: "Paul Martin",
 		tags: ["tag1"],
 	},
 	{
@@ -99,7 +99,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-16",
 		category: "Média",
 		country: "Suisse",
-		authorName: "Paul Martin",
+		auteur: "Paul Martin",
 		tags: ["tag1"],
 	},
 	{
@@ -110,7 +110,7 @@ export const articlesFakeData: IActualite[] = [
 		date_publication: "2024-06-17",
 		category: "Média",
 		country: "Suisse",
-		authorName: "Paul Martin",
+		auteur: "Paul Martin",
 		tags: ["tag1"],
 	},
 ];

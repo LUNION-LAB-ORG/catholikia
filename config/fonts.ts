@@ -1,9 +1,15 @@
-import {Fira_Code as FontMono, Inter as FontSans, Geist} from "next/font/google";
+import {Fira_Code as FontMono, Inter as FontSans, Geist, Satisfy} from "next/font/google";
 import localFont from 'next/font/local';
 
 export const fontSans = FontSans({
 	subsets: ["latin"],
 	variable: "--font-sans",
+});
+
+export const fontSatisfy = Satisfy({
+	subsets: ["latin"],
+	variable: "--font-satisfy",
+	weight: "400"
 });
 
 export const fontBarlow = localFont({

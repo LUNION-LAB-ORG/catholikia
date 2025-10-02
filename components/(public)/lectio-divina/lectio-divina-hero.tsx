@@ -1,6 +1,7 @@
 "use client";
 
 
+import Section from "@/components/primitives/Section";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -18,25 +19,22 @@ const LectioDivinaHero: React.FC<TitleBannerProps> = ({
   backgroundImage,
   centerImage,
 }) => {
-  const router = useRouter();
-
   return (
-    <section className={`w-full  ${className}`}>
+    <div className={className}>
       <div
-        className="relative w-full h-[40vh]  sm:h-[50vh] md:h-[65vh] lg:h-[85vh] xl:h-[90vh] bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center overflow-hidden"
+        className="relative w-full min-h-screen bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${backgroundImage || "/assets/lectio/lectio_hero.jpg"})`,
         }}
       >
-        <div className="absolute inset-0 bg-black/40"/>
+        <div className="absolute inset-0 bg-black/40" />
         {/* Image centrée */}
         {centerImage && (
           <div className="mb-4 z-10">
             <Image
               src={centerImage}
               alt={title || "center image"}
-              width={100}
-              height={100}
+              fill
               className="object-cover sm:w-[120px] sm:h-[120px]"
             />
           </div>
@@ -58,10 +56,8 @@ const LectioDivinaHero: React.FC<TitleBannerProps> = ({
             {title}
           </h1>
         )}
-
-       
       </div>
-    </section>
+    </div>
   );
 };
 

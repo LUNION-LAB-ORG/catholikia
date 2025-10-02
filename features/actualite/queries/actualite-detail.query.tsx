@@ -11,46 +11,46 @@ const queryClient = getQueryClient();
 
 //1- Option de requête
 export const actualiteQueryOption = (slug: string) => {
-    return {
-        queryKey: actualiteKeyQuery("detail", slug),
-        queryFn: async () => {
-            if (!slug) throw new Error("Le slug de l'actualité est requis");
+  return {
+    queryKey: actualiteKeyQuery("detail", slug),
+    queryFn: async () => {
+      if (!slug) throw new Error("Le slug de l'actualité est requis");
 
-            const result = await obtenirActualiteParSlugAction(slug);
+      const result = await obtenirActualiteParSlugAction(slug);
 
-            if (!result.success) {
-                throw new Error(result.error);
-            }
+      if (!result.success) {
+        throw new Error(result.error);
+      }
 
-            return result.data;
-        },
-        enabled: !!slug,
-    };
+      return result.data;
+    },
+    enabled: !!slug,
+  };
 };
 
 //2- Hook pour récupérer une actualité
 export const useActualiteQuery = (slug: string) => {
-    const query = useQuery(actualiteQueryOption(slug));
+  const query = useQuery(actualiteQueryOption(slug));
 
-    // Gestion des erreurs dans le hook
-    React.useEffect(() => {
-        if (query.isError && query.error) {
-            addToast({
-                title: "Erreur lors de la récupération de l'actualité:",
-                description:
-                    query.error instanceof Error
-                        ? query.error.message
-                        : "Erreur inconnue",
-                icon: <X />,
-                color: "danger",
-            });
-        }
-    }, [query.isError, query.error]);
+  // Gestion des erreurs dans le hook
+  React.useEffect(() => {
+    if (query.isError && query.error) {
+      addToast({
+        title: "Erreur lors de la récupération de l'actualité:",
+        description:
+          query.error instanceof Error
+            ? query.error.message
+            : "Erreur inconnue",
+        icon: <X />,
+        color: "danger",
+      });
+    }
+  }, [query.isError, query.error]);
 
-    return query;
+  return query;
 };
 
 //3. Prefetch d'une actualité
 export const prefetchActualiteQuery = (slug: string) => {
-    return queryClient.prefetchQuery(actualiteQueryOption(slug));
+  return queryClient.prefetchQuery(actualiteQueryOption(slug));
 };

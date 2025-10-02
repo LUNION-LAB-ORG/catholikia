@@ -1,11 +1,11 @@
 "use server";
 
-import { ActionResponse, PaginatedResponse } from "@/types/api.type";
+import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
 import { effataAPI } from "../apis/effata.api";
 import { IEffata, IEffataParams } from "../types/effata.type";
 import { handleServerActionError } from "@/utils/handleServerActionError";
 
-export const obtenirToutesEffatasAction = async (params: IEffataParams): Promise<ActionResponse<PaginatedResponse<IEffata>>> => {
+export const obtenirToutesEffatasAction = async (params: IEffataParams): Promise<ActionResponse<LaravelPaginatedResponse<IEffata>>> => {
     try {
         const data = await effataAPI.obtenirToutesEffatas(params);
         return {

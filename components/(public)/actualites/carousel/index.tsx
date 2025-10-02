@@ -48,7 +48,7 @@ const CarouselActualite = () => {
   }
 
   return (
-    <Section className="flex flex-col overflow-hidden">
+    <Section className="flex flex-col overflow-hidden custom-container">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
         <Title>DERNIÈRES NOUVELLES</Title>
         <div className="flex justify-start sm:justify-end overflow-hidden space-x-2 mt-2 sm:mt-0">

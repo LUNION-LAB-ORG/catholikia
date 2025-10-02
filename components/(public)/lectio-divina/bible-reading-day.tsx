@@ -64,10 +64,7 @@ L'Éternel est mon berger: je ne manquerai de rien. Il me fait reposer dans de v
   const homelieShort = homelieFull.slice(0, 350) + " ...";
 
   return (
-    <Section className="bg-white shadow-none text-gray-800 font-sans  lg:px-20 mx-auto p-4 md:p-6">
-      {/* Header */}
-     
-
+    <Section className="bg-white shadow-none text-gray-800 font-sans custom-container">
       {/* Main Content - Two Columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Lecture */}

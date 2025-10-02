@@ -25,6 +25,7 @@ export const useActualiteList = () => {
     });
   };
 
+
   return {
     actualites: data?.data || [],
     meta: data?.meta,

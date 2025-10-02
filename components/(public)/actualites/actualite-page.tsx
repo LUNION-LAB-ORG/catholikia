@@ -8,8 +8,8 @@ import NoData from "@/components/common/no-data";
 export const ActualitesPage = () => {
 
   const { actualites, onPaginationChange, meta } = useActualiteList();
-  const totalPages = meta?.totalPages || 1;
-  const currentPage = meta?.page || 1;
+  const totalPages = meta?.last_page || 1;
+  const currentPage = meta?.current_page || 1;
 
   if (actualites.length === 0) {
     return (
@@ -19,7 +19,7 @@ export const ActualitesPage = () => {
 
   return (
     <Section className="min-h-screen bg-background custom-container py-12 px-4">
-      <div className="max-w-5xl mx-auto">
+      <div>
         {/* Titre principal */}
         <h1 className="text-4xl font-bold text-news-title-dark mb-12 tracking-wide">
           ACTUALITÉS
@@ -37,11 +37,12 @@ export const ActualitesPage = () => {
         </div>
 
         {/* Pagination */}
-        <NewsPagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={(page) => onPaginationChange(page, 9)}
-        />
+        {totalPages > 1 && (
+          <NewsPagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={(page) => onPaginationChange(page, 9)}
+          />)}
       </div>
     </Section>
   );
