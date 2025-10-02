@@ -1,6 +1,6 @@
 "use client";
 import { contacts, mapMarkers } from "@/app/api/contact";
-import { SearchFilters, SearchForm } from "@/styles/search-form";
+import { SearchFilters, SearchForm } from "@/components/ui/search-form";
 import { useMemo, useState } from "react";
 import { ContactCard } from "./contact-card";
 import { DirectoryPagination } from "./directory-pagination";

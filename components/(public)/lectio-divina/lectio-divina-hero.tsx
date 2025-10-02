@@ -1,6 +1,6 @@
 "use client";
 
-import Section from "@/components/primitives/Section";
+
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -21,7 +21,7 @@ const LectioDivinaHero: React.FC<TitleBannerProps> = ({
   const router = useRouter();
 
   return (
-    <section className={`w-full custom-container ${className}`}>
+    <section className={`w-full  ${className}`}>
       <div
         className="relative w-full h-[40vh]  sm:h-[50vh] md:h-[65vh] lg:h-[85vh] xl:h-[90vh] 
         bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center 
@@ -61,15 +61,7 @@ const LectioDivinaHero: React.FC<TitleBannerProps> = ({
           </h1>
         )}
 
-        {/* Bouton Retour */}
-        {/*<button*/}
-        {/*  className="absolute bottom-3 left-4 sm:left-6 border cursor-pointer */}
-        {/*  border-white text-white px-4 py-1 sm:px-6 sm:py-2 rounded-md */}
-        {/*  hover:bg-white/10 transition z-10 text-sm sm:text-base"*/}
-        {/*  onClick={() => router.back()}*/}
-        {/*>*/}
-        {/*  Retour*/}
-        {/*</button>*/}
+       
       </div>
     </section>
   );

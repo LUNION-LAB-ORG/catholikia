@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Title from "@/components/primitives/Title";
+import Section from "@/components/primitives/Section";
 
 interface EngagementCard {
   type: "image";
@@ -83,8 +84,8 @@ const engagements: EngagementCard[] = [
 
 const Engagements = () => {
   return (
-    <section className=" bg-background px-6 py-16 lg:px-16">
-      <div className="mx-auto max-w-7xl">
+    <Section className=" bg-background px-6 py-16 lg:px-16">
+      <div className="mx-auto">
         <Title className="mb-16 text-4xl font-bold  lg:text-3xl tracking-tight text-start">
           NOS ENGAGEMENTS
         </Title>
@@ -113,7 +114,7 @@ const Engagements = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

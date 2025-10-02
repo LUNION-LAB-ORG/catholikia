@@ -24,7 +24,7 @@ const EditorialTeam = () => {
         L'ÉQUIPE ÉDITORIALE
       </Title>
       
-      <div className="mx-auto max-w-7xl rounded-3xl">
+      <div className="mx-auto  rounded-3xl">
         <div className="flex flex-col md:flex-row justify-between rounded-3xl">
           
           {/* Colonne gauche - Infos équipe */}
