@@ -17,11 +17,11 @@ export const useActualiteList = () => {
 
   const { data, isLoading, error, isError, isFetching } = useActualitesListQuery(defaultSearchParams);
 
-  const onPaginationChange = (page: number, limit: number) => {
+  const onPaginationChange = (page: number) => {
     setFilters({
       ...filters,
       page,
-      limit,
+      limit: filters.limit,
     });
   };
 

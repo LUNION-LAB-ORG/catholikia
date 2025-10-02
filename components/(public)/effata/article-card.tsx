@@ -21,19 +21,18 @@ export type ActualiteCardOptions = {
 }
 
 type PropsCard = {
-  actualite: IEffata;
+  effata: IEffata;
   orientation?: 'horizontal' | 'vertical';
   options?: ActualiteCardOptions;
-  type?: 'actualites' | 'effata',
 }
 
-function ArticleCard({ actualite, orientation, options, type = 'actualites' }: PropsCard) {
+function EffataCard({ effata, orientation, options }: PropsCard) {
   const router = useRouter();
 
   return (
     <div className="flex flex-col justify-between space-y-2 h-full">
       <Link
-        href={`/${type}/${actualite.slug}`}
+        href={`/effata/${effata.slug}`}
         className="group block h-full"
       >
         <article className={cn(
@@ -44,34 +43,34 @@ function ArticleCard({ actualite, orientation, options, type = 'actualites' }: P
             className={`relative ${orientation === 'vertical' ? 'aspect-video w-full' : 'min-h-[220px]'} overflow-hidden rounded-xl`}
           >
             <Image
-              src={actualite.image}
-              alt={actualite.titre}
+              src={effata.image}
+              alt={effata.titre}
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
             />
             {options && <ActualiteImageDecoration
               options={options}
-              actualite={actualite}
+              actualite={effata}
             />}
           </div>
           <div className={cn(orientation === 'vertical' ? 'mt-4' : '', "flex flex-col space-y-2")}>
             <time className="text-[#595959] text-sm font-medium font-barlow flex items-center">
               <span> <IconCalendarWeekFilled color="#0088FF" size={16} className="mr-1" /> </span>
-              <span>{dateFormat(actualite.date_publication ?? actualite.published_at ?? '')}</span>
+              <span>{dateFormat(effata.date_publication ?? effata.published_at ?? '')}</span>
             </time>
             <h4
               className={cn("text-gray-800 font-semibold group-hover:text-gray-900 transition-colors duration-300 line-clamp-2 mb-2.5 text-lg")}>
-              {actualite.titre}
+              {effata.titre}
             </h4>
             <div>
               {options?.withDescription && <p className="font-medium text-[#6C7993] text-medium line-clamp-2">
-                {actualite.description}
+                {effata.description}
               </p>}
               {options?.withAuthor && <p className="font-bold text-[#6C7993] text-sm mt-2">
-                Par {actualite.auteur.name}
+                Par {effata.auteur.name}
               </p>}
               <ul className="flex items-center space-x-2 mt-2">
-                {options?.withTags && actualite.tags.map(tag => (
+                {options?.withTags && effata.tags.map(tag => (
                   <li key={tag}>
                     <Badge variant="outline" className="text-primary border-primary rounded-full">
                       {tag}
@@ -86,7 +85,7 @@ function ArticleCard({ actualite, orientation, options, type = 'actualites' }: P
       <div className="flex justify-end mt-2">
         <Button
           onPress={() => {
-            router.push(`/${type}/${actualite.slug}`);
+            router.push(`/effata/${effata.slug}`);
           }}
           variant="bordered"
           className={cn("uppercase text-[#1D1D1D] font-bold border", options?.withShare ? 'rounded-l-full border-r-0' : 'rounded-full')}
@@ -102,4 +101,4 @@ function ArticleCard({ actualite, orientation, options, type = 'actualites' }: P
   );
 }
 
-export default ArticleCard;
+export default EffataCard;
