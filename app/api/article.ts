@@ -7,7 +7,7 @@ export const articlesFakeData: IActualite[] = [
 		image: "/assets/effata/articles/article1.png",
 		slug: "nouvelle-application-de-priere-lancee",
 		date_publication: "2024-06-01",
-		category: "Technologie",
+		categorie: "Technologie",
 		country: "France",
 		auteur: {
 			id: 'a1',

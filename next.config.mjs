@@ -22,6 +22,7 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      new URL("https://ui-avatars.com/**"),
     ],
   },
 };

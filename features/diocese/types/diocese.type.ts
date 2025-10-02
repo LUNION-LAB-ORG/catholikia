@@ -6,7 +6,7 @@ export interface IDiocese {
 }
 
 export interface IDioceseParams {
-  name?: string;
+  search?: string;
   region?: string;
   page?: number;
   limit?: number;

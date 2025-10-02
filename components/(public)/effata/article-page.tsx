@@ -39,7 +39,7 @@ export const ArticlesPage = () => {
         {effatas.length > 0 && <div className="flex gap-4 mb-8 items-center">
           <Input
             type="search"
-            value={filters.search || ''}
+            value={filters.titre || ''}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Rechercher un mot-clé"
             className="rounded-full focus:outline-none focus-visible:ring-2 focus-within:ring-primary"

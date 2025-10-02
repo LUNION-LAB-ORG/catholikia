@@ -9,7 +9,7 @@ import { Metadata } from 'next';
 import { obtenirToutesEffatasAction } from '@/features/effata/actions/effata.action';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await obtenirToutesEffatasAction({ page: 1, limit: 3 });
+  const data = await obtenirToutesEffatasAction({ page: 1, size: 3 });
   const actualites = data.data?.data || [];
   const images: { url: string; width: number; height: number; alt: string }[] = [];
 
@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const EffataPage = () => {
-  prefetchEffataListQuery({ page: 1, limit: 9, search: '' });
+  prefetchEffataListQuery({ page: 1, size: 9, titre: '' });
   return (
     <Content fullWidth className="pt-0 ">
       <EffataSection />

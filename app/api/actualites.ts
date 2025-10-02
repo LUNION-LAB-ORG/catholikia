@@ -7,7 +7,7 @@ export const actualitesFakeData: IActualite[] = [
 		image: '/images-examples/actualites/1.jpg',
 		slug: '/actualites/nouvelle-application-de-priere-lancee',
 		date_publication: '2024-06-01',
-		category: 'Technologie',
+		categorie: 'Technologie',
 		country: 'France',
 		auteur: {
 			id: 'a1',
