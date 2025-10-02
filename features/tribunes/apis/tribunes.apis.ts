@@ -1,4 +1,4 @@
-import { PaginatedResponse } from "@/types/api.type";
+import { LaravelPaginatedResponse } from "@/types/api.type";
 import { IContributor, IContributorParams, ITribunes, ITribunesParams } from "../types/tribunes.type";
 import { api } from "@/lib/api";
 import { SearchParams } from "nuqs";
@@ -6,16 +6,18 @@ import { SearchParams } from "nuqs";
 export interface ITribunesAPI {
   obtenirToutesLesTribunes(
     params: ITribunesParams
-  ): Promise<PaginatedResponse<ITribunes>>;
-  
+  ): Promise<LaravelPaginatedResponse<ITribunes>>;
+
   obtenirTousLesContributors(
     params?: IContributorParams
-  ): Promise<IContributor[]>; // 🔥 retourne un tableau simple
+  ): Promise<IContributor[]>;
+
+  obtenirTribuneParSlug(slug: string): Promise<{ data: ITribunes } | null>;
 }
 
 export const tribunesApi: ITribunesAPI = {
-  obtenirToutesLesTribunes(params: ITribunesParams): Promise<PaginatedResponse<ITribunes>> {
-    return api.request<PaginatedResponse<ITribunes>>({
+  obtenirToutesLesTribunes(params: ITribunesParams): Promise<LaravelPaginatedResponse<ITribunes>> {
+    return api.request<LaravelPaginatedResponse<ITribunes>>({
       endpoint: `/tribunes`,
       method: "GET",
       searchParams: params as SearchParams,
@@ -24,9 +26,16 @@ export const tribunesApi: ITribunesAPI = {
 
   obtenirTousLesContributors(params?: IContributorParams): Promise<IContributor[]> {
     return api.request<IContributor[]>({
-      endpoint: `/contributors`, // 🔥 liste brute
+      endpoint: `/contributors`,
       method: "GET",
       searchParams: params as SearchParams,
+    });
+  },
+
+  obtenirTribuneParSlug(slug: string): Promise<{ data: ITribunes } | null> {
+    return api.request<{ data: ITribunes }>({
+      endpoint: `/tribunes/${slug}`,
+      method: "GET",
     });
   },
 };

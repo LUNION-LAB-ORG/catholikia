@@ -1,4 +1,4 @@
-export  const articles = [
+export const articles = [
   {
     id: 1,
     image: '/assets/tribunes/article1.png',
@@ -6,9 +6,9 @@ export  const articles = [
     excerpt: "Comment concilier les avancées technologiques avec nos valeurs fondamentales ? Une réflexion sur l'IA et la morale chrétienne.",
     author: "PÈRE JEAN-LUC MARION",
     temps: "Il y a 3 jours",
-    date:"",
-    article_une:false,
-     theme:"Voix de l’église"
+    date: "2023-10-01",
+    article_une: false,
+    theme: "Voix de l’église"
 
   },
   {
@@ -18,20 +18,20 @@ export  const articles = [
     excerpt: "Redécouvrir la centralité de la miséricorde divine dans l'accompagnement pastoral contemporain.",
     author: "PÈRE LUDOVIC DANTO",
     temps: "Il y a 5 jours",
-    date:"",
-     article_une:false,
-      theme:"Voix de l’église"
+    date: "2023-10-01",
+    article_une: false,
+    theme: "Voix de l’église"
   },
   {
     id: 3,
-   image: '/assets/tribunes/article3.png',
+    image: '/assets/tribunes/article3.png',
     title: "Mon cheminement de foi en famille",
     excerpt: "Témoignage personnel sur la transmission de la foi et l'importance de la prière familiale.",
     author: "PÈRE ANTOINE DE LA FAMILLE",
     temps: "Il y a 1 semaine",
-    date:"",
-     article_une:false,
-      theme:"Voix de l’église"
+    date: "2023-09-24",
+    article_une: false,
+    theme: "Voix de l’église"
   },
   {
     id: 4,
@@ -40,9 +40,9 @@ export  const articles = [
     excerpt: "L'enseignement social de l'Église face aux défis environnementaux contemporains.",
     author: "PÈRE JEAN-LUC BRUNIN",
     temps: "Il y a 2 semaines",
-    date:"",
-     article_une:false,
-      theme:"Voix de l’église"
+    date: "2023-09-17",
+    article_une: false,
+    theme: "Voix de l’église"
   },
   {
     id: 5,
@@ -51,9 +51,9 @@ export  const articles = [
     excerpt: "Réflexion personnelle sur le dépassement de soi et la découverte de la grâce divine.",
     author: "THOMAS MICHEL",
     temps: "Il y a 3 semaines",
-    date:"",
-     article_une:false,
-      theme:"Voix de l’église"
+    date: "2023-09-10",
+    article_une: false,
+    theme: "Voix de l’église"
   },
   {
     id: 6,
@@ -62,8 +62,8 @@ export  const articles = [
     excerpt: "Alors que le Synode entre dans une nouvelle phase, il est urgent de redonner sens au discernement spirituel. Comment l'Église peut-elle aujourd'hui conjuguer fidélité à la Tradition et ouverture aux signes des temps ?",
     author: "THOMAS MICHEL",
     temps: "Il y a 3 semaines",
-    date:"",
-     article_une:true,
-     theme:"Voix de l’église"
+    date: "2023-09-10",
+    article_une: true,
+    theme: "Voix de l’église"
   }
 ];

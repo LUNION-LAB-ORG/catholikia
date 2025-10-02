@@ -52,11 +52,10 @@ export const TestimonialsSection = () => {
             <button
               key={index}
               onClick={() => setCurrentPage(index)}
-              className={`px-4 py-2 rounded-full cursor-pointer  border text-sm font-medium transition-all duration-200 ${
-                currentPage === index
-                  ? "bg-amber-500 text-white border-amber-500"
+              className={`px-4 py-2 rounded-full cursor-pointer  border text-sm font-medium transition-all duration-200 ${currentPage === index
+                  ? "bg-primary text-white border-primary"
                   : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-              }`}
+                }`}
             >
               {index + 1}
             </button>
