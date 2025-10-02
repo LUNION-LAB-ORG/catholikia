@@ -18,7 +18,6 @@ const nextConfig = {
         pathname: "/vi/**",
       },
       {
-        protocol: "https",
         hostname: "finance.christaxel.me",
         port: "",
         pathname: "/**",

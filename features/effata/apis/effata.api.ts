@@ -13,7 +13,10 @@ export const effataAPI: IEffataAPI = {
 		return api.request<LaravelPaginatedResponse<IEffata>>({
 			endpoint: `/effatas`,
 			method: "GET",
-			searchParams: params as SearchParams,
+			searchParams: {
+				...params,
+				titre: params.search,
+			} as SearchParams,
 		});
 	},
 

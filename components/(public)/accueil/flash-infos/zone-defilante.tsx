@@ -1,13 +1,13 @@
 import React from 'react';
-import {motion} from "framer-motion";
-import {IFlashInfo} from "@/features/flash-info/types/flash-info.type";
+import { motion } from "framer-motion";
+import { IFlash } from "@/features/flash-info/types/flash-info.type";
 import TextDefilant from "@/components/(public)/accueil/flash-infos/text-defilant";
 
 type Props = {
-	flashInfos: IFlashInfo[];
+	flashInfos: IFlash[];
 }
 
-function ZoneDefilante({flashInfos}: Props) {
+function ZoneDefilante({ flashInfos }: Props) {
 	const duplicatedInfos = [...flashInfos, ...flashInfos];
 
 	return (

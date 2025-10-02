@@ -43,19 +43,19 @@ export default function EffataDetailsContent({ slug }: { slug: string }) {
           </Badge>
           {/* Titre de l'article */}
           <Title className="text-[#0088FF] text-3xl font-bold uppercase">
-            {data.title || 'Titre non défini'}
+            {data.titre || 'Titre non défini'}
           </Title>
           <p className="font-semibold text-lg">
             {data.description || 'Description non définie'}
           </p>
           <Image
             src={data.image || "/assets/effata/articles/article1.png"}
-            alt={data.title || "Article Image"}
+            alt={data.titre || "Article Image"}
             width={1035}
             height={643}
             className="rounded-lg"
           />
-          <div className="text-justify" dangerouslySetInnerHTML={{ __html: data.content || "Contenu non défini" }} />
+          <div className="text-justify" dangerouslySetInnerHTML={{ __html: data.contenu || "Contenu non défini" }} />
           <div className="flex items-center w-full space-x-6">
             <Button variant="bordered" className="rounded-full uppercase text-[#1D1D1D] font-bold border">
               Partager

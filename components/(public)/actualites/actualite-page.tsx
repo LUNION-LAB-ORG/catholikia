@@ -41,7 +41,7 @@ export const ActualitesPage = () => {
           <NewsPagination
             currentPage={currentPage}
             totalPages={totalPages}
-            onPageChange={(page) => onPaginationChange(page, 9)}
+            onPageChange={(page) => onPaginationChange(page)}
           />)}
       </div>
     </Section>

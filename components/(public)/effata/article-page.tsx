@@ -9,7 +9,8 @@ import { ArticlePagination } from "./article-pagination";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 import NoData from "@/components/common/no-data";
 import { useEffataList } from "@/features/effata/hooks/useEffataList";
-import { Input } from "@heroui/react";
+import { Button } from "@heroui/react";
+import { Input } from "@/components/ui/input";
 
 export const ArticlesPage = () => {
   const { effatas, meta, isLoading, error, filters, onPaginationChange, onSearchChange } = useEffataList();
@@ -35,30 +36,24 @@ export const ArticlesPage = () => {
         <h1 className="text-4xl font-bold text-news-title-dark mb-12 tracking-wide">
           L'ECCLESIA EN MARCHE ...
         </h1>
-        <div className="">
-          <div className="py-8">
-            {/* Search Bar */}
-            {effatas.length > 0 && <div className="flex gap-4 mb-8">
-              <Input
-                type="search"
-                value={filters.search || ''}
-                onChange={(e) => onSearchChange(e.target.value)}
-                placeholder="Rechercher un mot-clé"
-                className="w-full pl-4 pr-10 border-gray-50 rounded-3xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
-              />
-              <button className="bg-yellow-400 text-black px-8 py-3 rounded-full font-medium hover:bg-yellow-500 transition-colors">
-                Rechercher
-              </button>
-            </div>}
-          </div>
-        </div>
+        {effatas.length > 0 && <div className="flex gap-4 mb-8 items-center">
+          <Input
+            type="search"
+            value={filters.search || ''}
+            onChange={(e) => onSearchChange(e.target.value)}
+            placeholder="Rechercher un mot-clé"
+            className="rounded-full focus:outline-none focus-visible:ring-2 focus-within:ring-primary"
+          />
+          <Button color="primary" className="px-8 py-3 rounded-full">
+            Rechercher
+          </Button>
+        </div>}
         {/* Grille d'actualités */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {effatas.map((actualite) => (
             <ActualiteCard
-              type="effata"
               key={actualite.id}
-              actualite={actualite}
+              effata={actualite}
               options={{
                 withDescription: true,
                 withAuthor: true,
