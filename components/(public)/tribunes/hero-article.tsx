@@ -7,7 +7,7 @@ export const HeroArticle = () => {
   const articleUne = articles.find((une) => une.article_une === true);
 
   return (
-    <section className="">
+    <Section >
       <div className="text-2xl font-bold text-foreground mb-8 tracking-tight">
        
           <Title>  ARTICLE À LA UNE</Title>
@@ -42,6 +42,6 @@ export const HeroArticle = () => {
           </Button>
         </div>
       </div>
-    </section>
+    </Section>
   );
 };

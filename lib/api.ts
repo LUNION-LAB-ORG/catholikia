@@ -30,4 +30,13 @@ export const api = new Api({
     await logout()
   }, // Déconnexion automatique si la requête échoue avec un code 401
   debug: true, // Debug activé en mode développement
+
+  // services: {
+  //   public: {
+  //     url: baseURL,
+  //   },
+  //   private: {
+  //     url: baseURL,
+  //   },
+  // }
 });

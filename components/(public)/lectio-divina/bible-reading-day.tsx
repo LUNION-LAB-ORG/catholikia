@@ -4,6 +4,7 @@ import { useState } from "react";
 import Title from "@/components/primitives/Title";
 import { Textarea } from "@heroui/input";
 import { FaChevronLeft, FaChevronRight, FaCross } from "react-icons/fa";
+import Section from "@/components/primitives/Section";
 
 export default function BibleReadingDay() {
   const [showFullLecture, setShowFullLecture] = useState(false);
@@ -63,27 +64,7 @@ L'Éternel est mon berger: je ne manquerai de rien. Il me fait reposer dans de v
   const homelieShort = homelieFull.slice(0, 350) + " ...";
 
   return (
-    <div className="bg-white text-gray-800 font-sans max-w-6xl mx-auto p-4 md:p-6 border border-gray-200">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <p className="text-sm font-bold">DIMANCHE - 34è Temps ordinaire</p>
-          <Title className="text-2xl md:text-3xl font-bold text-[#0088FF]">
-            28 SEPTEMBRE
-          </Title>
-          <p className="text-md font-black">Job 25:1-6</p>
-        </div>
-        <div className="flex items-center space-x-4">
-          <FaCross className="text-red-600 text-xl" />
-          <button className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition">
-            <FaChevronLeft className="text-gray-600" />
-          </button>
-          <button className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition">
-            <FaChevronRight className="text-gray-600" />
-          </button>
-        </div>
-      </div>
-
+    <Section className="bg-white shadow-none text-gray-800 font-sans custom-container">
       {/* Main Content - Two Columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         {/* Lecture */}
@@ -130,6 +111,6 @@ L'Éternel est mon berger: je ne manquerai de rien. Il me fait reposer dans de v
           Soumettre
         </button>
       </div>
-    </div>
+    </Section>
   );
 }

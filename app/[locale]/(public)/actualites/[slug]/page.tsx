@@ -1,44 +1,54 @@
-import React from 'react';
-import Content from "@/components/primitives/Content";
-import Publicite from "@/components/(public)/publicites";
-import Section from "@/components/primitives/Section";
-import Title from "@/components/primitives/Title";
-import {actualitesFakeData} from "@/app/api/actualites";
-import ActualiteContentDescription from "@/components/(public)/actualites/details/actualite-content-description";
-import AutresActualites from "@/components/(public)/actualites/details/autres-actualites";
-import ActualiteCommentairesSection from "@/components/(public)/actualites/details/actualite-commentaires-section";
-import MissionSignup from "@/components/don/MissionSignup";
+import ActualiteDetails from '@/components/(public)/actualites/details';
+import { obtenirActualiteParSlugAction } from '@/features/actualite/actions/actualite.action';
+import { prefetchActualiteQuery } from '@/features/actualite/queries/actualite-detail.query';
+import { Metadata } from 'next';
 
-function ActualiteDetailsPage() {
-	const actualite = actualitesFakeData[0]; // Simulating fetching the actual news item based on slug
-	if (!actualite) {
-		return (
-			<Content fullWidth className="mt-[4rem]">
-				<Section className="custom-container bg-white p-8 text-center">
-					<Title as="h2" size="lg" className="text-[#151515] uppercase">
-						Actualité non trouvée
-					</Title>
-					<p className="mt-4 text-gray-600">L'actualité que vous recherchez n'existe pas.</p>
-				</Section>
-			</Content>
-		);
-	}
+type Props = {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
 
-	return (
-		<Content fullWidth className="mt-[4rem]">
-			<Publicite position="DETAILS_ACTUALITES_TOP"/>
-			<Section className="custom-container bg-white grid lg:grid-cols-6 gap-6">
-				<ActualiteContentDescription
-					title={actualite.title}
-					content={actualite.content!}
-					imageUrl={actualite.image}
-				/>
-				<AutresActualites actualites={actualitesFakeData.slice(0,3)}/>
-			</Section>
-			<ActualiteCommentairesSection/>
-			<MissionSignup/>
-		</Content>
-	);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = (await params).slug;
+  const data = await obtenirActualiteParSlugAction(slug);
+  const actualite = data.data || null;
+
+  return {
+    title: `${actualite ? actualite.titre : 'Actualité'}`,
+    description: "Restez informé des dernières nouvelles, événements et articles inspirants de la communauté catholique.",
+    openGraph: {
+      title: `${actualite ? actualite.titre : 'Actualité'}`,
+      description: "Restez informé des dernières nouvelles, événements et articles inspirants de la communauté catholique.",
+      url: "https://www.catholikia.com/actualites",
+      siteName: "Catholikia",
+      locale: "fr_FR",
+      type: "website",
+      images: [
+        {
+          url: actualite?.image || "https://www.catholikia.com/og-image.jpg",
+          width: 800,
+          height: 600,
+          alt: actualite?.titre,
+        },
+        {
+          url: "https://www.catholikia.com/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Actualités - Catholikia",
+        }
+      ],
+    },
+  }
+}
+
+async function ActualiteDetailsPage({ params }: Props) {
+  const slug = (await params).slug;
+  await prefetchActualiteQuery(slug);
+  return (
+    <ActualiteDetails
+      slug={slug}
+    />
+  );
 }
 
 export default ActualiteDetailsPage;

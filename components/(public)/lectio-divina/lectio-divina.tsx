@@ -1,5 +1,3 @@
-// components/LectioDivina.tsx
-
 import Section from '@/components/primitives/Section';
 import Title from '@/components/primitives/Title';
 import Image from 'next/image';
@@ -29,8 +27,6 @@ export default function LectioDivina() {
           </p>
         </div>
       </div>
-
-      {/* Four Cards Grid */}
     </Section>
   );
 }

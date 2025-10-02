@@ -4,20 +4,19 @@ import { Metadata, Viewport } from "next";
 
 import { ThemeProviders } from "@/providers/theme.provider";
 
-import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { fontSans, fontBarlow, fontAnton, fontBebas } from "@/config/fonts";
+import { fontAnton, fontBarlow, fontBebas, fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
-import AuthProvider from "@/providers/auth.provider";
-import QueryProvider from "@/providers/query-provider";
 import { routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
+import AuthProvider from "@/providers/auth.provider";
 import DirectionProvider from "@/providers/direction-provider";
 import MountedProvider from "@/providers/mounted.provider";
+import QueryProvider from "@/providers/query-provider";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { getLangDir } from "rtl-detect";
-import { Geist } from "next/font/google";
 
 export const metadata: Metadata = {
   title: {
@@ -54,7 +53,9 @@ export default async function RootLayout({
 
   return (
     <html lang="fr" dir={direction} suppressHydrationWarning>
-      {/*<head/>*/}
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Catholikia" />
+      </head>
       <body
         className={cn(
           "min-h-screen text-foreground bg-background font-sans antialiased",
