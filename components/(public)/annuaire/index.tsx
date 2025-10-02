@@ -1,7 +1,7 @@
 "use client";
 import { mapMarkers } from "@/app/api/contact";
 import { SearchForm } from "@/components/ui/search-form";
-import { ContactCard } from "./contact-card";
+// import { ContactCard } from "./contact-card";
 import { DirectoryPagination } from "./directory-pagination";
 import MapView from "./map-view";
 import { useDioceseList } from "@/features/diocese/hooks/useDiocesesList";
@@ -38,9 +38,9 @@ const AnnuaireDioceses = () => {
             {dioceses.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {dioceses.map((diocese) => (
+                  {/* {dioceses.map((diocese) => (
                     <ContactCard key={diocese.id} contact={diocese} />
-                  ))}
+                  ))} */}
                 </div>
 
                 {/* Pagination */}

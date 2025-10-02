@@ -1,13 +1,8 @@
 "use client";
-import { actualitesFakeData } from "@/app/api/actualites";
-import ActualiteCommentairesSection from "@/components/(public)/actualites/details/actualite-commentaires-section";
 import AutresActualites from "@/components/(public)/actualites/details/autres-actualites";
 import EffataAuthorCard from "@/components/(public)/effata/details/effata-author-card";
-import Publicite from "@/components/(public)/publicites";
 import LoadingIndicator from '@/components/common/LoadingIndicator';
 import NoData from '@/components/common/no-data';
-import MissionSignup from "@/components/don/MissionSignup";
-import Content from "@/components/primitives/Content";
 import Section from "@/components/primitives/Section";
 import Title from "@/components/primitives/Title";
 import { Badge } from "@/components/ui/badge";
@@ -70,7 +65,7 @@ export default function EffataDetailsContent({ slug }: { slug: string }) {
           author={data.auteur}
         />
         <AutresActualites
-          actualites={actualitesFakeData.slice(2, 4)}
+          actualites={[]}
         />
       </div>
     </div>
