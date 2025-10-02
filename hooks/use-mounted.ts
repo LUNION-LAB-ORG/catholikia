@@ -1,11 +1,11 @@
 import * as React from "react"
 
 export function useMounted() {
-  const [mounted, setMounted] = React.useState(false)
+	const [mounted, setMounted] = React.useState(false)
 
-  React.useEffect(() => {
-    setMounted(true)
-  }, [])
+	React.useEffect(() => {
+		setTimeout(() => setMounted(true), 2000)
+	}, [])
 
-  return mounted
+	return mounted
 }

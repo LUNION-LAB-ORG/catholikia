@@ -1,22 +1,22 @@
 import "@/styles/globals.css";
-import {ToastProvider} from "@heroui/toast";
-import {Metadata, Viewport} from "next";
+import { ToastProvider } from "@heroui/toast";
+import { Metadata, Viewport } from "next";
 
-import {ThemeProviders} from "@/providers/theme.provider";
+import { ThemeProviders } from "@/providers/theme.provider";
 
-import {NuqsAdapter} from "nuqs/adapters/next/app";
-import {fontSans} from "@/config/fonts";
-import {siteConfig} from "@/config/site";
+import { fontAnton, fontBarlow, fontBebas, fontSans } from "@/config/fonts";
+import { siteConfig } from "@/config/site";
+import { routing } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
 import AuthProvider from "@/providers/auth.provider";
-import QueryProvider from "@/providers/query-provider";
-import {routing} from "@/i18n/routing";
-import {cn} from "@/lib/utils";
 import DirectionProvider from "@/providers/direction-provider";
 import MountedProvider from "@/providers/mounted.provider";
-import {hasLocale, NextIntlClientProvider} from "next-intl";
-import {getMessages} from "next-intl/server";
-import {notFound} from "next/navigation";
-import {getLangDir} from "rtl-detect";
+import QueryProvider from "@/providers/query-provider";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { getLangDir } from "rtl-detect";
 
 export const metadata: Metadata = {
   title: {
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 };
+
 
 export const viewport: Viewport = {
   themeColor: [
@@ -52,17 +53,22 @@ export default async function RootLayout({
 
   return (
     <html lang="fr" dir={direction} suppressHydrationWarning>
-      <head />
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Catholikia" />
+      </head>
       <body
         className={cn(
           "min-h-screen text-foreground bg-background font-sans antialiased",
-          fontSans.variable
+          fontSans.variable,
+          fontBarlow.variable,
+          fontAnton.variable,
+          fontBebas.variable
         )}
       >
         <NextIntlClientProvider messages={messages} locale={locale}>
           <QueryProvider>
             <ThemeProviders
-              themeProps={{ attribute: "class", defaultTheme: "dark" }}
+              themeProps={{ attribute: "class", defaultTheme: "light" }}
             >
               <ToastProvider
                 placement="top-center"
