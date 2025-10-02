@@ -5,7 +5,7 @@ import { SearchParams } from "ak-api-http";
 
 export interface IEffataAPI {
 	obtenirToutesEffatas(params: IEffataParams): Promise<LaravelPaginatedResponse<IEffata>>;
-	obtenirEffataParSlug(slug: string): Promise<IEffata | null>;
+	obtenirEffataParSlug(slug: string): Promise<{ data: IEffata } | null>;
 }
 
 export const effataAPI: IEffataAPI = {
@@ -13,15 +13,12 @@ export const effataAPI: IEffataAPI = {
 		return api.request<LaravelPaginatedResponse<IEffata>>({
 			endpoint: `/effatas`,
 			method: "GET",
-			searchParams: {
-				...params,
-				titre: params.search,
-			} as SearchParams,
+			searchParams: params as SearchParams,
 		});
 	},
 
-	obtenirEffataParSlug(slug: string): Promise<IEffata | null> {
-		return api.request<IEffata | null>({
+	obtenirEffataParSlug(slug: string): Promise<{ data: IEffata } | null> {
+		return api.request<{ data: IEffata } | null>({
 			endpoint: `/effatas/${slug}`,
 			method: "GET",
 		});

@@ -23,7 +23,7 @@ export const obtenirEffataParSlugAction = async (slug: string): Promise<ActionRe
         const data = await effataAPI.obtenirEffataParSlug(slug);
         return {
             success: true,
-            data: data,
+            data: data?.data || null,
             message: data ? "Effata obtenue avec succès" : "Effata non trouvée",
         }
     } catch (error) {

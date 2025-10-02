@@ -1,65 +1,16 @@
 "use client";
-import { contacts, mapMarkers } from "@/app/api/contact";
-import { SearchFilters, SearchForm } from "@/components/ui/search-form";
-import { useMemo, useState } from "react";
-import { ContactCard } from "./contact-card";
+import { mapMarkers } from "@/app/api/contact";
+import { SearchForm } from "@/components/ui/search-form";
+// import { ContactCard } from "./contact-card";
 import { DirectoryPagination } from "./directory-pagination";
 import MapView from "./map-view";
+import { useDioceseList } from "@/features/diocese/hooks/useDiocesesList";
+import Section from "@/components/primitives/Section";
 
 const ITEMS_PER_PAGE = 6;
 
-const Index = () => {
-  const [searchFilters, setSearchFilters] = useState<SearchFilters>({
-    department: "",
-    name: "",
-    phone: "",
-    region: "",
-  });
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const filteredContacts = useMemo(() => {
-    return contacts.filter((contact) => {
-      const matchesDepartment =
-        !searchFilters.department ||
-        contact.location
-          .toLowerCase()
-          .includes(searchFilters.department.toLowerCase()) ||
-        contact.diocese
-          .toLowerCase()
-          .includes(searchFilters.department.toLowerCase());
-
-      const matchesName =
-        !searchFilters.name ||
-        contact.name.toLowerCase().includes(searchFilters.name.toLowerCase());
-
-      const matchesPhone =
-        !searchFilters.phone || contact.phone.includes(searchFilters.phone);
-
-      const matchesRegion =
-        !searchFilters.region ||
-        searchFilters.region === "all" ||
-        contact.region.toLowerCase() === searchFilters.region.toLowerCase();
-
-      return matchesDepartment && matchesName && matchesPhone && matchesRegion;
-    });
-  }, [searchFilters]);
-
-  const totalPages = Math.ceil(filteredContacts.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const paginatedContacts = filteredContacts.slice(
-    startIndex,
-    startIndex + ITEMS_PER_PAGE
-  );
-
-  const handleSearch = (filters: SearchFilters) => {
-    setSearchFilters(filters);
-    setCurrentPage(1);
-  };
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+const AnnuaireDioceses = () => {
+  const { dioceses, meta, isLoading, error, filters, onPaginationChange, onSearchChange } = useDioceseList();
 
   return (
     <div className="min-h-screen bg-background">
@@ -73,12 +24,10 @@ const Index = () => {
         </div>
 
         {/* Search Form */}
-        <div className="mb-8">
-          <SearchForm onSearch={handleSearch} />
-        </div>
+        <SearchForm onSearch={() => console.log("Search triggered")} />
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <Section className="grid grid-cols-1 lg:grid-cols-3 gap-8 custom-container">
           {/* Map Column */}
           <div className="lg:col-span-1">
             <MapView markers={mapMarkers} />
@@ -86,20 +35,20 @@ const Index = () => {
 
           {/* Contacts Grid */}
           <div className="lg:col-span-2">
-            {paginatedContacts.length > 0 ? (
+            {dioceses.length > 0 ? (
               <>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {paginatedContacts.map((contact) => (
-                    <ContactCard key={contact.id} contact={contact} />
-                  ))}
+                  {/* {dioceses.map((diocese) => (
+                    <ContactCard key={diocese.id} contact={diocese} />
+                  ))} */}
                 </div>
 
                 {/* Pagination */}
-                {totalPages > 1 && (
+                {meta && meta.last_page > 1 && (
                   <DirectoryPagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
+                    currentPage={meta.current_page}
+                    totalPages={meta.last_page}
+                    onPageChange={onPaginationChange}
                   />
                 )}
               </>
@@ -111,10 +60,10 @@ const Index = () => {
               </div>
             )}
           </div>
-        </div>
+        </Section>
       </div>
     </div>
   );
 };
 
-export default Index;
+export default AnnuaireDioceses;

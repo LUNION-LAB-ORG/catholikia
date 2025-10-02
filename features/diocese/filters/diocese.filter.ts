@@ -1,10 +1,11 @@
 import { parseAsInteger, parseAsString } from "nuqs";
 
-export const effataFiltersClient = {
+export const dioceseFiltersClient = {
     filter: {
         titre: parseAsString.withDefault(""),
         page: parseAsInteger.withDefault(1),
-        size: parseAsInteger.withDefault(9),
+        size: parseAsInteger.withDefault(6),
+        region: parseAsString.withDefault("")
     },
     option: {
         clearOnDefault: true,

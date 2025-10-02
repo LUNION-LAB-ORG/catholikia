@@ -1,6 +1,5 @@
 "use client";
 
-import { actualitesFakeData } from "@/app/api/actualites";
 import ActualiteCommentairesSection from "@/components/(public)/actualites/details/actualite-commentaires-section";
 import ActualiteContentDescription from "@/components/(public)/actualites/details/actualite-content-description";
 import AutresActualites from "@/components/(public)/actualites/details/autres-actualites";
@@ -59,7 +58,7 @@ export default function ActualiteDetails({ slug }: { slug: string }) {
               content={actualite.contenu}
               imageUrl={actualite.image}
             />
-            <AutresActualites actualites={actualitesFakeData.slice(0, 3)} />
+            <AutresActualites actualites={[]} />
           </>
         }
       </Section>

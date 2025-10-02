@@ -11,8 +11,8 @@ export const useEffataList = () => {
   const defaultSearchParams: IEffataParams = useMemo(() => {
     return {
       page: filters.page,
-      limit: filters.limit,
-      search: filters.search,
+      size: filters.size,
+      titre: filters.titre,
     };
   }, [filters]);
 
@@ -21,7 +21,7 @@ export const useEffataList = () => {
   const onSearchChange = (search: string) => {
     setFilters({
       ...filters,
-      search,
+      titre: search,
       page: 1, // Reset to first page on search change
     });
   }
@@ -30,7 +30,7 @@ export const useEffataList = () => {
     setFilters({
       ...filters,
       page,
-      limit,
+      size: limit,
     });
   };
 
