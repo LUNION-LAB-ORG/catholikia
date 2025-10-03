@@ -4,7 +4,7 @@ import ActualitesRecentesSection from "@/components/(public)/accueil/actualites-
 import ActualitesVaticanSection from "@/components/(public)/accueil/actualites-vatican-section";
 import FlashInfo from "@/components/(public)/accueil/flash-infos";
 import Publicite from "@/components/(public)/publicites";
-import EvenementList from "@/components/(public)/evenement/EvenementList";
+import EvenementSection from "@/components/(public)/evenement/evenement-section";
 import InvolvementSection from "@/components/don/involvement-section";
 import MissionSignup from "@/components/don/MissionSignup";
 import React from "react";
@@ -17,7 +17,7 @@ export default async function Home() {
       <FlashInfo />
       <Publicite position="ACCUEIL_MIDDLE" orientation="horizontal" />
       <ActualitesVaticanSection />
-      <EvenementList />
+      <EvenementSection />
       <InvolvementSection />
       <MissionSignup />
     </Content>

@@ -28,7 +28,7 @@ export const eventQueryOption = (slug: string) => {
 };
 
 //2- Hook pour récupérer une actualité
-export const useEffataQuery = (slug: string) => {
+export const useEventQuery = (slug: string) => {
   const query = useQuery(eventQueryOption(slug));
 
   // Gestion des erreurs dans le hook
@@ -50,6 +50,6 @@ export const useEffataQuery = (slug: string) => {
 };
 
 //3. Prefetch d'une actualité
-export const prefetchActualiteQuery = (slug: string) => {
+export const prefetchEventQuery = (slug: string) => {
   return queryClient.prefetchQuery(eventQueryOption(slug));
 };
