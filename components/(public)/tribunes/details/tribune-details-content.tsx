@@ -31,8 +31,8 @@ export default function TribuneDetailsContent({ slug }: { slug: string }) {
     <Section className='mt-10 custom-container'>
       <div className="flex items-center text-sm mb-10">
         {/* TODO: Color non fonctionnel */}
-        <Badge className='rounded-full text-sm' color='#6B7280'>{tribune.theme ?? "theme"}</Badge>
-        <span className="ml-2 text-[#6B7280] inline-flex items-center">
+        <Badge className="rounded-full text-sm bg-[#BEFFFF] px-4 mr-2">{tribune.theme || "theme"}</Badge>
+        <span className="ml-2 text-[#6B7280] inline-flex items-center text-sm tracking-normal">
           <Calendar className='size-4 mr-2' />
           {dateFormat(tribune.published_at)}
         </span>
@@ -44,7 +44,7 @@ export default function TribuneDetailsContent({ slug }: { slug: string }) {
         <Avatar
           className='mr-5'
           showFallback
-          name={tribune.author.toUpperCase()}
+          name={tribune.author}
           src="https://images.unsplash.com/broken"
           size='lg'
         />
@@ -53,7 +53,7 @@ export default function TribuneDetailsContent({ slug }: { slug: string }) {
           <p className='text-base text-[#595959] font-bold'>Archevêque de Saint-Michel</p>
         </div>
       </div>
-      <div className='relative w-full h-screen mb-10'>
+      <div className='relative w-full h-screen mb-10 rounded-4xl overflow-hidden'>
         <Image
           src={`https://finance.christaxel.me/${tribune.image}`}
           alt={tribune.titre}
@@ -62,13 +62,13 @@ export default function TribuneDetailsContent({ slug }: { slug: string }) {
         />
       </div>
       <div className="prose max-w-none text-justify" dangerouslySetInnerHTML={{ __html: tribune.contenu }} />
-      <div className='flex justify-end mt-10'>
-        <Button className='text-[#1D1D1D] rounded-full text-base' variant='outline' asChild>
-          <Link href={`/auteur/${tribune.author}`}>
-            Voir le profil de {tribune.author}
-          </Link>
-        </Button>
-      </div>
+      {/*<div className='flex justify-end mt-16'>*/}
+      {/*  <Button className='text-[#1D1D1D] rounded-full text-base' variant='outline' asChild>*/}
+      {/*    <Link href={`/auteur/${tribune.author}`}>*/}
+      {/*      Voir le profil de {tribune.author}*/}
+      {/*    </Link>*/}
+      {/*  </Button>*/}
+      {/*</div>*/}
     </Section>
   )
 }
