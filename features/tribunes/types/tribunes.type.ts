@@ -1,11 +1,12 @@
 export interface ITribunes {
   id: number;
-  image: string;
-  title: string;
-  excerpt: string;
   author: string;
-  temps: string;
-  date: string;
+  position: string;
+  titre: string;
+  slug: string;
+  contenu: string;
+  image: string;
+  published_at: string;
   article_une: boolean;
   theme: string;
 }
