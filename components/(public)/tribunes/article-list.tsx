@@ -1,6 +1,8 @@
+
 import Section from "@/components/primitives/Section";
 import { HeroArticle } from "./hero-article";
 import { LatestContributions } from "./latest-contributions";
+import { useTribuneListQuery } from "@/features/tribunes/queries/tribune-list.query";
 
 
 const ArticleList = () => {

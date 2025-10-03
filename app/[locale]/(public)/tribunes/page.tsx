@@ -6,11 +6,16 @@ import ProposerTexte from "@/components/(public)/tribunes/proposer-texte";
 import TitleBanner from "@/components/common/TitleBanner";
 import MissionSignup from "@/components/don/MissionSignup";
 import Content from "@/components/primitives/Content";
+import { prefetchTribuneListQuery } from "@/features/tribunes/queries/tribune-list.query";
 
-const Page = () => {
+const Page = async () => {
+  prefetchTribuneListQuery({
+    page: 1,
+    size:6,
+  })
   return (
     <Content fullWidth className="pt-0">
-      <TitleBanner title="TRIBUNES" />
+      <TitleBanner title="tribunes" />
       <ArticleList />
       <Contributor />
       <ProposerTexte />

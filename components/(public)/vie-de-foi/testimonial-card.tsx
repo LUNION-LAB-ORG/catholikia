@@ -38,7 +38,7 @@ export const TestimonialCard = ({ testimonial, onClick }: TestimonialCardProps) 
         <Button
           variant="bordered"
           onPress={onClick}
-          className={cn("uppercase text-[#1D1D1D] font-bold border")}
+          className={cn("uppercase text-[#1D1D1D] font-bold border rounded-full text-sm px-8 mb-2.5")}
         >
           Details
         </Button>

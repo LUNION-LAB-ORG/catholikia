@@ -23,8 +23,7 @@ const TitleBanner: React.FC<TitleBannerProps> = ({
     <div className={`w-full ${className}`}>
       <div
         className="relative w-full h-[40vh] sm:h-[50vh] md:h-[65vh] lg:h-[85vh] xl:h-[90vh] 
-        bg-no-repeat bg-cover bg-top flex flex-col items-center justify-center 
-         overflow-hidden"
+        bg-no-repeat bg-cover bg-top flex flex-col items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${backgroundImage || "/assets/don/banner.jpg"})`,
         }}
@@ -52,7 +51,7 @@ const TitleBanner: React.FC<TitleBannerProps> = ({
               text-center
               lg:text-left lg:absolute lg:top-65 lg:left-20
               border-4 p-2
-              font-bebas
+              font-bebas uppercase
             "
           >
             {title}
