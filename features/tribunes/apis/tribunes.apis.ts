@@ -1,7 +1,7 @@
 import { LaravelPaginatedResponse } from "@/types/api.type";
 import { IContributor, IContributorParams, ITribunes, ITribunesParams } from "../types/tribunes.type";
 import { api } from "@/lib/api";
-import { SearchParams } from "nuqs";
+import { SearchParams } from "ak-api-http";
 
 export interface ITribunesAPI {
   obtenirToutesLesTribunes(

@@ -1,10 +1,10 @@
-import { articles } from "@/app/api/articles";
-import { ArticleCard } from "./article-card";
-import Title from "@/components/primitives/Title";
-import Section from "@/components/primitives/Section";
-import { useTribuneListQuery } from "@/features/tribunes/queries/tribune-list.query";
+"use client";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 import NoData from "@/components/common/no-data";
+import Section from "@/components/primitives/Section";
+import Title from "@/components/primitives/Title";
+import { useTribuneListQuery } from "@/features/tribunes/queries/tribune-list.query";
+import { TribuneCard } from "./tribune-card";
 
 export const LatestContributions = () => {
   const { data, isLoading, isError } = useTribuneListQuery({
@@ -22,7 +22,7 @@ export const LatestContributions = () => {
     />;
   }
 
-  const articles = data?.data || [];
+  const tribunes = data?.data || [];
 
   return (
     <Section className="">
@@ -30,15 +30,10 @@ export const LatestContributions = () => {
         <Title> Dernières contributions</Title>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {articles.map((article) => (
-          <ArticleCard
-            key={article.id}
-            image={article.image}
-            title={article.title}
-            excerpt={article.excerpt}
-            author={article.author}
-            date={article.temps}
-            theme={article.theme}
+        {tribunes.map((tribune) => (
+          <TribuneCard
+            key={tribune.id}
+            tribune={tribune}
           />
         ))}
       </div>
