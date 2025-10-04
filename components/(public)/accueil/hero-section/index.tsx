@@ -1,6 +1,5 @@
-import React from 'react';
 import HeroShortcut from "@/components/(public)/accueil/hero-section/hero-shortcut";
-import { IconBible, IconCalendarWeekFilled, IconGiftFilled, IconPray } from "@tabler/icons-react";
+import { IconBible, IconBookFilled, IconCalendarWeekFilled, IconMicrophoneFilled, IconUsersGroup } from "@tabler/icons-react";
 
 const shortcuts = [
 	// {
@@ -14,9 +13,19 @@ const shortcuts = [
 	// 	url: "/offrir"
 	// },
 	{
-		icon: <IconCalendarWeekFilled size={32} stroke={3} color="white" />,
-		label: "événements",
-		url: "/événements"
+		icon: <IconMicrophoneFilled size={32} stroke={3} color="white" />,
+		label: "tribunes",
+		url: "/tribunes"
+	},
+	{
+		icon: <IconBookFilled size={32} stroke={3} color="white" />,
+		label: "Diocèses",
+		url: "/annuaire"
+	},
+	{
+		icon: <IconUsersGroup size={32} stroke={3} color="white" />,
+		label: "Vie de foi",
+		url: "/vie-de-foi"
 	},
 	{
 		icon: <IconBible size={32} stroke={3} color="white" />,
