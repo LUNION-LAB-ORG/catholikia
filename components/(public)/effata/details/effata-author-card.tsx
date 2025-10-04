@@ -21,7 +21,7 @@ const EffataAuthorCard = ({ author }: Props) => {
         <div className="px-6 text-center">
           {/* Nom */}
           <h3 className="text-lg font-medium font-sans text-[#1D1D1D] text-center mb-6">
-            Anna Marie
+            {author?.name}
           </h3>
 
           {/* Bouton */}
