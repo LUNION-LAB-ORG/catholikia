@@ -3,17 +3,21 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import Title from "@/components/primitives/Title";
+import { LaravelPaginationMeta } from "@/types/api.type";
 
-export default function TemognagesHeader() {
-  const [activeFilter, setActiveFilter] = useState("Tous");
+type TemoignagesHeaderProps = {
+  filters: any;
+  onFilterChange: (updatedFilters: Partial<any>) => void;
+  isLoading: boolean;
+  meta?: LaravelPaginationMeta;
+};
 
-  const filters = [
-    "Tous",
-    "Entrepreneur",
-    "Artiste",
-    "Professionnel",
-    "Entrepreneure",
-  ];
+export default function TemoignagesHeader({
+  filters,
+  onFilterChange,
+  isLoading,
+  meta
+}: TemoignagesHeaderProps) {
 
   return (
     <div className="py-5">
@@ -31,32 +35,33 @@ export default function TemognagesHeader() {
         <div className="w-full md:w-1/2">
           <Input
             type="text"
-            placeholder="Rechercher par nom ou profession..."
+            value={filters.profession}
+            onChange={(e) => onFilterChange({ profession: e.target.value, page: 1 })}
+            placeholder="Rechercher par profession..."
             className="w-full rounded-full border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-black"
           />
         </div>
 
         {/* Filtres */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-          {filters.map((filter) => (
+        {/* <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          {filters.map((filter:any) => (
             <button
               key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium border transition-all duration-200 ${
-                activeFilter === filter
+              onClick={() => onFilterChange({ category: filter })}
+              className={`px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium border transition-all duration-200 ${filters.category === filter
                   ? "bg-primary cursor-pointer text-black border-yellow-400"
                   : "bg-white text-black cursor-pointer  border-gray-300 hover:bg-gray-100"
-              }`}
+                }`}
             >
               {filter}
             </button>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Nombre de témoignages */}
-      <p className="mt-6 text-xs sm:text-sm font-medium text-gray-700">
-        6 TÉMOIGNAGES TROUVÉS
+      <p className="mt-6 text-xs sm:text-sm font-medium text-gray-700 uppercase">
+        {meta?.total || 0} témoignage{(meta?.total || 0) > 1 ? 's' : ''} trouvé{(meta?.total || 0) > 1 ? 's' : ''}
       </p>
     </div>
   );

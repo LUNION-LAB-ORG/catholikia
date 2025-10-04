@@ -5,7 +5,7 @@ import React from 'react';
 
 const AnnuairePage = () => {
   return (
-    <Content>
+    <Content fullWidth className="pt-0">
       <TitleBanner title="ANNUAIRE DES DIOCESES DE COTE D'IVOIRE" />
       <AnnuaireDioceses />
     </Content>

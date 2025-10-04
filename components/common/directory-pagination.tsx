@@ -8,10 +8,13 @@ interface DirectoryPaginationProps {
 }
 
 export const DirectoryPagination = ({ currentPage, totalPages, onPageChange }: DirectoryPaginationProps) => {
+
+  if (totalPages <= 1) return null;
+
   const getVisiblePages = () => {
     const pages: (number | string)[] = [];
     const maxVisible = 5;
-    
+
     if (totalPages <= maxVisible) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
@@ -39,10 +42,10 @@ export const DirectoryPagination = ({ currentPage, totalPages, onPageChange }: D
         pages.push(totalPages);
       }
     }
-    
+
     return pages;
   };
-    return (
+  return (
     <div className="flex items-center justify-center space-x-2 py-8">
       <Button
         variant="outline"
@@ -53,7 +56,7 @@ export const DirectoryPagination = ({ currentPage, totalPages, onPageChange }: D
       >
         <ChevronLeft className="h-4 w-4" />
       </Button>
-      
+
       {getVisiblePages().map((page, index) => (
         <Button
           key={index}
@@ -61,16 +64,15 @@ export const DirectoryPagination = ({ currentPage, totalPages, onPageChange }: D
           size="sm"
           onClick={() => typeof page === 'number' && onPageChange(page)}
           disabled={typeof page === 'string'}
-          className={`h-8 w-8 p-0 ${
-            currentPage === page 
-              ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
+          className={`h-8 w-8 p-0 ${currentPage === page
+              ? 'bg-primary text-primary-foreground hover:bg-primary/90'
               : ''
-          }`}
+            }`}
         >
           {page}
         </Button>
       ))}
-      
+
       <Button
         variant="outline"
         size="sm"

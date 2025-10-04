@@ -1,8 +1,8 @@
-import { useQueryStates } from "nuqs";
-import { useMemo } from "react";
-import { dioceseFiltersClient } from "../filters/diocese.filter";
-import { IDioceseParams } from "../types/diocese.type";
-import { useDioceseListQuery } from "../queries/diocese-list.query";
+import {useQueryStates} from "nuqs";
+import {useMemo} from "react";
+import {dioceseFiltersClient} from "../filters/diocese.filter";
+import {IDioceseParams} from "../types/diocese.type";
+import {useDioceseListQuery} from "../queries/diocese-list.query";
 
 export const useDioceseList = () => {
 
@@ -12,26 +12,20 @@ export const useDioceseList = () => {
     return {
       page: filters.page,
       size: filters.size,
-      titre: filters.titre,
+      nom: filters.nom,
+      ville: filters.ville,
       region: filters.region,
     };
   }, [filters]);
 
-  const { data, isLoading, error, isError, isFetching } = useDioceseListQuery(defaultSearchParams);
+  const { data, isLoading, error } = useDioceseListQuery(defaultSearchParams);
 
-  const onSearchChange = (search: string) => {
+  const onFilterChange = (updatedFilters: Partial<typeof filters>) => {
     setFilters({
       ...filters,
-      titre: search,
-      page: 1, // Reset to first page on search change
-    });
-  }
-
-  const onPaginationChange = (page: number) => {
-    setFilters({
-      ...filters,
-      page,
-      size: filters.size,
+      ...updatedFilters,
+      page: updatedFilters.nom ? 1 : (updatedFilters.page ?? filters.page),
+      size: updatedFilters.size ?? filters.size,
     });
   };
 
@@ -41,7 +35,6 @@ export const useDioceseList = () => {
     isLoading,
     error,
     filters,
-    onPaginationChange,
-    onSearchChange,
+    onFilterChange
   };
 };
