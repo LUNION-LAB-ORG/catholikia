@@ -1,74 +1,66 @@
 "use client";
-import { useState } from "react";
 
-import testimonials from "@/app/api/testimonials";
+import Section from "@/components/primitives/Section";
+import TemoignagesHeader from "./temoignages-header";
 import { TestimonialCard } from "./testimonial-card";
 import { TestimonialModal } from "./testimonial-modal";
-import { Testimonial } from "./types/testimonial";
-import TemognagesHeader from "./temognages-header";
-import Section from "@/components/primitives/Section";
+import { DirectoryPagination } from "@/components/common/directory-pagination";
+import { useVieDeFoiList } from "@/features/vie-de-foi/hooks/useVieDeFoiList";
+import LoadingIndicator from "@/components/common/LoadingIndicator";
 
 export const TestimonialsSection = () => {
-  const [selectedTestimonial, setSelectedTestimonial] = useState<Testimonial | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 6;
-  const totalPages = Math.ceil(testimonials.length / itemsPerPage);
+  const {
+    temoignages: testimonials,
+    meta,
+    isLoading,
+    error,
+    filters,
+    onFilterChange,
+    handleTestimonialClick,
+    actions
+  } = useVieDeFoiList();
 
-  const handleCardClick = (testimonial: Testimonial) => {
-    setSelectedTestimonial(testimonial);
-    setIsModalOpen(true);
-  };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedTestimonial(null);
-  };
-
-  const currentTestimonials = testimonials.slice(
-    currentPage * itemsPerPage,
-    (currentPage + 1) * itemsPerPage
-  );
 
   return (
     <Section className="custom-container">
-      <TemognagesHeader />
-
-      {/* Liste des témoignages */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-        {currentTestimonials.map((testimonial) => (
-          <TestimonialCard
-            key={testimonial.id}
-            testimonial={testimonial}
-            onClick={() => handleCardClick(testimonial)}
+      {!isLoading ? (
+        <>
+          <TemoignagesHeader
+            filters={filters}
+            onFilterChange={onFilterChange}
+            isLoading={isLoading}
+            meta={meta}
           />
-        ))}
-      </div>
 
-      {/* Pagination avec numéros */}
-      {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(index)}
-              className={`px-4 py-2 rounded-full cursor-pointer  border text-sm font-medium transition-all duration-200 ${currentPage === index
-                  ? "bg-primary text-white border-primary"
-                  : "bg-white text-gray-600 border-gray-300 hover:bg-gray-100"
-                }`}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
-      )}
+          {/* Liste des témoignages */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard
+                key={testimonial.id}
+                testimonial={testimonial}
+                onClick={() => handleTestimonialClick(testimonial)}
+              />
+            ))}
+          </div>
 
-      {/* Modal */}
-      <TestimonialModal
-        testimonial={selectedTestimonial}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
+          {/* Pagination avec numéros */}
+
+          <div className="flex justify-center items-center gap-2 mt-6 flex-wrap">
+            <DirectoryPagination
+              currentPage={meta?.current_page || 1}
+              totalPages={meta?.last_page || 1}
+              onPageChange={(page) => onFilterChange({ page })}
+            />
+          </div>
+
+          {/* Modal */}
+          <TestimonialModal
+            testimonial={actions.selectedTestimonial}
+            onClose={() => actions.setSelectedTestimonial(null)}
+          />
+        </>
+      ) : <LoadingIndicator />}
     </Section>
   );
 };

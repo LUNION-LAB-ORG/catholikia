@@ -1,7 +1,7 @@
 "use client";
 import {mapMarkers} from "@/app/api/contact";
 import {SearchForm} from "@/components/ui/search-form";
-import {DirectoryPagination} from "./directory-pagination";
+import {DirectoryPagination} from "../../common/directory-pagination";
 import MapView from "./map-view";
 import {useDioceseList} from "@/features/diocese/hooks/useDiocesesList";
 import Section from "@/components/primitives/Section";

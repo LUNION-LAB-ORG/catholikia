@@ -76,7 +76,7 @@ export default function Contributor() {
 
             {/* Rôle */}
             <p className="text-sm text-gray-500 uppercase tracking-wide">
-              {contributor.role}
+              {contributor.title}
             </p>
           </div>
         ))}
