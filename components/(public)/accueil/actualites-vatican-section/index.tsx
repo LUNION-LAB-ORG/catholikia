@@ -1,7 +1,8 @@
 import React from 'react';
 import Section from "@/components/primitives/Section";
-import {Button} from "@heroui/button";
+import { Button } from "@heroui/button";
 import Image from "next/image";
+import { Link } from '@heroui/link';
 
 function ActualitesVaticanSection() {
 	return (
@@ -11,7 +12,12 @@ function ActualitesVaticanSection() {
 				<h2 className="text-2xl md:text-[50px] lg:text-[65px] py-4 px-2 font-bebas">
 					L'actualité du Vatican
 				</h2>
-				<Button variant="bordered" className="text-white rounded-full w-fit">
+				<Button
+					as={Link}
+					variant="bordered"
+					className="text-white rounded-full w-fit"
+					href='/effata?categorie=vatican'
+				>
 					Découvrir
 				</Button>
 			</div>

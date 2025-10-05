@@ -45,7 +45,7 @@ export const Navbar = async () => {
         className="hidden sm:flex basis-1/5 sm:basis-full"
         justify="end"
       >
-        <NavbarItem className="hidden sm:flex gap-2">
+        <NavbarItem className="hidden md:flex gap-2">
           <LocaleSwitcher />
         </NavbarItem>
         <NavbarItem className="hidden md:flex">

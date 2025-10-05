@@ -1,0 +1,13 @@
+services:
+  catholikia-staging:
+    build:
+      context: ../../
+      dockerfile: docker/staging/Dockerfile
+    image: catholikia-staging
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      AUTH_SECRET: ${AUTH_SECRET}
+    ports:
+      - "3002:3000"
