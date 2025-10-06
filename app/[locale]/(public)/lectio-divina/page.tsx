@@ -8,6 +8,7 @@ import LectioDivinaSteps from "@/components/(public)/lectio-divina/lectio-divina
 import LectioDivinaHero from "@/components/(public)/lectio-divina/lectio-divina-hero";
 import Programe from "@/components/(public)/lectio-divina/programe";
 import LectioDivinaIntro from "@/components/(public)/lectio-divina/lectio-divina-intro";
+import CurrentLectioDivina from "@/components/(public)/lectio-divina/current-lectio-divina";
 
 const LectioDivinaPage = () => {
   return (
@@ -15,8 +16,7 @@ const LectioDivinaPage = () => {
       <LectioDivinaHero title="Lectio divina" />
       <LectioDivinaIntro />
       <LectioDivinaSteps />
-      <Programe />
-      <BibleReadingDay />
+      <CurrentLectioDivina />
       <Publicite position="ACCUEIL_MIDDLE" orientation="horizontal" />
       <MissionSignup />
     </Content>

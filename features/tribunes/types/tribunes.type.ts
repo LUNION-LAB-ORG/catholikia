@@ -31,7 +31,12 @@ export interface IContributor {
   name: string;
   title: string;
   image: string;
+  themes: string[];
+  biography: string;
+  email: string;
+  phone: string;
 }
+
 export interface IContributorParams {
   id?: number;
   name?: string;
