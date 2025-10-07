@@ -14,7 +14,7 @@ interface ActionResponse<T> {
     error?: string;
 }
 
-export const ajouterCommentaireAction = async (formdata: CommentaireAddDTO): Promise<ActionResponse<any>> => {
+export const ajouterCommentaireAction = async (formdata: FormData): Promise<ActionResponse<any>> => {
     try {
         const data = await commentaireApi.ajouterCommentaire(formdata);
         

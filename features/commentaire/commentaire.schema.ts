@@ -4,16 +4,17 @@ export const CommentaireSchema = z.object({
   id: z.string(),
   entityId: z.string(),
   entityType: z.string(),
-  fullName: z.string({
-    message: "Le nom complet est requis",
-  })
+  nom: z
+    .string({
+      message: "Le nom complet est requis",
+    })
     .min(2, "Le nom complet doit contenir au moins 2 caractères")
     .max(100)
     .trim(),
   email: z.email({
     message: "L'email doit être une adresse valide",
   }).max(100),
-  comment: z.string()
+  message: z.string()
     .min(5, "Le commentaire doit contenir au moins 5 caractères")
     .max(1000)
     .trim(),
@@ -26,9 +27,9 @@ export const CommentaireSchema = z.object({
 });
 
 export const CommentaireFormSchema = CommentaireSchema.pick({
-  fullName: true,
+  nom: true,
   email: true,
-  comment: true,
+  message: true,
 });
 
 export type CommentaireFormDto = z.infer<typeof CommentaireFormSchema>;
@@ -39,14 +40,14 @@ export const CommentaireAddSchema = z.object({
     .min(2, "Le type d'entité doit contenir au moins 2 caractères")
     .max(50, "Le type d'entité ne doit pas dépasser 50 caractères")
     .trim(),
-  fullName: z.string({ message: "Le nom complet est requis" })
+  nom: z.string({ message: "Le nom complet est requis" })
     .max(100, "Le nom complet ne doit pas dépasser 100 caractères")
     .trim(),
   email: z.email("L'email doit être une adresse valide")
     .max(100, "L'email ne doit pas dépasser 100 caractères")
     .toLowerCase()
     .trim(),
-  comment: z.string({ message: "Le commentaire est requis" })
+  message: z.string({ message: "Le commentaire est requis" })
     .max(1000, "Le commentaire ne doit pas dépasser 1000 caractères")
     .trim(),
 });

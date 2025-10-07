@@ -5,36 +5,39 @@ import { api } from "@/lib/api";
 import { SearchParams } from 'ak-api-http';
 
 export interface ICommentaireApi {
-	ajouterCommentaire(data: CommentaireAddDTO): Promise<any>;
-	obtenirCommentaires(
-		params: ICommentaireSearchParams
-	): Promise<LaravelPaginatedResponse<ICommentaire>>;
+  ajouterCommentaire(data: FormData): Promise<any>;
+  obtenirCommentaires(
+    params: ICommentaireSearchParams
+  ): Promise<LaravelPaginatedResponse<ICommentaire>>;
 }
 
 export const commentaireApi: ICommentaireApi = {
-	ajouterCommentaire(data: CommentaireAddDTO): Promise<any> {
-		const entityType = data.entityType.toLowerCase();
-		const entityIdKey = `${entityType}_id`;
-		return api.request<any>({
-			endpoint: `/commentaires-${entityType}`,
-			method: "POST",
-			data: {
-				[entityIdKey]: data.entityId,
-				nom: data.fullName,
-				email: data.email,
-				message: data.comment,
-			},
-		});
-	},
+  ajouterCommentaire(data: FormData): Promise<any> {
+    const entityType = data.get("entityType")?.toString().toLowerCase();
+    const entityIdKey = `${entityType}_id`;
+    data.append(entityIdKey, data.get("entityId")?.toString() || "");
+    data.delete("entityId");
+    data.delete("entityType");
+    return api.request<any>({
+      endpoint: `/commentaires-${entityType}`,
+      method: "POST",
+      data,
+      config: {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    });
+  },
 
-	obtenirCommentaires(params: ICommentaireSearchParams): Promise<LaravelPaginatedResponse<ICommentaire>> {
-		return api.request<LaravelPaginatedResponse<ICommentaire>>({
-			endpoint: `${params.entityType}s/${params.entityId}/${params.entityType}`,
-			method: "GET",
-			searchParams: {
-				page: params.page,
-				size: params.size
-			} as SearchParams,
-		})
-	}
+  obtenirCommentaires(params: ICommentaireSearchParams): Promise<LaravelPaginatedResponse<ICommentaire>> {
+    return api.request<LaravelPaginatedResponse<ICommentaire>>({
+      endpoint: `${params.entityType}s/${params.entityId}/${params.entityType}`,
+      method: "GET",
+      searchParams: {
+        page: params.page,
+        size: params.size
+      } as SearchParams,
+    })
+  }
 }

@@ -17,9 +17,9 @@ function AddCommentaireForm({
   const form = useForm<CommentaireFormDto>({
     resolver: zodResolver(CommentaireFormSchema),
     defaultValues: {
-      fullName: "",
+      nom: "",
       email: "",
-      comment: "",
+      message: "",
     }
   });
 
@@ -47,7 +47,7 @@ function AddCommentaireForm({
           <FormField
             disabled={isAddingCommentaire}
             control={form.control}
-            name="fullName"
+            name="nom"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>Nom & Prénoms</FormLabel>
@@ -76,7 +76,7 @@ function AddCommentaireForm({
         <FormField
           disabled={isAddingCommentaire}
           control={form.control}
-          name="comment"
+          name="message"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Commentaire</FormLabel>

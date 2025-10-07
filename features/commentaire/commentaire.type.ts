@@ -5,9 +5,9 @@ export interface IEntity {
 
 export interface ICommentaire {
   id: string;
-  fullname: string;
+  nom: string;
   email: string;
-  comments: string;
+  message: string;
   entityId: IEntity['entityId'];
   entityType: IEntity['entityType'];
   created_at: string;

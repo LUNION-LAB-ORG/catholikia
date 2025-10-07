@@ -9,7 +9,6 @@ export default function CurrentLectioDivina() {
   const { lectios, meta, isError, isFetching, isLoading, error, filters, onPaginationChange } = useLectioList();
 
   const lectio = lectios && lectios.length > 0 ? lectios[0] : null;
-  console.log(lectio);
 
   return isLoading ? (
     <LoadingIndicator />
