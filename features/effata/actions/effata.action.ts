@@ -20,11 +20,16 @@ export const obtenirToutesEffatasAction = async (params: IEffataParams): Promise
 
 export const obtenirEffataParSlugAction = async (slug: string): Promise<ActionResponse<IEffata | null>> => {
     try {
-        const data = await effataAPI.obtenirEffataParSlug(slug);
+        const response = await effataAPI.obtenirEffataParSlug(slug);
+
+        if (response) {
+            response.data.related = response.related;
+        }
+
         return {
             success: true,
-            data: data?.data || null,
-            message: data ? "Effata obtenue avec succès" : "Effata non trouvée",
+            data: response?.data || null,
+            message: response?.data ? "Effata obtenue avec succès" : "Effata non trouvée",
         }
     } catch (error) {
         return handleServerActionError(error, "Erreur lors de la récupération de l'effata");

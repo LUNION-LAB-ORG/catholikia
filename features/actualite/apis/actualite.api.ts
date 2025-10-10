@@ -5,7 +5,7 @@ import { SearchParams } from "ak-api-http";
 
 export interface IActualiteAPI {
 	obtenirToutesActualites(params: IActualiteParams): Promise<LaravelPaginatedResponse<IActualite>>;
-	obtenirActualiteParSlug(slug: string): Promise<{ data: IActualite } | null>;
+	obtenirActualiteParSlug(slug: string): Promise<{ data: IActualite, related: IActualite[] } | null>;
 }
 
 export const actualiteAPI: IActualiteAPI = {
@@ -20,8 +20,8 @@ export const actualiteAPI: IActualiteAPI = {
 		});
 	},
 
-	obtenirActualiteParSlug(slug: string): Promise<{ data: IActualite } | null> {
-		return api.request<{ data: IActualite } | null>({
+	obtenirActualiteParSlug(slug: string): Promise<{ data: IActualite, related: IActualite[] } | null> {
+		return api.request<{ data: IActualite, related: IActualite[] } | null>({
 			endpoint: `/actualites/${slug}`,
 			method: "GET",
 		});

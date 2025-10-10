@@ -20,11 +20,15 @@ export const obtenirToutesActualitesAction = async (params: IActualiteParams): P
 
 export const obtenirActualiteParSlugAction = async (slug: string): Promise<ActionResponse<IActualite | null>> => {
     try {
-        const data = await actualiteAPI.obtenirActualiteParSlug(slug);
+        const response = await actualiteAPI.obtenirActualiteParSlug(slug);
+        if (response) {
+            response.data.related = response.related;
+        }
+
         return {
             success: true,
-            data: data?.data,
-            message: data?.data ? "Actualité obtenue avec succès" : "Actualité non trouvée",
+            data: response?.data,
+            message: response?.data ? "Actualité obtenue avec succès" : "Actualité non trouvée",
         }
     } catch (error) {
         return handleServerActionError(error, "Erreur lors de la récupération de l'actualité");

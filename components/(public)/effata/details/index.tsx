@@ -1,5 +1,5 @@
 "use client";
-import AutresActualites from "@/components/(public)/actualites/details/autres-actualites";
+import AdditionalUpdates from "@/components/(public)/actualites/details/autres-actualites";
 import EffataAuthorCard from "@/components/(public)/effata/details/effata-author-card";
 import LoadingIndicator from '@/components/common/LoadingIndicator';
 import NoData from '@/components/common/no-data';
@@ -64,8 +64,9 @@ export default function EffataDetailsContent({ slug }: { slug: string }) {
         <EffataAuthorCard
           author={data.auteur}
         />
-        <AutresActualites
-          actualites={[]}
+        <AdditionalUpdates
+          type="effata"
+          related={data.related || []}
         />
       </div>
     </div>

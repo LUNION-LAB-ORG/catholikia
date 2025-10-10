@@ -29,7 +29,7 @@ export default function BibleReadingDay({ lectio }: { lectio: ILectio }) {
           </Button>
         </div>
         <div className="border bg-[#F5F5F5] rounded-lg p-4">
-          <div dangerouslySetInnerHTML={{ __html: lectio.homelie }} />
+          <div className="max-h-80 overflow-hidden" dangerouslySetInnerHTML={{ __html: lectio.homelie }} />
           <div className="font-bold mt-4 text-right">
             Commenté par {lectio.contributor.title} {lectio.contributor.name}
           </div>

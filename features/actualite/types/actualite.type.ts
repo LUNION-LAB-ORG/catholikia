@@ -21,7 +21,10 @@ export interface IActualite {
   };
   contenu: string;
   description?: string;
+  related?: IRelatedActualite[];
 }
+
+export interface IRelatedActualite extends Omit<IActualite, 'related'> {}
 
 export interface IActualiteParams {
   page?: number;
