@@ -20,6 +20,7 @@ export interface ITemoignageParams {
     page?: number;
     size?: number;
     skip?: number;
+    temoin?: string;
     profession?: string;
     category?: string;
     lieu?: string;

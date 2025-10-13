@@ -1,6 +1,6 @@
 import Section from "@/components/primitives/Section";
 
-export const EffataSection = () => {
+export const EffataHeroSection = () => {
   return (
     <Section
       className="relative h-screen w-full bg-cover bg-center bg-no-repeat bg-gradient-to-t from-white to-black/10 flex items-center justify-center "

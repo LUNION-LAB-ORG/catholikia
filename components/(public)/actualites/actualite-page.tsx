@@ -4,10 +4,11 @@ import { useActualiteList } from "@/features/actualite/hooks/useActualiteList";
 import ActualiteCard from "./actualite-card";
 import { NewsPagination } from "./new-pagination";
 import NoData from "@/components/common/no-data";
+import CategorieButtonFilter from "@/components/common/filters/categorie-button-filter";
 
 export const ActualitesPage = () => {
 
-  const { actualites, onPaginationChange, meta } = useActualiteList();
+  const { actualites, onPaginationChange, meta, categories, filters, onFilterChange } = useActualiteList();
   const totalPages = meta?.last_page || 1;
   const currentPage = meta?.current_page || 1;
 
@@ -25,13 +26,29 @@ export const ActualitesPage = () => {
           ACTUALITÉS
         </h1>
 
+        <div className="mb-8">
+          <h3 className="text-sm font-bold text-[#595959] mb-4">Catégories</h3>
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            {categories.map((category) => (
+              <CategorieButtonFilter
+                key={category.id}
+                category={{
+                  id: category.id,
+                  nom: category.name
+                }}
+                onPress={() => onFilterChange({ categorie: category.id })}
+                isSelected={filters.categorie == category.id}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* Grille d'actualités */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {actualites.map((actualite) => (
             <ActualiteCard
               key={actualite.id}
               actualite={actualite}
-              options={{ withDescription: true, withAuthor: true }}
             />
           ))}
         </div>

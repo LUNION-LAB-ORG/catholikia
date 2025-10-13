@@ -21,14 +21,23 @@ export interface IActualite {
   };
   contenu: string;
   description?: string;
+  related?: IRelatedActualite[];
 }
+
+export interface IActualiteCategorie {
+  id: string;
+  name: string;
+  description?: string;
+}
+
+export interface IRelatedActualite extends Omit<IActualite, 'related'> { }
 
 export interface IActualiteParams {
   page?: number;
   limit?: number;
   skip?: number;
   country?: string;
-  category?: string;
+  categorie?: string;
   tag?: string;
   q?: string;
 }

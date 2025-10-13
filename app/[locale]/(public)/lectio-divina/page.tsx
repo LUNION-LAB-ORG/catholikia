@@ -1,13 +1,11 @@
 
-import Content from "@/components/primitives/Content";
-import React from "react";
-import BibleReadingDay from "@/components/(public)/lectio-divina/bible-reading-day";
+import CurrentLectioDivina from "@/components/(public)/lectio-divina/current-lectio-divina";
+import LectioDivinaHero from "@/components/(public)/lectio-divina/lectio-divina-hero";
+import LectioDivinaIntro from "@/components/(public)/lectio-divina/lectio-divina-intro";
+import LectioDivinaSteps from "@/components/(public)/lectio-divina/lectio-divina-steps";
 import Publicite from "@/components/(public)/publicites";
 import MissionSignup from "@/components/don/MissionSignup";
-import LectioDivinaSteps from "@/components/(public)/lectio-divina/lectio-divina-steps";
-import LectioDivinaHero from "@/components/(public)/lectio-divina/lectio-divina-hero";
-import Programe from "@/components/(public)/lectio-divina/programe";
-import LectioDivinaIntro from "@/components/(public)/lectio-divina/lectio-divina-intro";
+import Content from "@/components/primitives/Content";
 
 const LectioDivinaPage = () => {
   return (
@@ -15,8 +13,7 @@ const LectioDivinaPage = () => {
       <LectioDivinaHero title="Lectio divina" />
       <LectioDivinaIntro />
       <LectioDivinaSteps />
-      <Programe />
-      <BibleReadingDay />
+      <CurrentLectioDivina />
       <Publicite position="ACCUEIL_MIDDLE" orientation="horizontal" />
       <MissionSignup />
     </Content>

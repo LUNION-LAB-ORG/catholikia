@@ -3,7 +3,7 @@ export default function TestimonialHeader() {
     <div className="w-full px-4 sm:px-6 md:px-10">
       <div className="mx-auto flex flex-col justify-center mb-8 max-w-4xl">
         {/* Main Header Section */}
-        <p className="text-black text-center text-[#767168] text-sm sm:text-base md:text-lg lg:text-xl mx-auto mb-5 leading-relaxed">
+        <p className="text-black text-center text-sm sm:text-base md:text-lg lg:text-xl mx-auto mb-5 leading-relaxed">
           Découvrez des <span className="font-semibold">entrepreneurs</span>,{" "}
           <span className="font-semibold">artistes</span> et{" "}
           <span className="font-semibold">professionnels</span> de Côte d'Ivoire

@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { ITemoignage } from "@/features/vie-de-foi/types/vie-de-foi.type";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@heroui/button";
 import Image from "next/image";
@@ -34,7 +35,8 @@ export const TestimonialCard = ({ testimonial, onClick }: TestimonialCardProps) 
         </p>
         <Button
           variant="bordered"
-          onPress={onClick}
+          as={Link}
+          href={`/vie-de-foi/${testimonial.id}`}
           className={cn("uppercase text-[#1D1D1D] font-bold border rounded-full text-sm px-8 mb-2.5")}
         >
           Details
