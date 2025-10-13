@@ -1,6 +1,7 @@
 "use client";
 
 import ActualiteImageDecoration from "@/components/(public)/actualites/actualite-image-decoration";
+import ShareButton from "@/components/common/share-button";
 import { Badge } from "@/components/ui/badge";
 import { IEffata } from '@/features/effata/types/effata.type';
 import { useRouter } from "@/i18n/navigation";
@@ -92,10 +93,8 @@ function EffataCard({ effata, orientation, options }: PropsCard) {
         >
           Details
         </Button>
-        {options?.withShare &&
-          <Button variant="bordered" className="rounded-r-full uppercase text-[#1D1D1D] font-bold border border-l-0">
-            Partager
-          </Button>}
+        {options?.withShare && <ShareButton className="rounded-r-full rounded-l-none border-l-0" />}
+        
       </div>
     </div>
   );

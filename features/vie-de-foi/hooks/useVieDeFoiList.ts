@@ -15,6 +15,7 @@ export const useVieDeFoiList = () => {
       size: filters.size,
       skip: filters.skip,
       category: filters.category,
+      temoin: filters.temoin,
       lieu: filters.lieu,
       inspirant: filters.inspirant,
       profession: filters.profession,

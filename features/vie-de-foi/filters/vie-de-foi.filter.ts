@@ -17,6 +17,7 @@ export const vieDeFoiFiltersClient: {
         category: parseAsString.withDefault(""),
         lieu: parseAsString.withDefault(""),
         inspirant: parseAsBoolean.withDefault(false),
+        temoin: parseAsString.withDefault(""),
         page: parseAsInteger.withDefault(1),
         size: parseAsInteger.withDefault(9),
         skip: parseAsInteger.withDefault(0),

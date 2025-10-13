@@ -3,6 +3,7 @@ import AdditionalUpdates from "@/components/(public)/actualites/details/autres-a
 import EffataAuthorCard from "@/components/(public)/effata/details/effata-author-card";
 import LoadingIndicator from '@/components/common/LoadingIndicator';
 import NoData from '@/components/common/no-data';
+import ShareButton from "@/components/common/share-button";
 import Section from "@/components/primitives/Section";
 import Title from "@/components/primitives/Title";
 import { Badge } from "@/components/ui/badge";
@@ -27,8 +28,8 @@ export default function EffataDetailsContent({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="mt-11 custom-container bg-white grid lg:grid-cols-12 gap-10">
-      <Section padding="none" className="col-span-8 space-y-10">
+    <div className="mt-11 custom-container bg-white grid lg:grid-cols-12 gap-10 px-2 xl:px-0">
+      <Section padding="none" className="lg:col-span-8 space-y-10">
         {/* Catégorie */}
         <Badge className="bg-[#EEEEEE] text-[#333333] px-3 py-1 rounded-full text-sm font-bold">
           {data.categorie?.nom || 'Catégorie non définie'}
@@ -48,19 +49,17 @@ export default function EffataDetailsContent({ slug }: { slug: string }) {
           className="rounded-lg"
         />
         <div className="text-justify" dangerouslySetInnerHTML={{ __html: data.contenu || "Contenu non défini" }} />
-        <div className="flex items-center w-full space-x-6">
-          <Button variant="bordered" className="rounded-full uppercase text-[#1D1D1D] font-bold border">
-            Partager
-          </Button>
-          <Button variant="bordered" className="rounded-full uppercase text-[#1D1D1D] font-bold border">
+        <div className="flex max-sm:flex-col items-center w-full gap-6">
+          <ShareButton />
+          {false && <Button variant="bordered" className="rounded-full uppercase text-[#1D1D1D] font-bold border">
             <SquareArrowOutUpRight className="size-4" />
             <span>
               Visiter le site du vatican
             </span>
-          </Button>
+          </Button>}
         </div>
       </Section>
-      <div className="col-span-4">
+      <div className="lg:col-span-4">
         <EffataAuthorCard
           author={data.auteur}
         />

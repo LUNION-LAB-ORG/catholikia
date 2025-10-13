@@ -5,6 +5,12 @@ export interface IEffata extends Omit<IActualite, 'related'> {
   related?: IRelatedEffata[]; // Articles liés
 }
 
+export interface IEffataCategorie {
+  id: string;
+  nom: string;
+  enfants?: Omit<IEffataCategorie, 'enfants'>[];
+}
+
 export interface IRelatedEffata extends Omit<IEffata, 'related'> { }
 
 export interface IEffataParams {
@@ -12,7 +18,7 @@ export interface IEffataParams {
   size?: number;
   skip?: number;
   country?: string;
-  category?: string;
+  categorie?: string;
   tag?: string;
   titre?: string;
 }

@@ -30,7 +30,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   });
 
   return {
-    title: "Actualités - Catholikia",
+    title: "Actualités",
     description: "Restez informé des dernières nouvelles, événements et articles inspirants de la communauté catholique.",
     openGraph: {
       title: "Actualités - Catholikia",

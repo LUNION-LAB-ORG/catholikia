@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { ITemoignage } from "@/features/vie-de-foi/types/vie-de-foi.type";
+import { getYouTubeVideoId } from "@/utils/yt-utils";
+import { Link } from "@/i18n/navigation";
+import { Button } from "@heroui/button";
 
 interface VideoTestimonialCardProps {
   testimonial: ITemoignage;
@@ -17,14 +20,13 @@ export const VideoTestimonialCard = ({ testimonial }: VideoTestimonialCardProps)
   const closeModal = () => setIsModalOpen(false);
 
   // Extract YouTube video ID from the URL
-  const videoIdMatch = testimonial.video_link?.match(/(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([^\s&]+)/);
-  const videoId = videoIdMatch ? videoIdMatch[1] : null;
+  const videoId = testimonial.video_link ? getYouTubeVideoId(testimonial.video_link) : null;
 
   return (
     <>
       <Card className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-testimonial-bg border-border/50 p-0">
         {/* Header Image */}
-        <div className="relative w-full h-64 sm:h-64 overflow-hidden">
+        <div className="relative w-full h-64 sm:h-96 overflow-hidden">
           <Image
             src={testimonial.photo || "/images/default-avatar.png"}
             alt={testimonial.temoin || "Photo de témoignage"}
@@ -32,9 +34,19 @@ export const VideoTestimonialCard = ({ testimonial }: VideoTestimonialCardProps)
             width={400}
             height={400}
           />
-          <div className="absolute bottom-2 left-2 text-white px-2 py-1 rounded text-sm ">
-            <div className="font-bold">{testimonial.temoin}</div>
-            <div className="text-xs opacity-90">{testimonial.profession}</div>
+          <div className="absolute bottom-2 left-2 inset-x-0 px-2 py-1 flex justify-between items-center">
+            <div className="text-sm text-white">
+              <div className="font-bold">{testimonial.temoin}</div>
+              <div className="text-xs opacity-90">{testimonial.profession}</div>
+            </div>
+            <Button
+              size="lg"
+              as={Link}
+              href={`/vie-de-foi/${testimonial.id}`}
+              className="rounded-full"
+            >
+              Détails
+            </Button>
           </div>
         </div>
         {/* Description + Miniature cliquable */}

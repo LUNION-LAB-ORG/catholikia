@@ -8,23 +8,6 @@ import { Divider } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 
-export interface Achievement {
-  icon: JSX.Element;
-  text: string;
-}
-
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  company: string;
-  description: string;
-  image: string;
-  about: string;
-  abouttab?: string[];
-  achievements: Achievement[];
-}
-
 interface TestimonialModalProps {
   testimonial: ITemoignage | null;
   onClose: () => void;

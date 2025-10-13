@@ -38,7 +38,7 @@
   --font-barlow: var(--font-barlow);
   --font-anton: var(--font-anton);
   --font-bebas: var(--font-bebas);
-  --font-geist:var(--font-geist)
+  --font-geist: var(--font-geist);
 }
 
 :root {
@@ -105,9 +105,10 @@
 }
 
 .custom-container {
-  @apply w-full mx-auto md:max-w-[800px] lg:max-w-[1100px] xl:max-w-[1280px]
+  @apply w-full mx-auto md:max-w-[800px] lg:max-w-[1100px] xl:max-w-[1280px];
 }
 
-h1,h2{
-   @apply font-bebas
+h1,
+h2 {
+  @apply font-bebas;
 }

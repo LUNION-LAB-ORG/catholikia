@@ -1,11 +1,12 @@
 import { api } from "@/lib/api";
-import { IActualite, IActualiteParams } from "../types/actualite.type";
+import { IActualite, IActualiteCategorie, IActualiteParams } from "../types/actualite.type";
 import { LaravelPaginatedResponse } from "@/types/api.type";
 import { SearchParams } from "ak-api-http";
 
 export interface IActualiteAPI {
 	obtenirToutesActualites(params: IActualiteParams): Promise<LaravelPaginatedResponse<IActualite>>;
 	obtenirActualiteParSlug(slug: string): Promise<{ data: IActualite, related: IActualite[] } | null>;
+	obtenirToutesCategories(): Promise<{ data: IActualiteCategorie[] }>;
 }
 
 export const actualiteAPI: IActualiteAPI = {
@@ -26,4 +27,11 @@ export const actualiteAPI: IActualiteAPI = {
 			method: "GET",
 		});
 	},
+
+	obtenirToutesCategories(): Promise<{ data: IActualiteCategorie[] }> {
+		return api.request<{ data: IActualiteCategorie[] }>({
+			endpoint: `/categories`,
+			method: "GET",
+		});
+	}
 };

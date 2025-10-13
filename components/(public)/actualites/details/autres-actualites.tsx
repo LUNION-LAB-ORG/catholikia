@@ -16,7 +16,7 @@ function AdditionalUpdates({
   type = "actualite",
 }: ConnectedNewsProps) {
   return (
-    <div className="lg:col-span-2">
+    <div className="lg:col-span-2 max-xl:px-2">
       <Title
         size="lg"
         as="h2"
@@ -25,7 +25,7 @@ function AdditionalUpdates({
         Autres nouvelles
       </Title>
       {related.length > 0 ? (
-        <ul className="space-y-4 grid grid-rows-4">
+        <ul className="space-y-4 grid">
           {related.map((item) => (
             <li key={item.id}>
               {type === "actualite" ? (

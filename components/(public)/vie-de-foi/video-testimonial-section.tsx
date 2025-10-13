@@ -2,10 +2,9 @@
 
 import Section from "@/components/primitives/Section";
 import Title from "@/components/primitives/Title";
-import { useState } from "react";
+import { useTemoignageListQuery } from "@/features/vie-de-foi/queries/vie-de-foi-list.query";
 import TestimonialHeader from "./testimonial-header";
 import { VideoTestimonialCard } from "./video-testimonial-card";
-import { useTemoignageListQuery } from "@/features/vie-de-foi/queries/vie-de-foi-list.query";
 
 export const VideoTestimonialsSection = () => {
   const {
