@@ -18,7 +18,7 @@ const nextConfig = {
         pathname: "/vi/**",
       },
       {
-        hostname: "finance.christaxel.me",
+        hostname: "admin.catholikia.com",
         port: "",
         pathname: "/**",
       },
