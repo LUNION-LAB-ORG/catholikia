@@ -1,5 +1,5 @@
 import { ArticlesPage } from '@/components/(public)/effata/article-page';
-import { EffataSection } from '@/components/(public)/effata/effata-section';
+import { EffataHeroSection } from '@/components/(public)/effata/effata-hero-section';
 import Content from '@/components/primitives/Content';
 import React from 'react';
 import Publicite from "@/components/(public)/publicites";
@@ -51,7 +51,7 @@ const EffataPage = () => {
   prefetchEffataListQuery({ page: 1, size: 9, titre: '' });
   return (
     <Content fullWidth className="pt-0 ">
-      <EffataSection />
+      <EffataHeroSection />
       <ArticlesPage />
       <Publicite position="EFFATA_BOTTOM" />
       <MissionSignup />

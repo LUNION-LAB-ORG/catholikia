@@ -35,8 +35,8 @@ export default function TemoignagesHeader({
         <div className="w-full md:w-1/2">
           <Input
             type="text"
-            value={filters.profession}
-            onChange={(e) => onFilterChange({ profession: e.target.value, page: 1 })}
+            value={filters.temoin}
+            onChange={(e) => onFilterChange({ temoin: e.target.value, page: 1 })}
             placeholder="Rechercher par profession..."
             className="w-full rounded-full border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-black"
           />

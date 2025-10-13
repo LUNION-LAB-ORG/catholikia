@@ -4,7 +4,7 @@ export function useMounted() {
 	const [mounted, setMounted] = React.useState(false)
 
 	React.useEffect(() => {
-		setTimeout(() => setMounted(true), 2000)
+		setTimeout(() => setMounted(true), 3000)
 	}, [])
 
 	return mounted

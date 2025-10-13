@@ -3,6 +3,7 @@ import { useActualitesListQuery } from "../queries/actualite-list.query";
 import { IActualiteParams } from "../types/actualite.type";
 import { actualiteFiltersClient } from "../filters/actualite.filter";
 import { useMemo } from "react";
+import { useActualiteCategoriesQuery } from "../queries/actualite-categorie-list";
 
 export const useActualiteList = () => {
 
@@ -12,10 +13,21 @@ export const useActualiteList = () => {
     return {
       page: filters.page,
       limit: filters.limit,
+      categorie: filters.categorie,
     };
   }, [filters]);
 
   const { data, isLoading, error, isError, isFetching } = useActualitesListQuery(defaultSearchParams);
+
+  const { data: categories, isLoading: isLoadingCategories } = useActualiteCategoriesQuery();
+
+  const onFilterChange = (newFilters: Partial<IActualiteParams>) => {
+    setFilters({
+      ...filters,
+      ...newFilters,
+      page: 1, // Réinitialiser à la première page lors du changement de filtre
+    });
+  };
 
   const onPaginationChange = (page: number) => {
     setFilters({
@@ -28,10 +40,13 @@ export const useActualiteList = () => {
 
   return {
     actualites: data?.data || [],
+    categories: categories || [],
     meta: data?.meta,
     isLoading,
+    isLoadingCategories,
     error,
     filters,
     onPaginationChange,
+    onFilterChange,
   };
 };

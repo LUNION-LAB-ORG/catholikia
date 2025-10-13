@@ -1,7 +1,7 @@
 "use client";
 
 import ActualiteContentDescription from "@/components/(public)/actualites/details/actualite-content-description";
-import AutresActualites from "@/components/(public)/actualites/details/autres-actualites";
+import AdditionalUpdates from "@/components/(public)/actualites/details/autres-actualites";
 import Publicite from "@/components/(public)/publicites";
 import CommentairesSection from "@/components/common/commentaires";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
@@ -58,7 +58,7 @@ export default function ActualiteDetails({ slug }: { slug: string }) {
               content={actualite.contenu}
               imageUrl={actualite.image}
             />
-            <AutresActualites actualites={[]} />
+            <AdditionalUpdates related={actualite.related || []} />
           </>
         }
       </Section>

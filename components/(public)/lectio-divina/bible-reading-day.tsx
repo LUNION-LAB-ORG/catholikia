@@ -10,7 +10,7 @@ export default function BibleReadingDay({ lectio }: { lectio: ILectio }) {
     <Section className="bg-white shadow-none text-gray-800 font-sans custom-container">
       <div className="relative aspect-video mb-8 rounded-2xl overflow-hidden w-full">
         <Image
-          src="/images-examples/actualites/3.jpg"
+          src={lectio.image}
           alt="Description de l'image"
           fill
           className="object-cover object-center"
@@ -29,7 +29,7 @@ export default function BibleReadingDay({ lectio }: { lectio: ILectio }) {
           </Button>
         </div>
         <div className="border bg-[#F5F5F5] rounded-lg p-4">
-          <div dangerouslySetInnerHTML={{ __html: lectio.homelie }} />
+          <div className="max-h-80 overflow-hidden" dangerouslySetInnerHTML={{ __html: lectio.homelie }} />
           <div className="font-bold mt-4 text-right">
             Commenté par {lectio.contributor.title} {lectio.contributor.name}
           </div>
