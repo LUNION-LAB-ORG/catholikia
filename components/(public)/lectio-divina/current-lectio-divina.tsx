@@ -14,9 +14,11 @@ export default function CurrentLectioDivina() {
     <LoadingIndicator />
   ) : (
     <>
-      <Programe />
       {lectio && (
-        <BibleReadingDay lectio={lectio} />
+        <>
+          <Programe lectio={lectio} />
+          <BibleReadingDay lectio={lectio} />
+        </>
       )}
     </>
   )

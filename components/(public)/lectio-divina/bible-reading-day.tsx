@@ -10,7 +10,7 @@ export default function BibleReadingDay({ lectio }: { lectio: ILectio }) {
     <Section className="bg-white shadow-none text-gray-800 font-sans custom-container">
       <div className="relative aspect-video mb-8 rounded-2xl overflow-hidden w-full">
         <Image
-          src="/images-examples/actualites/3.jpg"
+          src={lectio.image}
           alt="Description de l'image"
           fill
           className="object-cover object-center"
