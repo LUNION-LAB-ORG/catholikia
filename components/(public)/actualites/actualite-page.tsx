@@ -12,12 +12,6 @@ export const ActualitesPage = () => {
   const totalPages = meta?.last_page || 1;
   const currentPage = meta?.current_page || 1;
 
-  if (actualites.length === 0) {
-    return (
-      <NoData message="Aucune actualité disponible pour le moment." />
-    );
-  }
-
   return (
     <Section className="min-h-screen bg-background custom-container py-12 px-4">
       <div>
@@ -36,13 +30,20 @@ export const ActualitesPage = () => {
                   id: category.id,
                   nom: category.name
                 }}
-                onPress={() => onFilterChange({ categorie: category.id })}
-                isSelected={filters.categorie == category.id}
+                onPress={() => {
+                  if (filters.category_id === category.id) {
+                    onFilterChange({ category_id: undefined });
+                  } else {
+                    onFilterChange({ category_id: category.id });
+                  }
+                }}
+                isSelected={filters.category_id == category.id}
               />
             ))}
           </div>
         </div>
 
+        {actualites.length === 0 && <NoData message="Aucune actualité disponible pour le moment."/>}
         {/* Grille d'actualités */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
           {actualites.map((actualite) => (

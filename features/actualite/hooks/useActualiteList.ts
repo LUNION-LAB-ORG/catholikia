@@ -13,11 +13,11 @@ export const useActualiteList = () => {
     return {
       page: filters.page,
       limit: filters.limit,
-      categorie: filters.categorie,
+      category_id: filters.category_id,
     };
   }, [filters]);
 
-  const { data, isLoading, error, isError, isFetching } = useActualitesListQuery(defaultSearchParams);
+  const { data, isLoading, error } = useActualitesListQuery(defaultSearchParams);
 
   const { data: categories, isLoading: isLoadingCategories } = useActualiteCategoriesQuery();
 

@@ -4,7 +4,7 @@ export const actualiteFiltersClient = {
     filter: {
         page: parseAsInteger.withDefault(1),
         limit: parseAsInteger.withDefault(6),
-        categorie: parseAsString.withDefault(''),
+        category_id: parseAsString.withDefault(''),
     },
     option: {
         clearOnDefault: true,

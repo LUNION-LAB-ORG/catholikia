@@ -37,7 +37,7 @@ export interface IActualiteParams {
   limit?: number;
   skip?: number;
   country?: string;
-  categorie?: string;
+  category_id?: string;
   tag?: string;
   q?: string;
 }
