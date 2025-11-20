@@ -6,7 +6,7 @@ import { NewsPagination } from "./new-pagination";
 import NoData from "@/components/common/no-data";
 import CategorieButtonFilter from "@/components/common/filters/categorie-button-filter";
 
-export const ActualitesPage = () => {
+export const ActualitesList = () => {
 
   const { actualites, onPaginationChange, meta, categories, filters, onFilterChange } = useActualiteList();
   const totalPages = meta?.last_page || 1;
@@ -17,7 +17,7 @@ export const ActualitesPage = () => {
       <div>
         {/* Titre principal */}
         <h1 className="text-4xl font-bold text-news-title-dark mb-12 tracking-wide">
-          ACTUALITÉS
+          Les informations les plus récentes du moment...
         </h1>
 
         <div className="mb-8">

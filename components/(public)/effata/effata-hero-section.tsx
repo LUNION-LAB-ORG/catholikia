@@ -10,7 +10,7 @@ export const EffataHeroSection = () => {
       <div className="absolute bg-black/30 inset-0 bg-effata-overlay " />
 
       {/* Contenu principal */}
-      <div className="relative z-10 text-center text-white max-w-4xl px-6">
+      <div className="relative z-10 text-left text-white">
         {/* Titre EFFATA dans un cadre */}
         <div className="inline-block border-2 border-white px-12 py-4 mb-8">
           <h1 className="text-5xl md:text-6xl font-bebas font-bold tracking-wider">

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 interface TitleBannerProps {
@@ -17,12 +16,11 @@ const TitleBanner: React.FC<TitleBannerProps> = ({
   backgroundImage,
   centerImage,
 }) => {
-  const router = useRouter();
 
   return (
     <div className={`w-full ${className}`}>
       <div
-        className="relative w-full h-[40vh] sm:h-[50vh] md:h-[65vh] lg:h-[85vh] xl:h-[90vh] 
+        className="relative w-full min-h-screen
         bg-no-repeat bg-cover bg-top flex flex-col items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${backgroundImage || "/assets/don/banner.jpg"})`,
@@ -57,16 +55,6 @@ const TitleBanner: React.FC<TitleBannerProps> = ({
             {title}
           </h1>
         )}
-
-        {/* Bouton Retour */}
-        {/*<button*/}
-        {/*  className="absolute bottom-3 left-4 sm:left-6 border cursor-pointer */}
-        {/*  border-white text-white px-4 py-1 sm:px-6 sm:py-2 rounded-md */}
-        {/*  hover:bg-white/10 transition z-10 text-sm sm:text-base"*/}
-        {/*  onClick={() => router.back()}*/}
-        {/*>*/}
-        {/*  Retour*/}
-        {/*</button>*/}
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import NoData from "@/components/common/no-data";
 import { useEffataList } from "@/features/effata/hooks/useEffataList";
 import EffataFilters from "./effata-filters";
 
-export const ArticlesPage = () => {
+export const EffataList = () => {
   const { effatas, meta, isLoading, error, onPaginationChange } = useEffataList();
 
   if (isLoading) {
@@ -21,14 +21,14 @@ export const ArticlesPage = () => {
   if (error) {
     return <div className="text-red-500">Erreur lors du chargement des articles.</div>;
   }
-  
+
 
   return (
     <Section className="min-h-screen bg-background py-12 px-4">
       <div className="custom-container">
         {/* Titre principal */}
         <h1 className="text-4xl font-bold text-news-title-dark mb-12 tracking-wide">
-          L'ECCLESIA EN MARCHE ...
+          La porte ouverte sur le monde...
         </h1>
         <EffataFilters />
         {/* Grille d'actualités */}
@@ -42,7 +42,7 @@ export const ArticlesPage = () => {
                   withDescription: true,
                   withAuthor: true,
                   withShare: true,
-                  withCategory: true,
+                  withCategory: false,
                   withCountry: true,
                   withTags: true,
                 }}
