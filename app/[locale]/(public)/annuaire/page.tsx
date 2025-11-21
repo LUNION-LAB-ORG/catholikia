@@ -4,12 +4,12 @@ import Content from '@/components/primitives/Content';
 import React from 'react';
 
 const AnnuairePage = () => {
-  return (
-    <Content fullWidth className="pt-0">
-      <TitleBanner title="ANNUAIRE DES DIOCESES DE COTE D'IVOIRE" />
-      <AnnuaireDioceses />
-    </Content>
-  );
+	return (
+		<Content fullWidth className="pt-0">
+			<TitleBanner backgroundImage={"/assets/annuaire/bg.jpg"} title="ANNUAIRE DES DIOCESES DE COTE D'IVOIRE"/>
+			<AnnuaireDioceses/>
+		</Content>
+	);
 }
 
 export default AnnuairePage;
