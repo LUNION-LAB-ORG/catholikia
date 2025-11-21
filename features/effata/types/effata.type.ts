@@ -1,9 +1,8 @@
 import {IActualite} from "@/features/actualite/types/actualite.type";
 
-export interface IEffata extends Omit<IActualite, 'related' | 'categorie'> {
+export interface IEffata extends Omit<IActualite, 'related'> {
 	published_at: string; // Date de publication
 	related?: IRelatedEffata[]; // Articles liés
-	categorie: IEffataCategorie; // Catégorie de l'effata
 }
 
 export interface IEffataCategorie {

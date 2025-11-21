@@ -9,6 +9,7 @@ export interface IActualite {
   categorie?: {
     id: number;
     name: string;
+    nom: string;
     created_at: string;
   };
   auteur: {
