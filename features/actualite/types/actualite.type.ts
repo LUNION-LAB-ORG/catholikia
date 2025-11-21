@@ -8,7 +8,7 @@ export interface IActualite {
   country?: string;
   categorie?: {
     id: number;
-    nom: string;
+    name: string;
     created_at: string;
   };
   auteur: {

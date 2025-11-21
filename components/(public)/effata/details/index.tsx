@@ -6,10 +6,8 @@ import NoData from '@/components/common/no-data';
 import ShareButton from "@/components/common/share-button";
 import Section from "@/components/primitives/Section";
 import Title from "@/components/primitives/Title";
-import { Badge } from "@/components/ui/badge";
-import { useEffataQuery } from '@/features/effata/queries/effata-detail.query';
-import { Button } from "@heroui/button";
-import { SquareArrowOutUpRight } from "lucide-react";
+import {Badge} from "@/components/ui/badge";
+import {useEffataQuery} from '@/features/effata/queries/effata-detail.query';
 import Image from "next/image";
 
 export default function EffataDetailsContent({ slug }: { slug: string }) {
@@ -51,12 +49,12 @@ export default function EffataDetailsContent({ slug }: { slug: string }) {
         <div className="text-justify" dangerouslySetInnerHTML={{ __html: data.contenu || "Contenu non défini" }} />
         <div className="flex max-sm:flex-col items-center w-full gap-6">
           <ShareButton />
-          {false && <Button variant="bordered" className="rounded-full uppercase text-[#1D1D1D] font-bold border">
-            <SquareArrowOutUpRight className="size-4" />
-            <span>
-              Visiter le site du vatican
-            </span>
-          </Button>}
+          {/*{false && <Button variant="bordered" className="rounded-full uppercase text-[#1D1D1D] font-bold border">*/}
+          {/*  <SquareArrowOutUpRight className="size-4" />*/}
+          {/*  <span>*/}
+          {/*    Visiter le site du vatican*/}
+          {/*  </span>*/}
+          {/*</Button>}*/}
         </div>
       </Section>
       <div className="lg:col-span-4">

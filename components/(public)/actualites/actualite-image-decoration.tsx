@@ -9,7 +9,7 @@ function ActualiteImageDecoration({ actualite, options }: { actualite: IActualit
 	return (
 		<>
 			{options?.withCategory && <ActualiteCategoryBadge
-				category={actualite.categorie?.nom || 'Général'}
+				category={actualite.categorie?.name || 'Général'}
 				className="absolute top-2 left-2"
 			/>}
 

@@ -13,6 +13,7 @@ type PropsCard = {
 }
 
 function ActualiteCard({ actualite, orientation }: PropsCard) {
+  console.log(actualite)
   return (
     <div className="flex flex-col justify-between space-y-2 h-full">
       <Link
@@ -41,7 +42,7 @@ function ActualiteCard({ actualite, orientation }: PropsCard) {
           <div className={cn(orientation === 'vertical' ? 'mt-4' : '', "flex flex-col space-y-2")}>
             <div className="flex items-center justify-between">
               <Badge>
-                {actualite.categorie ? actualite.categorie.nom : 'Général'}
+                {actualite.categorie ? actualite.categorie.name : 'Général'}
               </Badge>
               <time className="text-[#595959] text-sm font-medium font-barlow flex items-center">
                 <span> <IconCalendarWeekFilled color="#0088FF" size={16} className="mr-1" /> </span>
