@@ -89,27 +89,18 @@ const Engagements = () => {
         <Title className="mb-16 text-4xl font-bold  lg:text-3xl tracking-tight text-start">
           NOS ENGAGEMENTS
         </Title>
-
-        {/* grille 4 colonnes */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {engagements.map((engagement, index) => (
             <div
               key={index}
               className="relative rounded-3xl ring-1 p-8 h-72 flex flex-col justify-end overflow-hidden"
             >
-              {/* Image de fond */}
               <Image
                 src={engagement.image}
                 alt={engagement.title || "Engagement illustration"}
                 fill
                 className="object-cover"
               />
-
-              {/* Overlay */}
-             
-
-              {/* Texte */}
-             
             </div>
           ))}
         </div>

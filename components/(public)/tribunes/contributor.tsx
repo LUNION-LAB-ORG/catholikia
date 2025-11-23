@@ -5,31 +5,8 @@ import Title from "@/components/primitives/Title";
 import { useTopCinqContributeursQuery } from "@/features/contributeurs/queries/contributor-list.query";
 import Link from "next/link";
 
-const contributors = [
-  {
-    name: "Mgr Jean Dupont",
-    role: "Archevêque de Lyon",
-    image: '/assets/tribunes/contributor2.png',
-  },
-  {
-    name: "Dr. Marie Leblanc",
-    role: "Théologienne, Université Catholique",
-    image: '/assets/tribunes/contributor1.jpg',
-  },
-  {
-    name: "Père Antoine Martin",
-    role: "Curé de Saint-Sulpice",
-    image: '/assets/tribunes/contributor2.png',
-  },
-  {
-    name: "Prof. Jean-Luc Rousseau",
-    role: "Philosophe, Institut Catholique",
-    image: '/assets/tribunes/contributor1.jpg',
-  },
-];
-
 export default function Contributor() {
-  const { data, isLoading, isError, error, refetch } = useTopCinqContributeursQuery();
+  const { data, isLoading, isError, error } = useTopCinqContributeursQuery();
   const topContributors = data?.data
 
   if (isLoading) {
