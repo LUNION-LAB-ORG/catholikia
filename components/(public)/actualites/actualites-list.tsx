@@ -1,8 +1,8 @@
 "use client";
 import Section from "@/components/primitives/Section";
-import { useActualiteList } from "@/features/actualite/hooks/useActualiteList";
+import {useActualiteList} from "@/features/actualite/hooks/useActualiteList";
 import ActualiteCard from "./actualite-card";
-import { NewsPagination } from "./new-pagination";
+import {CustomPagination} from "../../common/custom-pagination";
 import NoData from "@/components/common/no-data";
 import CategorieButtonFilter from "@/components/common/filters/categorie-button-filter";
 
@@ -56,7 +56,7 @@ export const ActualitesList = () => {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <NewsPagination
+          <CustomPagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={(page) => onPaginationChange(page)}

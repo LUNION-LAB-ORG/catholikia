@@ -4,7 +4,7 @@ export const eventFiltersClient = {
   filter: {
     titre: parseAsString.withDefault(""),
     page: parseAsInteger.withDefault(1),
-    size: parseAsInteger.withDefault(9),
+    size: parseAsInteger.withDefault(6),
   },
   option: {
     clearOnDefault: true,

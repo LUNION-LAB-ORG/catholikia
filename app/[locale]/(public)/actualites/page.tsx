@@ -47,7 +47,8 @@ export async function generateMetadata(): Promise<Metadata> {
 	}
 }
 
-const Page = async () => {
+const ActualitesPage = async () => {
+
 	await Promise.all([
 		prefetchActualitesListQuery({page: 1, limit: 3}),
 		prefetchActualitesListQuery({page: 1, limit: 9, skip: 3}),
@@ -64,4 +65,4 @@ const Page = async () => {
 	);
 };
 
-export default Page;
+export default ActualitesPage;

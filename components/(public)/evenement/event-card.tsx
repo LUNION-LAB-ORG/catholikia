@@ -34,7 +34,7 @@ const EventCard = ({ event }: EventCardProps) => {
 
       {/* Event Content */}
       <div className="flex-1 min-w-0 text-center md:text-left">
-        <h3 className="text-md md:text-lg font-bold text-card-foreground mb-2 leading-tight">
+        <h3 className="text-md md:text-lg font-bold text-card-foreground mb-2 leading-tight line-clamp-1">
           {event.title}
         </h3>
         <p className="text-sm md:text-base text-[#252628] leading-relaxed line-clamp-2">

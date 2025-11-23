@@ -12,7 +12,6 @@ export default heroui({
       colors: {
         primary: "#FFC107",
         secondary: "#1B2D46",
-        background: "#0C0C0C"
       }
     }
   },
