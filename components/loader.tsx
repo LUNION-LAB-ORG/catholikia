@@ -1,15 +1,14 @@
 "use client";
-import React from "react";
-import {Loader2} from "lucide-react";
-import {useMounted} from "@/hooks/use-mounted";
-import {Logo} from "./icons";
+import { useMounted } from "@/hooks/use-mounted";
+import { Loader2 } from "lucide-react";
+import { LogoAnimated } from "./logo-animated";
 
 const Loader = () => {
   const mounted = useMounted();
   return mounted ? null : (
     <div className="h-screen flex items-center justify-center flex-col space-y-2">
       <div className="flex gap-2 items-center ">
-        <Logo
+        <LogoAnimated
           width={216}
         />
       </div>

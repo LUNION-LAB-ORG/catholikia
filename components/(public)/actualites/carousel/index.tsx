@@ -13,10 +13,12 @@ import Title from "@/components/primitives/Title";
 import { useActualitesListQuery } from "@/features/actualite/queries/actualite-list.query";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 import { dateFormat } from "@/utils/date-utils";
+import { useRouter } from "next/navigation";
 
 const CarouselActualite = () => {
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
+  const router = useRouter();
 
   const {
     data: recentActualitesData,
@@ -47,6 +49,10 @@ const CarouselActualite = () => {
     return null;
   }
 
+  const handleClick = (actualiteSlug: string) => {
+    router.push(`actualites/${actualiteSlug}`);
+  }
+
   return (
     <Section className="flex flex-col overflow-hidden custom-container">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
@@ -72,7 +78,8 @@ const CarouselActualite = () => {
           {actualites?.map((actualite, index) => (
             <CarouselItem
               key={index}
-              className="relative w-full sm:w-[48%] lg:w-full rounded-2xl overflow-hidden"
+              className="relative w-full sm:w-[48%] lg:w-full rounded-2xl overflow-hidden cursor-pointer"
+              onClick={() => handleClick(actualite.slug)}
             >
               <Image
                 src={actualite.image}

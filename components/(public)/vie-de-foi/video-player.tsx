@@ -4,13 +4,10 @@ import { useState } from "react";
 import { Play, Pause, Volume2, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { ITemoignage } from "@/features/vie-de-foi/types/vie-de-foi.type";
 
 interface VideoPlayerProps {
-  testimonial: {
-    name: string;
-    image: string;
-    videoTitle: string;
-  } | null;
+  testimonial: ITemoignage;
   isOpen: boolean;
   onClose: () => void;
 }
@@ -29,14 +26,14 @@ export const VideoPlayerModal = ({ testimonial, isOpen, onClose }: VideoPlayerPr
       <DialogContent className="w-[95vw] max-w-4xl p-0 bg-black/90 border-none shadow-2xl rounded-xl">
         {/* Dialog Title */}
         <DialogTitle className="text-white text-lg font-bold px-4 py-2 border-b border-white/20">
-          {testimonial.videoTitle}
+          {testimonial.temoin}
         </DialogTitle>
 
         <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[75vh] lg:h-[60vh]">
           {/* Video Background */}
           <img 
-            src={testimonial.image} 
-            alt={testimonial.name}
+            src={testimonial.photo} 
+            alt={testimonial.temoin}
             className="w-full h-full object-cover rounded-b-xl"
           />
           <div className="absolute inset-0 bg-black/30 rounded-b-xl" />
@@ -73,7 +70,7 @@ export const VideoPlayerModal = ({ testimonial, isOpen, onClose }: VideoPlayerPr
                   className="text-white hover:bg-white/20"
                 >
                   {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                  <span className="ml-2">{testimonial.name}</span>
+                  <span className="ml-2">{testimonial.temoin}</span>
                 </Button>
               </div>
 

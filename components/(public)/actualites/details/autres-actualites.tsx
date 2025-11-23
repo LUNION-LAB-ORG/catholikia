@@ -1,19 +1,22 @@
-import React from "react";
-import Title from "@/components/primitives/Title";
 import ActualiteCard from "@/components/(public)/actualites/actualite-card";
-import { IActualite } from "@/features/actualite/types/actualite.type";
+import Title from "@/components/primitives/Title";
+import { IRelatedActualite } from "@/features/actualite/types/actualite.type";
+import { IEffata, IRelatedEffata } from "@/features/effata/types/effata.type";
+import EffataCard from "../../effata/article-card";
 
-type AutresActualitesProps = {
-  actualites: IActualite[];
+type ConnectedNewsProps = {
+  related: IRelatedActualite[] | IRelatedEffata[];
   orientation?: "horizontal" | "vertical";
+  type?: "actualite" | "effata";
 };
 
-function AutresActualites({
-  actualites,
+function AdditionalUpdates({
+  related,
   orientation = "horizontal",
-}: AutresActualitesProps) {
+  type = "actualite",
+}: ConnectedNewsProps) {
   return (
-    <div className="lg:col-span-2">
+    <div className="lg:col-span-2 max-xl:px-2">
       <Title
         size="lg"
         as="h2"
@@ -21,15 +24,23 @@ function AutresActualites({
       >
         Autres nouvelles
       </Title>
-      <ul className="space-y-4 grid grid-rows-4">
-        {actualites.map((actualite) => (
-          <li key={actualite.id}>
-            <ActualiteCard orientation={orientation} actualite={actualite} />
-          </li>
-        ))}
-      </ul>
+      {related.length > 0 ? (
+        <ul className="space-y-4 grid">
+          {related.map((item) => (
+            <li key={item.id}>
+              {type === "actualite" ? (
+                <ActualiteCard orientation={orientation} actualite={item} />
+              ) : (
+                <EffataCard orientation={orientation} effata={item as IEffata} />
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-gray-600">Aucune autre nouvelle disponible dans cette catégorie.</p>
+      )}
     </div>
   );
 }
 
-export default AutresActualites;
+export default AdditionalUpdates;

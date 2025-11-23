@@ -1,15 +1,25 @@
-import { IActualite } from "@/features/actualite/types/actualite.type";
+import {IActualite} from "@/features/actualite/types/actualite.type";
 
-export interface IEffata extends IActualite {
+export interface IEffata extends Omit<IActualite, 'related'> {
 	published_at: string; // Date de publication
+	related?: IRelatedEffata[]; // Articles liés
+}
+
+export interface IEffataCategorie {
+	id: string;
+	nom: string;
+	enfants?: Omit<IEffataCategorie, 'enfants'>[];
+}
+
+export interface IRelatedEffata extends Omit<IEffata, 'related'> {
 }
 
 export interface IEffataParams {
 	page?: number;
-	limit?: number;
+	size?: number;
 	skip?: number;
 	country?: string;
-	category?: string;
+	categorie?: string;
 	tag?: string;
-	search?: string;
+	titre?: string;
 }

@@ -1,13 +1,28 @@
+export interface IRepresentant {
+  nom: string;
+  titre: string;
+  rang: string;
+  photo: string;
+  annee_prise: string;
+}
+
 export interface IDiocese {
   id: number;
-  name: string;
+  nom: string;
   region?: string;
   image?: string;
+  representant: IRepresentant;
+  departement: string;
+  ville: string;
+  contact: string;
+  email: string;
+  date_creation: string;
 }
 
 export interface IDioceseParams {
-  name?: string;
+  nom?: string;
   region?: string;
+  ville?: string;
   page?: number;
-  limit?: number;
+  size?: number;
 }

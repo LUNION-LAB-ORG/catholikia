@@ -1,6 +1,5 @@
-import {IFlashInfo} from "@/features/flash-info/types/flash-info.type";
-
-export const flashInfosFakeData: IFlashInfo[] = [
+import { IFlash } from '@/features/flash-info/types/flash-info.type';
+export const flashInfosFakeData: IFlash[] = [
 	{
 		id: "1",
 		title: "Mise à jour",

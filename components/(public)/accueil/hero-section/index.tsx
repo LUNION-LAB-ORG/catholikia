@@ -1,25 +1,34 @@
-import React from 'react';
 import HeroShortcut from "@/components/(public)/accueil/hero-section/hero-shortcut";
-import {IconBible, IconCalendarWeekFilled, IconGiftFilled, IconPray} from "@tabler/icons-react";
+import { IconBible, IconBookFilled, IconCalendarWeekFilled, IconMicrophoneFilled, IconUsersGroup } from "@tabler/icons-react";
 
 const shortcuts = [
+	// {
+	// 	icon: <IconPray size={32} stroke={3} color="white"/>,
+	// 	label: "demandes",
+	// 	url: "/demandes"
+	// },
+	// {
+	// 	icon: <IconGiftFilled size={32} stroke={3} color="white"/>,
+	// 	label: "offrir",
+	// 	url: "/offrir"
+	// },
 	{
-		icon: <IconPray size={32} stroke={3} color="white"/>,
-		label: "demandes",
-		url: "/demandes"
+		icon: <IconMicrophoneFilled size={32} stroke={3} color="white" />,
+		label: "tribunes",
+		url: "/tribunes"
 	},
 	{
-		icon: <IconGiftFilled size={32} stroke={3} color="white"/>,
-		label: "offrir",
-		url: "/offrir"
+		icon: <IconBookFilled size={32} stroke={3} color="white" />,
+		label: "Diocèses",
+		url: "/annuaire"
 	},
 	{
-		icon: <IconCalendarWeekFilled size={32} stroke={3} color="white"/>,
-		label: "événements",
-		url: "/événements"
+		icon: <IconUsersGroup size={32} stroke={3} color="white" />,
+		label: "Vie de foi",
+		url: "/vie-de-foi"
 	},
 	{
-		icon: <IconBible size={32} stroke={3} color="white"/>,
+		icon: <IconBible size={32} stroke={3} color="white" />,
 		label: "lectio divina",
 		url: "/lectio-divina"
 	}
@@ -31,7 +40,7 @@ function HeroSection() {
 			<div className="absolute inset-0">
 				<img
 					src="/assets/hero/hero_img.jpg"
-					alt="Background Image" className="object-cover object-center w-full h-full"/>
+					alt="Background Image" className="object-cover object-center w-full h-full" />
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</div>
 			<div className="relative z-10 text-center text-white custom-container">

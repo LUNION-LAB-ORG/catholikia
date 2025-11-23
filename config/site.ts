@@ -3,9 +3,15 @@ export type SiteConfig = typeof siteConfig;
 export const locales = ["fr"];
 
 export const siteConfig = {
+  baseUrl: "https://www.catholikia.com",
   name: "Catholikia",
   description: "Le média catholique de l'Afrique francophone",
   navItems: [
+    {
+      key: "home",
+      label: "Accueil",
+      href: "/",
+    },
     {
       key: "actualites",
       label: "Actualités",
@@ -20,6 +26,11 @@ export const siteConfig = {
       key: "vie-de-foi",
       label: "Pricing",
       href: "/vie-de-foi",
+    },
+    {
+      key: "evenements",
+      label: "Événements",
+      href: "/evenements",
     },
     // {
     //   key: "parlons-en",
@@ -45,44 +56,6 @@ export const siteConfig = {
       key: "a-propos",
       label: "A propos",
       href: "/a-propos",
-    }
-  ],
-
-  navMenuItems: [
-    {
-      key: "profile",
-      label: "Profile",
-      href: "/profile",
-    },
-    {
-      key: "dashboard",
-      label: "Dashboard",
-      href: "/dashboard",
-    },
-    {
-      key: "projects",
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      key: "team",
-      label: "Team",
-      href: "/team",
-    },
-    {
-      key: "calendar",
-      label: "Calendar",
-      href: "/calendar",
-    },
-    {
-      key: "settings",
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      key: "help_feedback",
-      label: "Help & Feedback",
-      href: "/help-feedback",
     }
   ],
   links: {

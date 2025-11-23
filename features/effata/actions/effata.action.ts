@@ -2,7 +2,7 @@
 
 import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
 import { effataAPI } from "../apis/effata.api";
-import { IEffata, IEffataParams } from "../types/effata.type";
+import { IEffata, IEffataCategorie, IEffataParams } from "../types/effata.type";
 import { handleServerActionError } from "@/utils/handleServerActionError";
 
 export const obtenirToutesEffatasAction = async (params: IEffataParams): Promise<ActionResponse<LaravelPaginatedResponse<IEffata>>> => {
@@ -20,13 +20,31 @@ export const obtenirToutesEffatasAction = async (params: IEffataParams): Promise
 
 export const obtenirEffataParSlugAction = async (slug: string): Promise<ActionResponse<IEffata | null>> => {
     try {
-        const data = await effataAPI.obtenirEffataParSlug(slug);
+        const response = await effataAPI.obtenirEffataParSlug(slug);
+
+        if (response) {
+            response.data.related = response.related;
+        }
+
         return {
             success: true,
-            data: data,
-            message: data ? "Effata obtenue avec succès" : "Effata non trouvée",
+            data: response?.data || null,
+            message: response?.data ? "Effata obtenue avec succès" : "Effata non trouvée",
         }
     } catch (error) {
         return handleServerActionError(error, "Erreur lors de la récupération de l'effata");
+    }
+}
+
+export const obtenirToutesCategoriesEffataAction = async (): Promise<ActionResponse<IEffataCategorie[]>> => {
+    try {
+        const response = await effataAPI.obtenirToutesCategoriesEffata();
+        return {
+            success: true,
+            data: response.data,
+            message: "Catégories d'effata obtenues avec succès",
+        }
+    } catch (error) {
+        return handleServerActionError(error, "Erreur lors de la récupération des catégories d'effata");
     }
 }

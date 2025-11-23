@@ -1,10 +1,9 @@
 "use client";
 
-import { actualitesFakeData } from "@/app/api/actualites";
-import ActualiteCommentairesSection from "@/components/(public)/actualites/details/actualite-commentaires-section";
 import ActualiteContentDescription from "@/components/(public)/actualites/details/actualite-content-description";
-import AutresActualites from "@/components/(public)/actualites/details/autres-actualites";
+import AdditionalUpdates from "@/components/(public)/actualites/details/autres-actualites";
 import Publicite from "@/components/(public)/publicites";
+import CommentairesSection from "@/components/common/commentaires";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 import MissionSignup from "@/components/don/MissionSignup";
 import Content from "@/components/primitives/Content";
@@ -59,11 +58,14 @@ export default function ActualiteDetails({ slug }: { slug: string }) {
               content={actualite.contenu}
               imageUrl={actualite.image}
             />
-            <AutresActualites actualites={actualitesFakeData.slice(0, 3)} />
+            <AdditionalUpdates related={actualite.related || []} />
           </>
         }
       </Section>
-      <ActualiteCommentairesSection />
+      <CommentairesSection
+        entityId={slug}
+        entityType="actualite"
+      />
       <MissionSignup />
     </Content>
   );

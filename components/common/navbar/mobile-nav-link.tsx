@@ -3,9 +3,11 @@ import {Link} from "@heroui/link";
 import BaseNavItem, {BaseNavItemProps} from "@/components/common/navbar/base-nav-item";
 import {useTranslations} from "next-intl";
 
-type MobileNavLinkProps = Omit<BaseNavItemProps, 'as' | 'children'>;
+interface MobileNavLinkProps extends Omit<BaseNavItemProps, 'as' | 'children'>{
+	handleClick?: () => void;
+}
 
-function MobileNavLink({item}: MobileNavLinkProps) {
+function MobileNavLink({item, handleClick}: MobileNavLinkProps) {
 	const tConfig = useTranslations("config");
 
 	return (
@@ -14,6 +16,7 @@ function MobileNavLink({item}: MobileNavLinkProps) {
 				href={item.href}
 				size="lg"
 				color="foreground"
+				onPress={handleClick}
 			>
 				{tConfig("menu_links." + item.key)}
 			</Link>

@@ -1,25 +1,39 @@
-import { articles } from "@/app/api/articles";
-import { ArticleCard } from "./article-card";
-import Title from "@/components/primitives/Title";
+"use client";
+import LoadingIndicator from "@/components/common/LoadingIndicator";
+import NoData from "@/components/common/no-data";
 import Section from "@/components/primitives/Section";
+import Title from "@/components/primitives/Title";
+import { useTribuneListQuery } from "@/features/tribunes/queries/tribune-list.query";
+import { TribuneCard } from "./tribune-card";
 
 export const LatestContributions = () => {
-  const article = articles.filter((art) => art.article_une == false);
+  const { data, isLoading, isError } = useTribuneListQuery({
+    page: 1,
+    size: 6,
+    skip: 1,
+  })
+  if (isLoading) {
+    return <LoadingIndicator />;
+  }
+
+  if (data?.data.length === 0 && !isLoading) {
+    return <NoData
+      message="Aucun article trouvé"
+    />;
+  }
+
+  const tribunes = data?.data || [];
+
   return (
     <Section className="">
       <div className="text-2xl font-bold text-foreground mb-8 tracking-tight">
         <Title> Dernières contributions</Title>
       </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {article.map((article) => (
-          <ArticleCard
-            key={article.id}
-            image={article.image}
-            title={article.title}
-            excerpt={article.excerpt}
-            author={article.author}
-            date={article.temps}
-            theme={article.theme}
+        {tribunes.map((tribune) => (
+          <TribuneCard
+            key={tribune.id}
+            tribune={tribune}
           />
         ))}
       </div>

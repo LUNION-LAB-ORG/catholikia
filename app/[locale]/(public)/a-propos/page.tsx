@@ -6,16 +6,16 @@ import MissionSignup from '@/components/don/MissionSignup';
 import Content from '@/components/primitives/Content';
 import React from 'react';
 
-const Page = () => {
-    return (
-        <Content fullWidth className="pt-0">
-             <TitleBanner title="a propos"  />
-             <Mission/>
-            <EditorialTeam />
-            <Engagements/>
-            <MissionSignup />
-        </Content>
-    );
+const AProposPage = () => {
+	return (
+		<Content fullWidth className="pt-0">
+			<TitleBanner backgroundImage="/assets/about/bg.jpg" title="a propos"/>
+			<Mission/>
+			<EditorialTeam/>
+			<Engagements/>
+			<MissionSignup/>
+		</Content>
+	);
 }
 
-export default Page;
+export default AProposPage;

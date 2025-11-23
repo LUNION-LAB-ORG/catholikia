@@ -1,32 +1,22 @@
 "use client";
 
+import LoadingIndicator from "@/components/common/LoadingIndicator";
 import Title from "@/components/primitives/Title";
-import Image from "next/image";
-
-const contributors = [
-  {
-    name: "Mgr Jean Dupont",
-    role: "Archevêque de Lyon",
- image: '/assets/tribunes/contributor2.png',
-  },
-  {
-    name: "Dr. Marie Leblanc",
-    role: "Théologienne, Université Catholique",
-   image: '/assets/tribunes/contributor1.jpg',
-  },
-  {
-    name: "Père Antoine Martin",
-    role: "Curé de Saint-Sulpice",
-    image: '/assets/tribunes/contributor2.png',
-  },
-  {
-    name: "Prof. Jean-Luc Rousseau",
-    role: "Philosophe, Institut Catholique",
-     image: '/assets/tribunes/contributor1.jpg',
-  },
-];
+import { useTopCinqContributeursQuery } from "@/features/contributeurs/queries/contributor-list.query";
+import Link from "next/link";
 
 export default function Contributor() {
+  const { data, isLoading, isError, error } = useTopCinqContributeursQuery();
+  const topContributors = data?.data
+
+  if (isLoading) {
+    return <LoadingIndicator />;
+  }
+
+  if (isError) {
+    return <div className="text-red-500">Erreur lors du chargement des contributeurs: {error instanceof Error ? error.message : "Erreur inconnue"}</div>;
+  }
+
   return (
     <section className="py-16 px-6 md:px-12 lg:px-24 text-center">
       {/* Titre */}
@@ -41,27 +31,29 @@ export default function Contributor() {
 
       {/* Grille des contributeurs */}
       <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        {contributors.map((c, idx) => (
+        {topContributors?.map((contributor, idx) => (
           <div key={idx} className="flex flex-col items-center text-center">
             {/* Avatar */}
-            <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden shadow-md">
-              <Image
-                src={c.image}
-                alt={c.name}
+            <Link
+              href={`/contributeurs/${contributor.id}`}
+              className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden shadow-md">
+              <img
+                src={`https://ui-avatars.com/api/?name=${encodeURIComponent(contributor.name)}&background=random&size=128`}
+                alt={contributor.name}
                 width={128}
                 height={128}
                 className="object-cover w-full h-full"
               />
-            </div>
+            </Link>
 
             {/* Nom */}
-            <h3 className="mt-4 font-bold text-lg md:text-xl text-gray-800">
-              {c.name}
-            </h3>
+            <Link href={`/contributeurs/${contributor.id}`} className="mt-4 font-bold text-lg md:text-lg text-gray-800">
+              {contributor.name}
+            </Link>
 
             {/* Rôle */}
             <p className="text-sm text-gray-500 uppercase tracking-wide">
-              {c.role}
+              {contributor.title}
             </p>
           </div>
         ))}

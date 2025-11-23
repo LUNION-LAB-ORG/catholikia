@@ -1,41 +1,15 @@
-// types/article.ts
-export  interface ITribunes {
+export interface ITribunes {
   id: number;
-  image: string;
-  title: string;
-  excerpt: string;
   author: string;
-  temps: string;
-  date: string;
+  position: string;
+  titre: string;
+  slug: string;
+  contenu: string;
+  image: string;
+  published_at: string;
   article_une: boolean;
   theme: string;
 }
-export enum UtilisateurRole {
-  AGENT = "AGENT",
-  ADMIN = "ADMIN",
-}
-
-export enum UtilisateurStatus {
-  ACTIVE = "ACTIVE",
-  INACTIVE = "INACTIVE",
-  DELETED = "DELETED",
-}
-
-// export interface IUtilisateur {
-//   id: string;
-//   email: string;
-//   firstName: string;
-//   lastName: string;
-//   phoneNumber: string;
-//   role: UtilisateurRole;
-//   status: UtilisateurStatus;
-//   isPasswordChangeRequired: boolean;
-//   createdAt: string;
-//   updatedAt: string;
-//   deletedAt: string | null;
-// }
-
-// types/article.ts
 
 export interface ITribunesParams {
   id?: number;
@@ -47,26 +21,25 @@ export interface ITribunesParams {
   date?: string;
   article_une?: boolean;
   theme?: string;
+  page: number;
+  size: number;
+  skip?: number;
 }
-
-
-// types/contributor.ts
 
 export interface IContributor {
   id: number;
   name: string;
   title: string;
   image: string;
+  themes: string[];
+  biography: string;
+  email: string;
+  phone: string;
 }
+
 export interface IContributorParams {
   id?: number;
   name?: string;
   title?: string;
   image?: string;
 }
-
-
-export interface IUtilisateurDeleteResponse {
-  success: true,
-  message: string,
-};

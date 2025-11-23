@@ -18,13 +18,19 @@ const nextConfig = {
         pathname: "/vi/**",
       },
       {
+        hostname: "admin.catholikia.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
         protocol: "https",
-        hostname: "finance.christaxel.me",
+        hostname: "ui-avatars.com",
         port: "",
         pathname: "/**",
       },
     ],
   },
+  output: "standalone",
 };
 
 export default withNextIntl(nextConfig);

@@ -19,6 +19,7 @@ export const sectionStyle = tv({
       xl: "p-12 md:p-16",
     },
     size: {
+      none: "min-h-0",
       sm: "min-h-50",
       md: "min-h-100",
       lg: "min-h-150",

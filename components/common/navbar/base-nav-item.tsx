@@ -16,7 +16,7 @@ export type BaseNavItemProps = {
 
 function BaseNavItem({item, children, className, as = "item"}: BaseNavItemProps) {
 	const pathname = usePathname();
-	const isActive = (pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)));
+	const isActive = item.href !== '/' && (pathname === item.href || pathname.startsWith(item.href));
 	const Component = as === 'menu' ? NavbarMenuItem : NavbarItem;
 
 	return (
