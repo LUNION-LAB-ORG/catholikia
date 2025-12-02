@@ -1,36 +1,24 @@
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
 import Section from "../primitives/Section";
-import {IDioceseParams} from "@/features/diocese/types/diocese.type";
 
 interface SearchFormProps {
 	filters?: any;
-	onSearch: (filters: IDioceseParams) => void;
+	onSearch: (query:string) => void;
 }
 
 export const SearchForm = ({filters, onSearch}: SearchFormProps) => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
-		const filters: IDioceseParams = {
-			nom: (formData.get("nom") as string) || "",
-			region: (formData.get("region") as string) || "",
-		};
-		onSearch(filters);
+		onSearch(formData.get("nom") as string);
 	};
 
 	return (
 		<Section size="none" className="custom-container">
 			<form
 				onSubmit={handleSubmit}
-				className="bg-card p-6 rounded-lg shadow-sm border"
+				className="bg-card p-6 rounded-lg border"
 			>
 				<div className="flex flex-col gap-4 mb-4">
 					{/* Ligne de recherche principale */}
@@ -41,7 +29,7 @@ export const SearchForm = ({filters, onSearch}: SearchFormProps) => {
 								id="name"
 								name="name"
 								value={filters.nom}
-								onChange={(e) => onSearch({nom: e.target.value})}
+								onChange={(e) => onSearch(e.target.value)}
 								placeholder="Rechercher par nom de diocèse"
 								className="w-full bg-[#FAFAFA] rounded-2xl"
 							/>
@@ -55,53 +43,6 @@ export const SearchForm = ({filters, onSearch}: SearchFormProps) => {
 							>
 								RECHERCHER
 							</Button>
-						</div>
-					</div>
-
-					{/* Filtres supplémentaires */}
-					<div className="flex flex-col sm:flex-row gap-3">
-						{/* Région */}
-						<div className="w-full sm:w-[50%]">
-							<Select name="region" value={filters.region} onValueChange={(value) => onSearch({region: value})}>
-								<SelectTrigger className="w-full rounded-2xl bg-[#FAFAFA]">
-									<SelectValue placeholder="Sous Région"/>
-								</SelectTrigger>
-								<SelectContent className="w-full rounded-2xl">
-									<SelectItem value="all">Toutes les régions</SelectItem>
-									<SelectItem value="ouest">Ouest</SelectItem>
-									<SelectItem value="centre">Centre</SelectItem>
-									<SelectItem value="est">Est</SelectItem>
-									<SelectItem value="nord">Nord</SelectItem>
-									<SelectItem value="sud">Sud</SelectItem>
-								</SelectContent>
-							</Select>
-						</div>
-						<div className="w-full sm:w-[40%]">
-							<Select name="ville" value={filters.ville} onValueChange={(value) => onSearch({ville: value})}>
-								<SelectTrigger className="w-full rounded-2xl bg-[#FAFAFA]">
-									<SelectValue placeholder="Departement"/>
-								</SelectTrigger>
-								<SelectContent className="w-full">
-									<SelectItem value="abidjan">Abidjan</SelectItem>
-									<SelectItem value="bouake">Bouake</SelectItem>
-									<SelectItem value="yamoussoukrou">Yamoussoukrou</SelectItem>
-									<SelectItem value="daloa">Daloa</SelectItem>
-									<SelectItem value="san-pedro">San-pedro</SelectItem>
-									<SelectItem value="korhogo">Korhogo</SelectItem>
-								</SelectContent>
-							</Select>
-						</div>
-						{/* Tri */}
-						<div className="w-full sm:w-[40%]">
-							<Select name="sort">
-								<SelectTrigger className="w-full rounded-2xl bg-[#FAFAFA]">
-									<SelectValue placeholder="Nom (A-Z)"/>
-								</SelectTrigger>
-								<SelectContent className="w-full">
-									<SelectItem value="az">Nom (A-Z)</SelectItem>
-									<SelectItem value="za">Nom (Z-A)</SelectItem>
-								</SelectContent>
-							</Select>
 						</div>
 					</div>
 				</div>

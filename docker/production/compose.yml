@@ -1,8 +1,0 @@
-services:
-  catholikia-production:
-    build:
-      context: ../../
-      dockerfile: docker/production/Dockerfile
-    image: catholikia-production
-    ports:
-      - "3003:3000"

@@ -9,7 +9,7 @@ import {ContactCard} from "@/components/(public)/annuaire/contact-card";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 
 const AnnuaireDioceses = () => {
-	const {dioceses, meta, isLoading, filters, onFilterChange} = useDioceseList();
+	const {dioceses, meta, isLoading, filters,onFilterChange ,handleSearch} = useDioceseList();
 
 	return (
 		<div className="min-h-screen bg-background">
@@ -23,7 +23,7 @@ const AnnuaireDioceses = () => {
 				</div>
 
 				{/* Search Form */}
-				<SearchForm filters={filters} onSearch={onFilterChange}/>
+				<SearchForm filters={filters} onSearch={handleSearch}/>
 
 				{/* Main Content */}
 				<Section className="grid grid-cols-1 lg:grid-cols-3 gap-8 custom-container">

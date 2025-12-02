@@ -13,11 +13,10 @@ type PropsCard = {
 }
 
 function ActualiteCard({ actualite, orientation }: PropsCard) {
-  console.log(actualite)
   return (
     <div className="flex flex-col justify-between space-y-2 h-full">
       <Link
-        href={`actualites/${actualite.slug}`}
+        href={actualite.slug}
         className="group block h-full"
       >
         <article

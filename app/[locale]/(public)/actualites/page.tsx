@@ -56,7 +56,7 @@ const ActualitesPage = async () => {
 
 	return (
 		<Content fullWidth className="pt-0">
-			<TitleBanner backgroundImage={"/assets/actualites/bg.jpg"} title="actualités"/>
+			<TitleBanner backgroundImage={"/assets/actualites/bg.jpg"}/>
 			<CarouselActualite/>
 			<Publicite position="ACCUEIL_MIDDLE" orientation="horizontal"/>
 			<ActualitesList/>
