@@ -26,7 +26,7 @@ export const ContactCard = ({ diocese }: ContactCardProps) => {
         <div className="text-center mb-4">
           <Avatar className="w-16 h-16 mx-auto mb-3">
             <AvatarImage
-              src={diocese.image}
+              src={diocese.representant.photo}
               alt={diocese.nom}
               width={200}
               height={200}
