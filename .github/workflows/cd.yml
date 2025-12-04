@@ -8,9 +8,6 @@ on:
   push:
     branches:
       - main
-      - develop
-    tags:
-      - 'v*.*.*'
   pull_request:
     branches:
       - main
@@ -69,60 +66,9 @@ jobs:
 
       - name: Deploy to Production Server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            set -e
-          
-            IMAGE="${IMAGE_NAME}:latest"
-            OFFICIAL_PORT=${CONTAINER_PORT}
-            TEST_PORT=$((OFFICIAL_PORT + 1))
-            OLD_NAME="$CONTAINER_NAME"
-            NEW_NAME="${CONTAINER_NAME}_new"
-          
-            echo "Pulling latest image..."
-            docker pull $IMAGE
-          
-            echo "Starting new container on test port $TEST_PORT ..."
-            docker run -d --name $NEW_NAME \
-              -p $TEST_PORT:3000 \
-              --memory 200m --cpus 1 \
-              --restart unless-stopped \
-              $IMAGE
-          
-            echo "Waiting for new container startup..."
-            sleep 5
-          
-            # Vérification basique : le conteneur doit être "running"
-            if [ "$(docker inspect -f '{{.State.Status}}' $NEW_NAME)" != "running" ]; then
-              echo "❌ New container failed to start."
-              docker logs $NEW_NAME
-              docker rm $NEW_NAME
-              exit 1
-            fi
-          
-            echo "Testing new container endpoint on port $TEST_PORT..."
-            if ! curl -f http://localhost:$TEST_PORT/health >/dev/null 2>&1; then
-              echo "❌ Healthcheck failed. Keeping old container."
-              docker logs $NEW_NAME
-              docker rm -f $NEW_NAME
-              exit 1
-            fi
-          
-            echo "✔ New container passed the health check."
-          
-            echo "Stopping and removing old container..."
-            docker stop $OLD_NAME || true
-            docker rm $OLD_NAME || true
-          
-            echo "Starting new container on port $OFFICIAL_PORT ..."
-            docker stop $NEW_NAME || true
-            docker rm $NEW_NAME
-          
-            # Lancement final (port officiel)
-            docker run -d --name $OLD_NAME \
-              -p $OFFICIAL_PORT:3000 \
-              --memory 200m --cpus 1 \
-              --restart unless-stopped \
-              $IMAGE
-          
-            echo "🚀 Deployment successful."
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF' 
+          docker pull ${{ env.IMAGE_NAME }}:latest 
+          docker stop $CONTAINER_NAME || true 
+          docker rm $CONTAINER_NAME || true 
+          docker run -d --name $CONTAINER_NAME -p $CONTAINER_PORT:3000 --restart unless-stopped --memory 200m --cpus 1 ${{ env.IMAGE_NAME }}:latest 
           EOF
