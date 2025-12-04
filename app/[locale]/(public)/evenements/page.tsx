@@ -41,7 +41,7 @@ async function EvenementsPage() {
 	return (
 		<Content fullWidth className="pt-0">
 			<TitleBanner
-				backgroundImage={"/assets/actualites/bg.jpg"}
+				backgroundImage={"/assets/evenements/bg.jpg"}
 				title="événements"
 			/>
 			<script

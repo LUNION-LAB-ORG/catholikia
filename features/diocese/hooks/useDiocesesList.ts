@@ -29,12 +29,22 @@ export const useDioceseList = () => {
     });
   };
 
+  const handleSearch = (query:string) => {
+    onFilterChange({
+      nom: query,
+      ville: query,
+      region: query,
+      page: 1,
+    });
+  }
+
   return {
     dioceses: data?.data || [],
     meta: data?.meta,
     isLoading,
     error,
     filters,
-    onFilterChange
+    onFilterChange,
+    handleSearch
   };
 };

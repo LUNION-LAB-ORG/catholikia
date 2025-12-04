@@ -33,7 +33,7 @@ jobs:
       # Déterminer le nom de l'image dynamiquement
       - name: Set image name
         run: |
-          echo "IMAGE_NAME=ghcr.io/${GITHUB_REPOSITORY}" >> $GITHUB_ENV
+          echo "IMAGE_NAME=ghcr.io/${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
 
       # Déterminer la version de l'image
       - name: Extract version
