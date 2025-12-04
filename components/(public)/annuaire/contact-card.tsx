@@ -24,7 +24,7 @@ export const ContactCard = ({ diocese }: ContactCardProps) => {
     <Card className="hover:shadow-md transition-shadow duration-200 bg-card border">
       <CardContent className="p-5">
         <div className="text-center mb-4">
-          <Avatar className="w-16 h-16 mx-auto mb-3">
+          <Avatar className="size-28 mx-auto mb-3">
             <AvatarImage
               src={diocese.image}
               alt={diocese.nom}
