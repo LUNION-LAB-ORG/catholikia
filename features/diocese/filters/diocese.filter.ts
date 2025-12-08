@@ -5,6 +5,7 @@ export const dioceseFiltersClient = {
         nom: parseAsString.withDefault(""),
         region: parseAsString.withDefault(""),
         ville: parseAsString.withDefault(""),
+        search: parseAsString.withDefault(""),
         page: parseAsInteger.withDefault(1),
         size: parseAsInteger.withDefault(6),
     },

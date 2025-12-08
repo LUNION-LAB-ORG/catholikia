@@ -1,5 +1,5 @@
 import HeroShortcut from "@/components/(public)/accueil/hero-section/hero-shortcut";
-import { IconBible, IconBookFilled, IconCalendarWeekFilled, IconMicrophoneFilled, IconUsersGroup } from "@tabler/icons-react";
+import {IconBible, IconBookFilled, IconMicrophoneFilled, IconUsersGroup} from "@tabler/icons-react";
 
 const shortcuts = [
 	// {
@@ -39,7 +39,7 @@ function HeroSection() {
 		<div className="flex-1 flex flex-col items-center justify-center relative min-h-screen">
 			<div className="absolute inset-0">
 				<img
-					src="/assets/hero/hero_img.jpg"
+					src="/assets/accueil/bg.jpg"
 					alt="Background Image" className="object-cover object-center w-full h-full" />
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</div>

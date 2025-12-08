@@ -25,4 +25,5 @@ export interface IDioceseParams {
   ville?: string;
   page?: number;
   size?: number;
+  search?: string;
 }

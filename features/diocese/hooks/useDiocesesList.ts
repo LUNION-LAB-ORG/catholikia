@@ -10,11 +10,7 @@ export const useDioceseList = () => {
 
   const defaultSearchParams: IDioceseParams = useMemo(() => {
     return {
-      page: filters.page,
-      size: filters.size,
-      nom: filters.nom,
-      ville: filters.ville,
-      region: filters.region,
+      search: filters.search
     };
   }, [filters]);
 
@@ -31,9 +27,7 @@ export const useDioceseList = () => {
 
   const handleSearch = (query:string) => {
     onFilterChange({
-      nom: query,
-      ville: query,
-      region: query,
+      search: query,
       page: 1,
     });
   }
