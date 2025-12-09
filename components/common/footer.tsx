@@ -94,11 +94,23 @@ export const Footer = () => {
 				</div>
 
 				<div className="mt-12 border-t pt-6">
-					<div className="lg:text-center m:text-center  sm:flex sm:justify-between sm:text-left">
-						<p
-							className="text-secondary-foreground/70  w-full text-center mt-4 text-sm transition sm:order-first sm:mt-0">
-							© 2025 - All Rights Reserved
-						</p>
+					<div className="text-center text-white/70 mt-4 text-sm transition sm:order-first sm:mt-0">
+						COPYRIGHT &copy; 2025 Fernand Dedeh, Développé par {" "}
+						<Link
+							target="_blank"
+							href="https://www.lunion-lab.com?utm_source=fd-website&utm_medium=referral"
+							className="font-semibold flex items-center justify-center hover:text-violet-500"
+						>
+							LUNION-LAB
+							<div className="size-4 object-contain relative ml-2">
+								<Image
+									src="/logo/logo-lunion.png"
+									alt="LUNION-LAB"
+									fill
+									className="mx-auto md:mx-0 transition-all duration-300"
+								/>
+							</div>
+						</Link>
 					</div>
 				</div>
 			</div>
