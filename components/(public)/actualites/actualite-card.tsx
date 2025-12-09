@@ -16,7 +16,7 @@ function ActualiteCard({ actualite, orientation }: PropsCard) {
   return (
     <div className="flex flex-col justify-between space-y-2 h-full">
       <Link
-        href={actualite.slug}
+        href={`/actualites/${actualite.slug}`}
         className="group block h-full"
       >
         <article

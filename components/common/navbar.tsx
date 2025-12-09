@@ -85,7 +85,8 @@ export const Navbar = () => {
 					<Button
 						as={Link}
 						color="primary"
-						href={"/actualites"}
+						href={"/mag"}
+						onPress={() => setIsMenuOpen(false)}
 						className="font-bold font-sans"
 					>
 						CATHOLIKIA Mag

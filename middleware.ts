@@ -19,6 +19,7 @@ export const publicRoutes = [
   "/coming-soon",
   "/lectio-divina",
   "/evenements",
+  "/mag"
 ];
 
 // Middleware d'internationalisation
@@ -43,7 +44,6 @@ export default async function middleware(req: NextRequest) {
   } else {
     // Si la page est protégée et qu'il n'y a pas de session, on redirige vers la page de connexion
     if (!session) {
-      const locale = pathname.split("/")[1] || routing.defaultLocale;
 
       // Récupération de la callbackUrl
       let callbackUrl = pathname;

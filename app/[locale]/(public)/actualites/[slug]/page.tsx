@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: `${actualite ? actualite.titre : 'Actualité'}`,
       description: "Restez informé des dernières nouvelles, événements et articles inspirants de la communauté catholique.",
-      url: "https://www.catholikia.com/actualites",
+      url: `https://www.catholikia.com/actualites/${slug}`,
       siteName: "Catholikia",
       locale: "fr_FR",
       type: "website",
@@ -29,12 +29,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           width: 800,
           height: 600,
           alt: actualite?.titre,
-        },
-        {
-          url: "https://www.catholikia.com/og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: "Actualités - Catholikia",
         }
       ],
     },

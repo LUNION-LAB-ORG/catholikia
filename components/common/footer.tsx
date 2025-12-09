@@ -95,7 +95,7 @@ export const Footer = () => {
 
 				<div className="mt-12 border-t pt-6">
 					<div className="text-center text-white/70 mt-4 text-sm transition sm:order-first sm:mt-0">
-						COPYRIGHT &copy; 2025 Fernand Dedeh, Développé par {" "}
+						COPYRIGHT &copy; 2025 Catholikia, Développé par {" "}
 						<Link
 							target="_blank"
 							href="https://www.lunion-lab.com?utm_source=fd-website&utm_medium=referral"
