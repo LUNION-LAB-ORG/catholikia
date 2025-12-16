@@ -1,9 +1,9 @@
 "use server"
 
-import { ActionResponse, PaginatedResponse } from "@/types";
-import { handleServerActionError } from "@/utils/handleServerActionError";
+import {handleServerActionError} from "@/utils/handleServerActionError";
 import {bannerAPI} from "@/features/banner/banner.api";
 import {IBanner} from "@/features/banner/banner.type";
+import {ActionResponse, PaginatedResponse} from "@/types/api.type";
 
 export const obtenirToutesBannieresAction = async (): Promise<ActionResponse<PaginatedResponse<IBanner>>> => {
 	try {

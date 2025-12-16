@@ -1,6 +1,6 @@
 import { api } from "@/lib/api";
-import { PaginatedResponse } from "@/types";
 import {IBanner} from "@/features/banner/banner.type";
+import {PaginatedResponse} from "@/types/api.type";
 
 export interface IBannerAPI {
 	obtenirToutesBannieres(): Promise<PaginatedResponse<IBanner>>;
