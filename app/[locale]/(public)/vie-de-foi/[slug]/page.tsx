@@ -9,6 +9,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
 import {Metadata} from "next";
+import VieDeFoiDetails from "@/components/(public)/vie-de-foi/details";
 
 type Props = {
 	params: Promise<{
@@ -48,6 +49,8 @@ export default async function VieDeFoiDetailsPage({params}: Props) {
 
 	const {data, success, error, message} = await obtenirTemoignageParIdAction(Number(slug))
 	const testimonial = data;
+
+	VieDeFoiDetails({temoignage: testimonial});
 
 	if (error) {
 		return <Section className="text-red-500 flex items-center justify-center">Erreur lors du chargement du

@@ -9,9 +9,16 @@ import Title from "@/components/primitives/Title";
 import {Badge} from "@/components/ui/badge";
 import {useEffataQuery} from '@/features/effata/queries/effata-detail.query';
 import Image from "next/image";
+import {useStats} from "@/features/stats/hooks/use-stats";
+import {StatsType} from "@/features/stats/stats.type";
 
 export default function EffataDetailsContent({ slug }: { slug: string }) {
   const { data, isLoading, error } = useEffataQuery(slug);
+
+  useStats({
+    id: data?.id,
+    type: StatsType.EFFATA,
+  })
 
   if (isLoading) {
     return <LoadingIndicator />;

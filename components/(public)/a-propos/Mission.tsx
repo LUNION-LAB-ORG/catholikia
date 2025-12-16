@@ -31,7 +31,7 @@ const Mission = () => {
 			</p>
 
 			<Title className="uppercase mt-20 mb-8">
-				Notre mission
+				Notre vision
 			</Title>
 			<p className="text-justify">
 				Promouvoir les valeurs catholiques et favoriser la croissance spirituelle de notre public cible.

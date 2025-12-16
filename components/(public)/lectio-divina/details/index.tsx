@@ -13,10 +13,17 @@ import {LaravelPaginatedResponse} from "@/types/api.type";
 import {ILectio} from "@/features/lectio-divina/types/lectio.type";
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger} from "@/components/ui/select";
 import {useRouter} from "next/navigation";
+import {useStats} from "@/features/stats/hooks/use-stats";
+import {StatsType} from "@/features/stats/stats.type";
 
 export default function LectioDetailsContent({id: slug}: { id: string }) {
 	const {data, isLoading, error} = useLectioDetailQuery(slug);
 	const {data: lectioList} = useLectioListQuery({size: 50, page: 1});
+
+	useStats({
+		id: data?.id,
+		type: StatsType.LECTIO,
+	})
 
 	if (isLoading) {
 		return <LoadingIndicator/>;

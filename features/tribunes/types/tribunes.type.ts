@@ -1,5 +1,5 @@
 export interface ITribunes {
-  id: number;
+  id: string;
   author: string;
   position: string;
   titre: string;
@@ -12,7 +12,7 @@ export interface ITribunes {
 }
 
 export interface ITribunesParams {
-  id?: number;
+  id?: string;
   image?: string;
   title?: string;
   excerpt?: string;
@@ -27,7 +27,7 @@ export interface ITribunesParams {
 }
 
 export interface IContributor {
-  id: number;
+  id: string;
   name: string;
   title: string;
   image: string;
@@ -38,7 +38,7 @@ export interface IContributor {
 }
 
 export interface IContributorParams {
-  id?: number;
+  id?: string;
   name?: string;
   title?: string;
   image?: string;
