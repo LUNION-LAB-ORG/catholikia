@@ -3,40 +3,50 @@ import LoadingIndicator from "@/components/common/LoadingIndicator";
 import NoData from "@/components/common/no-data";
 import Section from "@/components/primitives/Section";
 import Title from "@/components/primitives/Title";
-import { useTribuneListQuery } from "@/features/tribunes/queries/tribune-list.query";
-import { TribuneCard } from "./tribune-card";
+import {TribuneCard} from "./tribune-card";
+import {CustomPagination} from "@/components/common/custom-pagination";
+import {useTribunesList} from "@/features/tribunes/hooks/use-tribunes-list";
 
 export const LatestContributions = () => {
-  const { data, isLoading, isError } = useTribuneListQuery({
-    page: 1,
-    size: 6,
-    skip: 1,
-  })
-  if (isLoading) {
-    return <LoadingIndicator />;
-  }
+	const {
+		onPaginationChange,
+		meta,
+		tribunes,
+		isLoading
+	} = useTribunesList()
 
-  if (data?.data.length === 0 && !isLoading) {
-    return <NoData
-      message="Aucun article trouvé"
-    />;
-  }
+	const totalPages = meta?.last_page || 1;
+	const currentPage = meta?.current_page || 1;
 
-  const tribunes = data?.data || [];
+	if (isLoading) {
+		return <LoadingIndicator/>;
+	}
 
-  return (
-    <Section className="">
-      <div className="text-2xl font-bold text-foreground mb-8 tracking-tight">
-        <Title> Dernières contributions</Title>
-      </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tribunes.map((tribune) => (
-          <TribuneCard
-            key={tribune.id}
-            tribune={tribune}
-          />
-        ))}
-      </div>
-    </Section>
-  );
+	if (tribunes.length === 0 && !isLoading) {
+		return <NoData
+			message="Aucun article trouvé"
+		/>;
+	}
+
+	return (
+		<Section className="">
+			<div className="text-2xl font-bold text-foreground mb-8 tracking-tight">
+				<Title>Dernières contributions</Title>
+			</div>
+			<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{tribunes.map((tribune) => (
+					<TribuneCard
+						key={tribune.id}
+						tribune={tribune}
+					/>
+				))}
+			</div>
+			{totalPages > 1 && (
+				<CustomPagination
+					currentPage={currentPage}
+					totalPages={totalPages}
+					onPageChange={(page) => onPaginationChange(page)}
+				/>)}
+		</Section>
+	);
 };
