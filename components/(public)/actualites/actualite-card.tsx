@@ -58,7 +58,7 @@ function ActualiteCard({ actualite, orientation }: PropsCard) {
       {orientation != 'horizontal' && <div className="flex justify-end">
         <Button
           as={Link}
-          href={`actualites/${actualite.slug}`}
+          href={`/actualites/${actualite.slug}`}
           variant="bordered"
           className={cn("uppercase text-[#1D1D1D] font-bold border")}>
           Details

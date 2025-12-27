@@ -1,5 +1,3 @@
-"use server";
-
 import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
 import { tribunesApi } from "../apis/tribunes.apis";
 import { ITribunes, ITribunesParams } from "../types/tribunes.type";

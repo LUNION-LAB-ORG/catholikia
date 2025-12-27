@@ -3,8 +3,10 @@ import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {siteConfig} from "@/config/site";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {getTranslations} from "next-intl/server";
 
-export const Footer = () => {
+export const Footer = async () => {
+	const tConfig = await getTranslations("config");
 	return (
 		<footer className={cn("bg-secondary dark:bg-secondary/20 mb-0 w-full text-white place-self-end ")}>
 			<div className="mx-auto max-w-screen-xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
@@ -62,13 +64,13 @@ export const Footer = () => {
 						<div className="text-center sm:text-left">
 							<p className="text-xl font-bold ">Pages</p>
 							<ul className="mt-8 space-y-4 text-sm">
-								{siteConfig.navItems.slice(1, 7).map(({label: text, href}) => (
+								{siteConfig.navItems.map(({key: text, href}) => (
 									<li key={text}>
 										<Link
 											className="text-secondary-foreground/70 transition first-letter:capitalize"
 											href={href}
 										>
-											{text}
+											{tConfig("menu_links." + text)}
 										</Link>
 									</li>
 								))}

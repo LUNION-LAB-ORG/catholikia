@@ -1,5 +1,3 @@
-"use server"
-
 import { handleServerActionError } from "@/utils/handleServerActionError";
 import { statsAPI } from "./stats.api";
 import { StatsDto } from "@/features/stats/stats.schema";

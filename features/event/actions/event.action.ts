@@ -1,5 +1,3 @@
-"use server";
-
 import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
 import { handleServerActionError } from "@/utils/handleServerActionError";
 

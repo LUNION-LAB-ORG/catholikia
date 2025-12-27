@@ -1,5 +1,3 @@
-"use server";
-
 import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
 import { lectioAPI } from "../apis/lectio.api";
 import { ILectio, ILectioSearchParams } from "../types/lectio.type";

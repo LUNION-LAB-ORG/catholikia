@@ -1,5 +1,3 @@
-"use server"
-
 import {handleServerActionError} from "@/utils/handleServerActionError";
 import {bannerAPI} from "@/features/banner/banner.api";
 import {IBanner} from "@/features/banner/banner.type";

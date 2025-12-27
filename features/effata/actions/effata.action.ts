@@ -1,5 +1,3 @@
-"use server";
-
 import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
 import { effataAPI } from "../apis/effata.api";
 import { IEffata, IEffataCategorie, IEffataParams } from "../types/effata.type";
