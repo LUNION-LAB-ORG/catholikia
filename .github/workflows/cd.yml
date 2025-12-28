@@ -68,8 +68,5 @@ jobs:
       - name: Deploy to Production Server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-#          docker pull ${{ env.IMAGE_NAME }}:latest
-#          docker stop $CONTAINER_NAME || true
-#          docker rm $CONTAINER_NAME || true
-#          docker run -d --name $CONTAINER_NAME -p $CONTAINER_PORT:3000 --restart unless-stopped --memory 200m --cpus 1 ${{ env.IMAGE_NAME }}:latest
+          echo "Pulling latest Docker image..."
           EOF
