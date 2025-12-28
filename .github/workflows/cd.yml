@@ -68,5 +68,15 @@ jobs:
       - name: Deploy to Production Server
         run: |
           ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-          echo "Pulling latest Docker image..."
+          docker pull ghcr.io/lunion-lab-org/catholikia:latest
+          docker stop catholikia-test || true
+          docker rm catholikia-test || true
+          docker run -d \
+            --name catholikia-test \
+            --restart unless-stopped \
+            --memory "200m" \
+            --cpus "1.0" \
+            --env-file /var/www/test-env/catholikia/catholikia/.env \
+            -p 3002:3000 \
+            ghcr.io/lunion-lab-org/catholikia:latest
           EOF
