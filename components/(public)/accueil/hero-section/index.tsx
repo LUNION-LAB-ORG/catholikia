@@ -1,5 +1,6 @@
 import HeroShortcut from "@/components/(public)/accueil/hero-section/hero-shortcut";
 import {IconBible, IconBookFilled, IconMicrophoneFilled, IconUsersGroup} from "@tabler/icons-react";
+import Image from "next/image";
 
 const shortcuts = [
 	// {
@@ -13,22 +14,22 @@ const shortcuts = [
 	// 	url: "/offrir"
 	// },
 	{
-		icon: <IconMicrophoneFilled size={32} stroke={3} color="white" />,
+		icon: <IconMicrophoneFilled size={32} stroke={3} color="white"/>,
 		label: "tribunes",
 		url: "/tribunes"
 	},
 	{
-		icon: <IconBookFilled size={32} stroke={3} color="white" />,
+		icon: <IconBookFilled size={32} stroke={3} color="white"/>,
 		label: "Diocèses",
 		url: "/annuaire"
 	},
 	{
-		icon: <IconUsersGroup size={32} stroke={3} color="white" />,
+		icon: <IconUsersGroup size={32} stroke={3} color="white"/>,
 		label: "Vie de foi",
 		url: "/vie-de-foi"
 	},
 	{
-		icon: <IconBible size={32} stroke={3} color="white" />,
+		icon: <IconBible size={32} stroke={3} color="white"/>,
 		label: "lectio divina",
 		url: "/lectio-divina"
 	}
@@ -38,9 +39,12 @@ function HeroSection() {
 	return (
 		<div className="flex-1 flex flex-col items-center justify-center relative min-h-screen">
 			<div className="absolute inset-0">
-				<img
+				<Image
 					src="/assets/accueil/bg.jpg"
-					alt="Background Image" className="object-cover object-center w-full h-full" />
+					alt="Background Image" className="object-cover object-center w-full h-full"
+					width={1920} height={1080}
+					priority
+				/>
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</div>
 			<div className="relative z-10 text-center text-white custom-container">

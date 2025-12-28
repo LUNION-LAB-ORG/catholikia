@@ -34,8 +34,7 @@ const EffataPage = () => {
 	void prefetchEffataListQuery({page: 1, size: 9, titre: ''});
 
 	return (
-		<Content fullWidth className="pt-0 ">
-			{/*<EffataHeroSection />*/}
+		<Content fullWidth className="pt-0">
 			<TitleBanner backgroundImage={"/assets/effata/hero_effata.jpg"} title="Effata"/>
 			<EffataList/>
 			<Publicite position="EFFATA_BOTTOM"/>

@@ -1,11 +1,11 @@
 import CurrentLectioDivina from "@/components/(public)/lectio-divina/current-lectio-divina";
-import LectioDivinaHero from "@/components/(public)/lectio-divina/lectio-divina-hero";
 import LectioDivinaIntro from "@/components/(public)/lectio-divina/lectio-divina-intro";
 import LectioDivinaSteps from "@/components/(public)/lectio-divina/lectio-divina-steps";
 import Publicite from "@/components/(public)/publicites";
 import MissionSignup from "@/components/don/MissionSignup";
 import Content from "@/components/primitives/Content";
 import {Metadata} from "next";
+import TitleBanner from "@/components/common/TitleBanner";
 
 export function generateMetadata(): Metadata {
 	return {
@@ -34,7 +34,7 @@ export function generateMetadata(): Metadata {
 const LectioDivinaPage = () => {
 	return (
 		<Content fullWidth className="pt-0">
-			<LectioDivinaHero title="Lectio divina"/>
+			<TitleBanner backgroundImage={"/assets/lectio/lectio_hero.jpg"} title="Lectio divina"/>
 			<LectioDivinaIntro/>
 			<LectioDivinaSteps/>
 			<CurrentLectioDivina/>
