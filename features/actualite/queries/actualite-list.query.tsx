@@ -17,12 +17,7 @@ export const actualitesListQueryOption = (
 	return {
 		queryKey: actualiteKeyQuery("list", actualitesParamsDTO),
 		queryFn: async () => {
-			const startTime = performance.now();
 			const result = await obtenirToutesActualitesAction(actualitesParamsDTO);
-			const endTime = performance.now();
-			const duration = endTime - startTime;
-
-			console.log(`[QUERY] Temps de fetch: ${duration.toFixed(2)}ms (${(duration / 1000).toFixed(2)}s)`);
 
 			if (!result.success) {
 				throw new Error(

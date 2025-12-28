@@ -12,6 +12,7 @@ export function generateMetadata(): Metadata {
 	return {
 		title: "Événements",
 		description: "Découvrez les événements à venir, les retraites spirituelles, les conférences et les rassemblements communautaires organisés par Catholikia pour nourrir votre foi et renforcer les liens au sein de la communauté catholique.",
+		keywords: ["événements catholiques", "retraites spirituelles", "conférences religieuses", "rassemblements communautaires", "foi catholique", "activités paroissiales", "catholikia"],
 	};
 }
 

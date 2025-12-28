@@ -5,13 +5,7 @@ import {IActualite, IActualiteCategorie, IActualiteParams} from "../types/actual
 
 export const obtenirToutesActualitesAction = async (params: IActualiteParams): Promise<ActionResponse<LaravelPaginatedResponse<IActualite>>> => {
 	try {
-		const startTime = performance.now();
 		const data = await actualiteAPI.obtenirToutesActualites(params);
-		const endTime = performance.now();
-
-		const duration = endTime - startTime;
-
-		console.log(`️[SERVER] Temps de fetch: ${duration.toFixed(2)}ms (${(duration / 1000).toFixed(2)}s)`);
 
 		return {
 			success: true,

@@ -4,26 +4,10 @@ import Publicite from "@/components/(public)/publicites";
 import TitleBanner from "@/components/common/TitleBanner";
 import MissionSignup from "@/components/don/MissionSignup";
 import Content from "@/components/primitives/Content";
-import {obtenirToutesActualitesAction} from "@/features/actualite/actions/actualite.action";
 import {prefetchActualitesListQuery} from "@/features/actualite/queries/actualite-list.query";
 import {Metadata} from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
-	const data = await obtenirToutesActualitesAction({page: 1, limit: 3});
-	const actualites = data.data?.data || [];
-	const images: { url: string; width: number; height: number; alt: string }[] = [];
-
-	actualites.forEach((actualite) => {
-		if (actualite.image) {
-			images.push({
-				url: actualite.image,
-				width: 800,
-				height: 600,
-				alt: actualite.titre,
-			});
-		}
-	});
-
 	return {
 		title: "Actualités",
 		description: "Restez informé des dernières nouvelles, événements et articles inspirants de la communauté catholique.",
@@ -41,7 +25,6 @@ export async function generateMetadata(): Promise<Metadata> {
 					height: 630,
 					alt: "Actualités - Catholikia",
 				},
-				...images,
 			],
 		},
 	}
