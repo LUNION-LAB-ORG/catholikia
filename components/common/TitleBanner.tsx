@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import {cn} from "@/lib/utils";
+import cloudFrontImageLoader from "@/lib/cloudfront-image-loader";
 
 interface TitleBannerProps {
 	title?: string;
@@ -22,6 +23,7 @@ const TitleBanner: React.FC<TitleBannerProps> = ({
 			<div className="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden">
 				{/* Background Image */}
 				<Image
+					loader={cloudFrontImageLoader}
 					src={backgroundImage || "/assets/don/banner.jpg"}
 					alt="Background"
 					width={1920}

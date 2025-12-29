@@ -1,6 +1,7 @@
 import HeroShortcut from "@/components/(public)/accueil/hero-section/hero-shortcut";
 import {IconBible, IconBookFilled, IconMicrophoneFilled, IconUsersGroup} from "@tabler/icons-react";
 import Image from "next/image";
+import cloudFrontImageLoader from "@/lib/cloudfront-image-loader";
 
 const shortcuts = [
 	// {
@@ -40,9 +41,10 @@ function HeroSection() {
 		<div className="flex-1 flex flex-col items-center justify-center relative min-h-screen">
 			<div className="absolute inset-0">
 				<Image
+					loader={cloudFrontImageLoader}
 					src="/assets/accueil/bg.jpg"
 					alt="Background Image" className="object-cover object-center w-full h-full"
-					width={1920} height={1080}
+					fill
 					priority
 				/>
 				<div className="absolute inset-0 bg-black opacity-50"></div>

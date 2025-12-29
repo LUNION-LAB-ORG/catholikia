@@ -1,5 +1,5 @@
 "use client";
-import { AlertTriangle, RefreshCw, Home, ArrowLeft } from "lucide-react";
+import {ArrowLeft, Home, RefreshCw} from "lucide-react";
 import Image from "next/image";
 
 interface ErrorPageProps {

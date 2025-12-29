@@ -25,7 +25,8 @@ function ActualitesVaticanSection() {
 				<Image
 					src="/assets/accueil/vatican.jpg"
 					className="object-cover w-full h-full"
-					fill
+					width={760}
+					height={515}
 					alt="image du vatican"
 				/>
 			</div>
