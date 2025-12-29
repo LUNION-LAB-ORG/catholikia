@@ -60,4 +60,34 @@ const EventCard = ({ event }: EventCardProps) => {
   );
 };
 
+export const EventCardSkeleton = () => {
+  return (
+    <div className="event-card-skeleton bg-white w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center p-6 rounded-3xl gap-6 animate-pulse">
+      {/* Date Section */}
+      <div className="text-[#1D1D1D] flex flex-col text-center md:text-left md:min-w-[80px] justify-center items-center space-y-1">
+        <span className="bg-gray-300 rounded h-4 w-12 md:w-16"></span>
+        <span className="bg-gray-300 rounded h-10 w-10 md:w-16"></span>
+        <span className="bg-gray-300 rounded h-4 w-12 md:w-16"></span>
+      </div>
+
+      {/* Event Image */}
+      <div className="flex-shrink-0">
+        <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gray-300"></div>
+      </div>
+
+      {/* Event Content */}
+      <div className="flex-1 min-w-0 text-center md:text-left space-y-2">
+        <div className="bg-gray-300 rounded h-6 w-3/4 md:w-1/2 mx-auto md:mx-0"></div>
+        <div className="bg-gray-300 rounded h-4 w-full md:w-5/6 mx-auto md:mx-0"></div>
+        <div className="bg-gray-300 rounded h-4 w-full md:w-4/6 mx-auto md:mx-0"></div>
+      </div>
+
+      {/* Details Button */}
+      <div className="flex-shrink-0 w-full md:w-auto">
+        <div className="bg-gray-300 rounded h-10 w-full md:w-24 mx-auto md:mx-0"></div>
+      </div>
+    </div>
+  );
+}
+
 export default EventCard;
