@@ -2,6 +2,7 @@ import HeroShortcut from "@/components/(public)/accueil/hero-section/hero-shortc
 import {IconBible, IconBookFilled, IconMicrophoneFilled, IconUsersGroup} from "@tabler/icons-react";
 import Image from "next/image";
 import cloudFrontImageLoader from "@/lib/cloudfront-image-loader";
+import {fontAnton} from "@/config/fonts";
 
 const shortcuts = [
 	// {
@@ -38,7 +39,7 @@ const shortcuts = [
 
 function HeroSection() {
 	return (
-		<div className="flex-1 flex flex-col items-center justify-center relative min-h-screen">
+		<div className="relative h-[100svh] flex flex-col items-center justify-center">
 			<div className="absolute inset-0">
 				<Image
 					loader={cloudFrontImageLoader}
@@ -46,11 +47,12 @@ function HeroSection() {
 					alt="Background Image" className="object-cover object-center w-full h-full"
 					fill
 					priority
+					fetchPriority="high"
 				/>
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</div>
 			<div className="relative z-10 text-center text-white custom-container">
-				<h1 className="px-6 text-[50px] md:text-[70px] lg:text-[100px] font-bold mb-4 font-anton">
+				<h1 className={`${fontAnton.className} px-6 text-[50px] md:text-[70px] lg:text-[100px] font-bold mb-4`}>
 					Adorez à tout moment et en tout lieu.
 				</h1>
 			</div>
