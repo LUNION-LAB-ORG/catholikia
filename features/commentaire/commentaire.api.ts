@@ -31,9 +31,9 @@ export const commentaireApi: ICommentaireApi = {
 	},
 
 	obtenirCommentaires(params: ICommentaireSearchParams): Promise<LaravelPaginatedResponse<ICommentaire>> {
-		const entityType = params.entityType == 'lexio_divinas' ? 'lexiodivinas' : params.entityType;
+		const entityType = params.entityType == 'lexio_divinas' ? 'lexiodivinas' : params.entityType + "s";
 		return api.request<LaravelPaginatedResponse<ICommentaire>>({
-			endpoint: `commentaires-${entityType}`,
+			endpoint: `${entityType}/${params.entityId}/${params.entityType}`,
 			method: "GET",
 			searchParams: {
 				page: params.page,

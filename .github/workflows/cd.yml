@@ -14,16 +14,38 @@ on:
       - main
 
 jobs:
-  deploy:
+  notify_start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Discord - Start
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{
+            \"username\": \"CI/CD Bot\",
+            \"embeds\": [{
+              \"title\": \"🚀 Workflow Started\",
+              \"description\": \"\
+                👤 Pushed by: ${{ github.actor }}\n\
+                🌿 Branch: ${{ github.ref_name }}\n\
+                📝 Commit: ${{ github.event.head_commit.message }}\n\
+                🔗 Repo: https://github.com/${{ github.repository }}\n\
+                ⚙️ Job: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\
+                \",
+                \"color\": 16776960
+              } ]
+              }" \
+              ${{ secrets.DISCORD_WEBHOOK }}
+
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # Login GHCR
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -31,35 +53,30 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Déterminer le nom de l'image dynamiquement
-      - name: Set image name
+      - name: Extract version
+        run: echo "VERSION=ci-${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+      - name: Set lowercase image name
         run: |
           echo "IMAGE_NAME=ghcr.io/${GITHUB_REPOSITORY,,}" >> $GITHUB_ENV
 
-      # Déterminer la version de l'image
-      - name: Extract version
-        id: vars
-        run: |
-          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-          else
-            echo "VERSION=ci-${GITHUB_SHA::7}" >> $GITHUB_ENV
-          fi
-
-      # Build et push l'image Docker
       - name: Build and Push Docker Image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: |
             ${{ env.IMAGE_NAME }}:${{ env.VERSION }}
             ${{ env.IMAGE_NAME }}:latest
-          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:latest
-          cache-to: type=inline
-          build-args:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
             VERSION=${{ env.VERSION }}
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.8.0
         with:
@@ -67,16 +84,67 @@ jobs:
 
       - name: Deploy to Production Server
         run: |
-          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-          docker pull ghcr.io/lunion-lab-org/catholikia:latest
-          docker stop catholikia-test || true
-          docker rm catholikia-test || true
-          docker run -d \
-            --name catholikia-test \
-            --restart unless-stopped \
-            --memory "200m" \
-            --cpus "1.0" \
-            --env-file /var/www/test-env/catholikia/catholikia/.env \
-            -p 3002:3000 \
-            ghcr.io/lunion-lab-org/catholikia:latest
+          IMAGE_NAME=$(echo "ghcr.io/${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+          
+            IMAGE="$IMAGE_NAME:latest"
+          
+            echo "Pull latest image..."
+            docker pull \$IMAGE
+          
+            echo "Stopping old container..."
+            docker stop catholikia-test || true
+            docker rm catholikia-test || true
+          
+            echo "Starting new container..."
+            docker run -d \
+              --name catholikia-test \
+              --restart unless-stopped \
+              --memory "200m" \
+              --cpus "1.0" \
+              --env-file /var/www/test-env/catholikia/catholikia/.env \
+              -p 3002:3000 \
+              \$IMAGE
+          
+            echo "Cleaning unused images..."
+            docker image prune -f
+          
+            echo "Deployment done."
+          
           EOF
+
+  notify_end:
+    needs: [ build, deploy ]
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set status
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ] || [ "${{ needs.deploy.result }}" != "success" ]; then
+            echo "COLOR=15548997" >> $GITHUB_ENV
+            echo "TITLE=❌ Workflow Failed" >> $GITHUB_ENV
+          else
+            echo "COLOR=5763719" >> $GITHUB_ENV
+            echo "TITLE=✅ Workflow Successful" >> $GITHUB_ENV
+          fi
+
+      - name: Notify Discord - Result
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{
+            \"username\": \"CI/CD Bot\",
+            \"embeds\": [{
+              \"title\": \"${{ env.TITLE }}\",
+              \"description\": \"\
+              👤 Pushed by: ${{ github.actor }}\n\
+              🌿 Branch: ${{ github.ref_name }}\n\
+              📝 Commit: ${{ github.event.head_commit.message }}\n\
+              🔗 Repo: https://github.com/${{ github.repository }}\n\
+              ⚙️ Job: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\
+              \",
+              \"color\": ${{ env.COLOR }}
+            } ]
+            }" \
+            ${{ secrets.DISCORD_WEBHOOK }}

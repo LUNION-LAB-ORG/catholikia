@@ -36,7 +36,7 @@ function ActualiteCard({ actualite, orientation }: PropsCard) {
               className="h-full w-full group-hover:scale-105 transition-transform duration-300"
               width={250}
               height={200}
-              loading="lazy"
+              loading="eager"
             />
           </div>
           <div className={cn(orientation === 'vertical' ? 'mt-4' : '', "flex flex-col space-y-2")}>
