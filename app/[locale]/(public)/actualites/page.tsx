@@ -4,26 +4,12 @@ import Publicite from "@/components/(public)/publicites";
 import TitleBanner from "@/components/common/TitleBanner";
 import MissionSignup from "@/components/don/MissionSignup";
 import Content from "@/components/primitives/Content";
-import {obtenirToutesActualitesAction} from "@/features/actualite/actions/actualite.action";
 import {prefetchActualitesListQuery} from "@/features/actualite/queries/actualite-list.query";
 import {Metadata} from "next";
+import {SearchParams} from "nuqs";
+import {loadActualiteSearchParams} from "@/features/actualite/filters/actualite.filter";
 
 export async function generateMetadata(): Promise<Metadata> {
-	const data = await obtenirToutesActualitesAction({page: 1, limit: 3});
-	const actualites = data.data?.data || [];
-	const images: { url: string; width: number; height: number; alt: string }[] = [];
-
-	actualites.forEach((actualite) => {
-		if (actualite.image) {
-			images.push({
-				url: actualite.image,
-				width: 800,
-				height: 600,
-				alt: actualite.titre,
-			});
-		}
-	});
-
 	return {
 		title: "Actualités",
 		description: "Restez informé des dernières nouvelles, événements et articles inspirants de la communauté catholique.",
@@ -41,22 +27,30 @@ export async function generateMetadata(): Promise<Metadata> {
 					height: 630,
 					alt: "Actualités - Catholikia",
 				},
-				...images,
 			],
 		},
 	}
 }
 
-const ActualitesPage = async () => {
+type PageProps = {
+	searchParams: Promise<SearchParams>
+}
+
+const ActualitesPage = async ({searchParams}: PageProps) => {
+	const {
+		page,
+		limit,
+		category_id,
+	} = await loadActualiteSearchParams(searchParams);
 
 	await Promise.all([
 		prefetchActualitesListQuery({page: 1, limit: 3}),
-		prefetchActualitesListQuery({page: 1, limit: 9, skip: 3}),
+		prefetchActualitesListQuery({page, limit, category_id}),
 	]);
 
 	return (
 		<Content fullWidth className="pt-0">
-			<TitleBanner backgroundImage={"/assets/actualites/bg.jpg"}/>
+			<TitleBanner backgroundImage={"/assets/actualites/bg.jpg"} title="actualités"/>
 			<CarouselActualite/>
 			<Publicite position="ACCUEIL_MIDDLE" orientation="horizontal"/>
 			<ActualitesList/>

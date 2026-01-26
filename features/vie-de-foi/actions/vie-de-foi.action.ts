@@ -1,5 +1,3 @@
-"use server";
-
 import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
 import { vieDeFoiAPI } from "../apis/vie-de-foi.api";
 import { ITemoignage, ITemoignageParams } from "../types/vie-de-foi.type";

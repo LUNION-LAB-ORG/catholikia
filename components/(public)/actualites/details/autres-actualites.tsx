@@ -29,7 +29,7 @@ function AdditionalUpdates({
           {related.map((item) => (
             <li key={item.id}>
               {type === "actualite" ? (
-                <ActualiteCard orientation={orientation} actualite={item} />
+                <ActualiteCard actualite={item} />
               ) : (
                 <EffataCard orientation={orientation} effata={item as IEffata} />
               )}

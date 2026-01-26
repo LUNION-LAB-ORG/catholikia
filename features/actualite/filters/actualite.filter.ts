@@ -1,4 +1,4 @@
-import { parseAsInteger, parseAsString } from "nuqs";
+import {createLoader, parseAsInteger, parseAsString} from "nuqs/server";
 
 export const actualiteFiltersClient = {
     filter: {
@@ -11,3 +11,5 @@ export const actualiteFiltersClient = {
         throttleMs: 500,
     }
 }
+
+export const loadActualiteSearchParams = createLoader(actualiteFiltersClient.filter)

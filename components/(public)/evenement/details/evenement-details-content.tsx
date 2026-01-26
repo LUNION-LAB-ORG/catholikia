@@ -7,11 +7,17 @@ import {notFound} from "next/navigation";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
 import {dateFormat} from "@/utils/date-utils";
 import Image from "next/image";
-import InvolvementSection from "@/components/don/involvement-section";
 import MissionSignup from "@/components/don/MissionSignup";
+import {useStats} from "@/features/stats/hooks/use-stats";
+import {StatsType} from "@/features/stats/stats.type";
 
 function EvenementDetailsContent({slug}: { slug: string }) {
 	const {data: event, isLoading, isError, refetch} = useEventQuery(slug)
+
+	useStats({
+		id: event?.id,
+		type: StatsType.EVENT,
+	})
 
 	if (isError) {
 		return (<div className="custom-container">

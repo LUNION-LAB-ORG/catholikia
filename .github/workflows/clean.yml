@@ -1,0 +1,20 @@
+name: Clean Up Docker Images
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 0'  # Every Sunday at 3 AM
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    name: Delete old test images
+    steps:
+      - uses: snok/container-retention-policy@v3.0.0
+        with:
+          account: ${{ github.repository_owner }}
+          token: ${{ secrets.PAT }}  # Personal Access Token with appropriate permissions
+          image-names: "*"
+          image-tags: "!latest"  # target any image that has a tag starting with the word test or dev
+          cut-off: 2w 3d # retain images newer than 2 weeks and 3 days
+          dry-run: true
+          keep-n-most-recent: 2 # keep the 2 most recent images regardless of age

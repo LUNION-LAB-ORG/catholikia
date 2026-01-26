@@ -19,6 +19,7 @@ export const publicRoutes = [
   "/coming-soon",
   "/lectio-divina",
   "/evenements",
+  "/mag"
 ];
 
 // Middleware d'internationalisation
@@ -31,7 +32,7 @@ export default async function middleware(req: NextRequest) {
   // Vérification de la session
   const session = await auth();
 
-  // Suppression du locale du chemin
+  // Suppression du param locale du chemin
   const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/';
 
   // Vérification si la page est publique
@@ -41,9 +42,8 @@ export default async function middleware(req: NextRequest) {
   if (isPublicPage) {
     return intlMiddleware(req);
   } else {
-    // Si la page est protégée et qu'il n'y a pas de session, on redirige vers la page de connexion
+    // Si la page est protégée et qu'il n'y a pas de session, on redirige vers la page de connexion.
     if (!session) {
-      const locale = pathname.split("/")[1] || routing.defaultLocale;
 
       // Récupération de la callbackUrl
       let callbackUrl = pathname;

@@ -10,9 +10,17 @@ import { Calendar } from 'lucide-react'
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import React from 'react'
+import {useStats} from "@/features/stats/hooks/use-stats";
+import {StatsType} from "@/features/stats/stats.type";
 
 export default function TribuneDetailsContent({ slug }: { slug: string }) {
 	const { data: tribune, isLoading, isError } = useTribuneQuery(slug);
+
+	useStats({
+		id: tribune?.id,
+		type: StatsType.TRIBUNE,
+	})
+
 	if (isLoading) {
 		return <LoadingIndicator />;
 	}

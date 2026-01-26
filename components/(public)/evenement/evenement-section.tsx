@@ -1,8 +1,5 @@
 import Section from "@/components/primitives/Section";
-import EventCard from "./event-card";
 import Title from "@/components/primitives/Title";
-import {useEventListQuery} from "@/features/event/queries/event-list.query";
-import LoadingIndicator from "@/components/common/LoadingIndicator";
 import EvenementList from "@/components/(public)/evenement/evenement-list";
 
 const EvenementSection = () => {

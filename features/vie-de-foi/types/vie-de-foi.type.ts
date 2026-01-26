@@ -1,6 +1,6 @@
 
 export interface ITemoignage {
-    id: number;
+    id: string;
     temoin: string; // witness / author name
     profession?: string;
     photo?: string; // url

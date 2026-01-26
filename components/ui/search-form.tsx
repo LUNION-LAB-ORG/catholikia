@@ -11,7 +11,7 @@ export const SearchForm = ({filters, onSearch}: SearchFormProps) => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
-		onSearch(formData.get("nom") as string);
+		onSearch(formData.get("search") as string);
 	};
 
 	return (
@@ -28,7 +28,7 @@ export const SearchForm = ({filters, onSearch}: SearchFormProps) => {
 							<Input
 								id="name"
 								name="name"
-								value={filters.nom}
+								value={filters.search}
 								onChange={(e) => onSearch(e.target.value)}
 								placeholder="Rechercher par nom de diocèse"
 								className="w-full bg-[#FAFAFA] rounded-2xl"

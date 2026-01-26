@@ -1,5 +1,3 @@
-"use server";
-
 import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
 import { contributeurApi } from "../apis/contributeur.apis";
 import { IContributeur } from "../types/contributeur.type";

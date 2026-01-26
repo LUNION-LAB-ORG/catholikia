@@ -61,7 +61,7 @@ export const Navbar = () => {
 					<Button
 						as={Link}
 						color="primary"
-						href={"/actualites"}
+						href={"/mag"}
 						className="font-bold font-sans"
 					>
 						CATHOLIKIA Mag
@@ -82,6 +82,15 @@ export const Navbar = () => {
 					{siteConfig.navItems.map((item, index) => (
 						<MobileNavLink handleClick={() => setIsMenuOpen(false)} item={item} key={`${item}-${index}`}/>
 					))}
+					<Button
+						as={Link}
+						color="primary"
+						href={"/mag"}
+						onPress={() => setIsMenuOpen(false)}
+						className="font-bold font-sans"
+					>
+						CATHOLIKIA Mag
+					</Button>
 				</div>
 			</NavbarMenu>
 		</HeroUINavbar>

@@ -1,12 +1,12 @@
 "use client";
 import {mapMarkers} from "@/app/api/contact";
 import {SearchForm} from "@/components/ui/search-form";
-import {DirectoryPagination} from "../../common/directory-pagination";
 import MapView from "./map-view";
 import {useDioceseList} from "@/features/diocese/hooks/useDiocesesList";
 import Section from "@/components/primitives/Section";
 import {ContactCard} from "@/components/(public)/annuaire/contact-card";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
+import {CustomPagination} from "@/components/common/custom-pagination";
 
 const AnnuaireDioceses = () => {
 	const {dioceses, meta, isLoading, filters,onFilterChange ,handleSearch} = useDioceseList();
@@ -42,14 +42,11 @@ const AnnuaireDioceses = () => {
 									))}
 								</div>
 
-								{/* Pagination */}
-								{meta && meta.last_page > 1 && (
-									<DirectoryPagination
-										currentPage={meta.current_page}
-										totalPages={meta.last_page}
-										onPageChange={(pge) => onFilterChange({page: pge})}
-									/>
-								)}
+								<CustomPagination
+									currentPage={meta?.current_page || 1}
+									totalPages={meta?.last_page || 1}
+									onPageChange={(pge) => onFilterChange({page: pge})}
+								/>
 							</>
 						) : (
 							<LoadingIndicator/>

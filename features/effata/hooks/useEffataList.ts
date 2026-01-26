@@ -1,10 +1,9 @@
-import { useQueryStates } from "nuqs";
-import { useEffataListQuery } from "../queries/effata-list.query";
-import { IEffataParams } from "../types/effata.type";
-import { effataFiltersClient } from "../filters/effata.filter";
-import { useMemo } from "react";
-import { useEffataCategoriesQuery } from "../queries/effata-categories-list";
-import { se } from "date-fns/locale";
+import {useQueryStates} from "nuqs";
+import {useEffataListQuery} from "../queries/effata-list.query";
+import {IEffataParams} from "../types/effata.type";
+import {effataFiltersClient} from "../filters/effata.filter";
+import {useMemo} from "react";
+import {useEffataCategoriesQuery} from "../queries/effata-categories-list";
 
 export const useEffataList = () => {
 
@@ -20,7 +19,7 @@ export const useEffataList = () => {
   }, [filters]);
 
   const { data, isLoading, error } = useEffataListQuery(defaultSearchParams);
-  const { data: categories, isLoading: isLoadingCategorie, error: errorCategorie } = useEffataCategoriesQuery();
+  const { data: categories } = useEffataCategoriesQuery();
 
   const onFilterChange = (key: string, value: string | number) => {
     setFilters({
@@ -33,7 +32,6 @@ export const useEffataList = () => {
   const selectedCategory = useMemo(() => {
     // First try to find direct match (could be parent or child)
     const directMatch = categories?.find(cat => cat.id === filters.categorie_id);
-    console.log("direct match", directMatch, categories);
 
     // If not found or if categories not loaded yet, return undefined
     if (!categories) return undefined
@@ -43,8 +41,6 @@ export const useEffataList = () => {
     const parentCategory = categories.find(cat =>
       cat.enfants?.some(subCat => subCat.id === filters.categorie_id)
     );
-
-    console.log("parentCategory", parentCategory);
 
     // If it's a sub-category, return the parent category, otherwise return direct match
     return parentCategory || directMatch;
@@ -60,11 +56,11 @@ export const useEffataList = () => {
     });
   };
 
-  const onPaginationChange = (page: number, limit: number) => {
+  const onPaginationChange = (page: number) => {
     setFilters({
       ...filters,
       page,
-      size: limit,
+      size: filters.size,
     });
   };
 

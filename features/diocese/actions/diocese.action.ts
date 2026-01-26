@@ -1,5 +1,3 @@
-"use server";
-
 import { ActionResponse, LaravelPaginatedResponse } from "@/types/api.type";
 import { dioceseApi } from "../apis/diocese.apis";
 import { IDiocese, IDioceseParams } from "../types/diocese.type";

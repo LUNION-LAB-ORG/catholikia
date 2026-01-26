@@ -16,7 +16,7 @@ function ActualiteCard({ actualite, orientation }: PropsCard) {
   return (
     <div className="flex flex-col justify-between space-y-2 h-full">
       <Link
-        href={actualite.slug}
+        href={`/actualites/${actualite.slug}`}
         className="group block h-full"
       >
         <article
@@ -36,6 +36,7 @@ function ActualiteCard({ actualite, orientation }: PropsCard) {
               className="h-full w-full group-hover:scale-105 transition-transform duration-300"
               width={250}
               height={200}
+              loading="eager"
             />
           </div>
           <div className={cn(orientation === 'vertical' ? 'mt-4' : '', "flex flex-col space-y-2")}>
@@ -58,7 +59,7 @@ function ActualiteCard({ actualite, orientation }: PropsCard) {
       {orientation != 'horizontal' && <div className="flex justify-end">
         <Button
           as={Link}
-          href={`actualites/${actualite.slug}`}
+          href={`/actualites/${actualite.slug}`}
           variant="bordered"
           className={cn("uppercase text-[#1D1D1D] font-bold border")}>
           Details

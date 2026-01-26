@@ -10,11 +10,9 @@ export const useDioceseList = () => {
 
   const defaultSearchParams: IDioceseParams = useMemo(() => {
     return {
+      search: filters.search,
       page: filters.page,
       size: filters.size,
-      nom: filters.nom,
-      ville: filters.ville,
-      region: filters.region,
     };
   }, [filters]);
 
@@ -24,16 +22,14 @@ export const useDioceseList = () => {
     setFilters({
       ...filters,
       ...updatedFilters,
-      page: updatedFilters.nom ? 1 : (updatedFilters.page ?? filters.page),
+      page: updatedFilters.page ?? filters.page,
       size: updatedFilters.size ?? filters.size,
     });
   };
 
   const handleSearch = (query:string) => {
     onFilterChange({
-      nom: query,
-      ville: query,
-      region: query,
+      search: query,
       page: 1,
     });
   }

@@ -7,7 +7,7 @@ export interface IRepresentant {
 }
 
 export interface IDiocese {
-  id: number;
+  id: string;
   nom: string;
   region?: string;
   image?: string;
@@ -25,4 +25,5 @@ export interface IDioceseParams {
   ville?: string;
   page?: number;
   size?: number;
+  search?: string;
 }

@@ -1,5 +1,8 @@
 import HeroShortcut from "@/components/(public)/accueil/hero-section/hero-shortcut";
-import { IconBible, IconBookFilled, IconCalendarWeekFilled, IconMicrophoneFilled, IconUsersGroup } from "@tabler/icons-react";
+import {IconBible, IconBookFilled, IconMicrophoneFilled, IconUsersGroup} from "@tabler/icons-react";
+import Image from "next/image";
+import cloudFrontImageLoader from "@/lib/cloudfront-image-loader";
+import {fontAnton} from "@/config/fonts";
 
 const shortcuts = [
 	// {
@@ -13,22 +16,22 @@ const shortcuts = [
 	// 	url: "/offrir"
 	// },
 	{
-		icon: <IconMicrophoneFilled size={32} stroke={3} color="white" />,
+		icon: <IconMicrophoneFilled size={32} stroke={3} color="white"/>,
 		label: "tribunes",
 		url: "/tribunes"
 	},
 	{
-		icon: <IconBookFilled size={32} stroke={3} color="white" />,
+		icon: <IconBookFilled size={32} stroke={3} color="white"/>,
 		label: "Diocèses",
 		url: "/annuaire"
 	},
 	{
-		icon: <IconUsersGroup size={32} stroke={3} color="white" />,
+		icon: <IconUsersGroup size={32} stroke={3} color="white"/>,
 		label: "Vie de foi",
 		url: "/vie-de-foi"
 	},
 	{
-		icon: <IconBible size={32} stroke={3} color="white" />,
+		icon: <IconBible size={32} stroke={3} color="white"/>,
 		label: "lectio divina",
 		url: "/lectio-divina"
 	}
@@ -36,15 +39,20 @@ const shortcuts = [
 
 function HeroSection() {
 	return (
-		<div className="flex-1 flex flex-col items-center justify-center relative min-h-screen">
+		<div className="relative h-[100svh] flex flex-col items-center justify-center">
 			<div className="absolute inset-0">
-				<img
-					src="/assets/hero/hero_img.jpg"
-					alt="Background Image" className="object-cover object-center w-full h-full" />
+				<Image
+					loader={cloudFrontImageLoader}
+					src="/assets/accueil/bg.jpg"
+					alt="Background Image" className="object-cover object-center w-full h-full"
+					fill
+					priority
+					fetchPriority="high"
+				/>
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</div>
 			<div className="relative z-10 text-center text-white custom-container">
-				<h1 className="px-6 text-[50px] md:text-[70px] lg:text-[100px] font-bold mb-4 font-anton">
+				<h1 className={`${fontAnton.className} px-6 text-[50px] md:text-[70px] lg:text-[100px] font-bold mb-4`}>
 					Adorez à tout moment et en tout lieu.
 				</h1>
 			</div>

@@ -1,4 +1,4 @@
-import {faFacebookF, faTiktok, faXTwitter, faYoutube} from "@fortawesome/free-brands-svg-icons";
+import {faFacebookF, faInstagram, faTiktok, faXTwitter, faYoutube} from "@fortawesome/free-brands-svg-icons";
 
 export const locales = ["fr"];
 
@@ -66,6 +66,7 @@ export const siteConfig = {
 		{icon: faTiktok, label: "Tiktok", href: "https://www.tiktok.com/@catholikia?_r=1&_t=ZM-91rccFcld4S"},
 		{icon: faYoutube, label: "Youtube", href: "https://www.youtube.com/@Catholikia"},
 		{icon: faXTwitter, label: "X", href: "https://x.com/catholikia"},
+		{icon: faInstagram, label: "Instagram", href: "https://www.instagram.com/catholikia?igsh=ZmVtejJpYXkwbnk0"},
 	],
 	links: {
 		github: "https://github.com/LUNION-LAB-ORG/next-starter",

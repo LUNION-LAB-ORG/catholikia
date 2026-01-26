@@ -4,7 +4,7 @@
  * Représente un évènement
  * ------------------------------- */
 export interface IEvent {
-  id: number;
+  id: string;
   title: string;
   contenu: string; // HTML string
   slug: string;
