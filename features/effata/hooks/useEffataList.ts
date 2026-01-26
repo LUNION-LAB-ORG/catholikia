@@ -56,11 +56,11 @@ export const useEffataList = () => {
     });
   };
 
-  const onPaginationChange = (page: number, limit: number) => {
+  const onPaginationChange = (page: number) => {
     setFilters({
       ...filters,
       page,
-      size: limit,
+      size: filters.size,
     });
   };
 

@@ -6,6 +6,8 @@ import MissionSignup from "@/components/don/MissionSignup";
 import Content from "@/components/primitives/Content";
 import {prefetchActualitesListQuery} from "@/features/actualite/queries/actualite-list.query";
 import {Metadata} from "next";
+import {SearchParams} from "nuqs";
+import {loadActualiteSearchParams} from "@/features/actualite/filters/actualite.filter";
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
@@ -30,11 +32,20 @@ export async function generateMetadata(): Promise<Metadata> {
 	}
 }
 
-const ActualitesPage = async () => {
+type PageProps = {
+	searchParams: Promise<SearchParams>
+}
+
+const ActualitesPage = async ({searchParams}: PageProps) => {
+	const {
+		page,
+		limit,
+		category_id,
+	} = await loadActualiteSearchParams(searchParams);
 
 	await Promise.all([
 		prefetchActualitesListQuery({page: 1, limit: 3}),
-		prefetchActualitesListQuery({page: 1, limit: 9, skip: 3}),
+		prefetchActualitesListQuery({page, limit, category_id}),
 	]);
 
 	return (
