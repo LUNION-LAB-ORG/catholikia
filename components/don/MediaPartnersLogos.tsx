@@ -1,67 +1,29 @@
 import Image from "next/image";
 
 export default function MediaPartnersLogos() {
-  return (
-    <div className="bg-white py-6 px-2">
-      {/* Container for logos */}
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 lg:gap-8">
-          {/* KTO Logo */}
-          <div className="border border-gray-200 rounded-lg bg-white hover:shadow-md transition-shadow duration-200 w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center">
-            <Image
-              src={"/assets/don/sponsor_image1.png"}
-              alt="KTO logo"
-              width={120}
-              height={60}
-              className="object-contain"
-            />
-          </div>
+	return (
+		<div className="bg-white py-6 px-2">
+			{/* Container for logos */}
+			<div className="max-w-7xl mx-auto">
+				<div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 lg:gap-8">
+					<LogoCard src={"/assets/don/logo_avec_jesus.png"} alt={"10 minutes avec Jésus logo"}/>
+					<LogoCard src={"/assets/don/logo_avec_jesus.png"} alt={"10 minutes avec Jésus logo"}/>
+				</div>
+			</div>
+		</div>
+	);
+}
 
-          {/* RNC Media Logo */}
-          <div className="border border-gray-200 rounded-lg bg-white hover:shadow-md transition-shadow duration-200 w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center">
-            <Image
-              src={"/assets/don/sponsor_image2.png"}
-              alt="RNC Media logo"
-              width={120}
-              height={60}
-              className="object-contain"
-            />
-          </div>
-
-          {/* Ecclesia Logo */}
-          <div className="border border-gray-200 rounded-lg bg-white hover:shadow-md transition-shadow duration-200 w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center">
-            <Image
-              src={"/assets/don/sponsor_image3.jpg"}
-              alt="Ecclesia logo"
-              width={120}
-              height={60}
-              className="object-contain"
-            />
-          </div>
-
-          {/* Blue Diamond Logo */}
-          <div className="border border-gray-200 rounded-lg bg-white hover:shadow-md transition-shadow duration-200 w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center">
-            <Image
-              src={"/assets/don/sponsor_image4.png"}
-              alt="Blue Diamond logo"
-              width={120}
-              height={60}
-              className="object-contain"
-            />
-          </div>
-
-          {/* EMCI TV Logo */}
-          <div className="border border-gray-200 relative rounded-lg bg-white hover:shadow-md transition-shadow duration-200 w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 flex items-center justify-center">
-            <Image
-              src={"/assets/don/sponsor_image5.jpg"}
-              alt="EMCI TV logo"
-              width={120}
-              height={60}
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+function LogoCard({src, alt}: { src: string; alt: string }) {
+	return (
+		<div className="border border-gray-200 rounded-lg min-w-64 min-h-32 flex items-center justify-center">
+			<Image
+				src={src}
+				alt={alt}
+				width={120}
+				height={60}
+				className="object-contain"
+			/>
+		</div>
+	);
 }

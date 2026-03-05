@@ -1,4 +1,3 @@
-import EditorialTeam from '@/components/(public)/a-propos/editorial-team';
 import Engagements from '@/components/(public)/a-propos/engagements';
 import Mission from '@/components/(public)/a-propos/Mission';
 import TitleBanner from '@/components/common/TitleBanner';
@@ -11,7 +10,7 @@ const AProposPage = () => {
 		<Content fullWidth className="pt-0">
 			<TitleBanner backgroundImage="/assets/about/bg.jpg" title="a propos"/>
 			<Mission/>
-			<EditorialTeam/>
+			{/*<EditorialTeam/>*/}
 			<Engagements/>
 			<MissionSignup/>
 		</Content>

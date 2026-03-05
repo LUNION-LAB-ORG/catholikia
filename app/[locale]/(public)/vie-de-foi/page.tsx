@@ -8,6 +8,7 @@ import {prefetchTemoignageListQuery} from "@/features/vie-de-foi/queries/vie-de-
 import React from "react";
 import TitleBanner from "@/components/common/TitleBanner";
 import {Metadata} from "next";
+import {Card, CardContent} from "@/components/ui/card";
 
 export async function generateMetadata(): Promise<Metadata> {
 	return {
@@ -36,7 +37,7 @@ const VieDeFoiPage = () => {
 	void prefetchTemoignageListQuery({page: 1, size: 2, inspirant: true});
 	void prefetchTemoignageListQuery({page: 1, size: 6});
 	return (
-		<Content fullWidth className="pt-0">
+		<Content fullWidth className="pt-0 relative">
 			{/*<FoiSection />*/}
 			<TitleBanner title="vie de foi" backgroundImage={"/assets/foi/bg.jpg"}/>
 			<VideoTestimonialsSection/>
@@ -44,6 +45,15 @@ const VieDeFoiPage = () => {
 			<TestimonialsSection/>
 			<Publicite position="ACCUEIL_MIDDLE" orientation="horizontal"/>
 			<MissionSignup/>
+			{/* Flouter les elements pour le moment */}
+			<div className="fixed inset-0 z-[10] bg-white/50 backdrop-blur-md pointer-events-none flex items-center justify-center">
+				<Card className="w-full max-w-md pointer-events-auto">
+					<CardContent className="pt-6">
+						<h2 className="text-2xl font-bold mb-4 text-center">Contenu en préparation</h2>
+						<p className="text-gray-600 text-center">Nous travaillons actuellement à la création de contenu inspirant pour cette section. Restez à l'écoute !</p>
+					</CardContent>
+				</Card>
+			</div>
 		</Content>
 	);
 };
