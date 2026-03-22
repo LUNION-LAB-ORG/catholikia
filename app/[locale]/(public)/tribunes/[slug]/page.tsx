@@ -1,28 +1,14 @@
 import Publicite from '@/components/(public)/publicites';
 import Content from '@/components/primitives/Content';
 import {Metadata} from "next";
-import {obtenirToutesLesTribunesAction, obtenirTribuneParSlugAction} from "@/features/tribunes/actions/tribune.action";
-import {Badge} from "@/components/ui/badge";
-import {Calendar} from "lucide-react";
-import {dateFormat} from "@/utils/date-utils";
-import Title from "@/components/primitives/Title";
-import Image from "next/image";
-import Section from "@/components/primitives/Section";
+import {obtenirTribuneParSlugAction} from "@/features/tribunes/actions/tribune.action";
 import React from "react";
-import {notFound} from "next/navigation";
+import TribuneDetailsContent from '@/components/(public)/tribunes/details/tribune-details-content';
+import {prefetchTribuneQuery} from '@/features/tribunes/queries/tribune-detail.query';
+
 
 type Props = {
 	params: Promise<{ slug: string }>
-}
-
-export const revalidate = 3600;
-
-export async function generateStaticParams() {
-	const tribunes = await obtenirToutesLesTribunesAction({page: 1, size: 100});
-
-	return tribunes.data?.data.map(tribune => ({
-		slug: tribune.slug,
-	})) || [];
 }
 
 export async function generateMetadata({params}: Props): Promise<Metadata> {
@@ -53,53 +39,14 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 }
 
 export default async function TribuneDetailPage({params}: Props) {
-	const {slug} = await params;
-	const {data: tribune} = await obtenirTribuneParSlugAction(slug);
-
-	if (!tribune) {
-		return notFound();
-	}
-
+	const { slug } = await params;
+	await prefetchTribuneQuery(slug);
 	return (
 		<Content fullWidth className='mt-[4rem]'>
-			<Publicite position='TRIBUNES_DETAILS_TOP' orientation='horizontal'/>
-			<Section className='mt-10 custom-container'>
-				<div className="flex items-center text-sm mb-10">
-					<Badge className="rounded-full text-sm bg-[#BEFFFF] px-4 mr-2 text-wrap">{tribune.theme || "theme"}</Badge>
-					<span className="ml-2 text-[#6B7280] inline-flex items-center text-sm tracking-normal">
-					<Calendar className='size-4 mr-2'/>
-						{dateFormat(tribune.published_at)}
-				</span>
-				</div>
-				<Title className='font-normal mb-5'>
-					{tribune.titre}
-				</Title>
-				{/*<div className='flex items-center mb-5'>*/}
-				{/*	<Avatar className='mr-5 size-24'>*/}
-				{/*		<AvatarImage src={tribune.author} />*/}
-				{/*		<AvatarFallback>*/}
-				{/*			{tribune.author}*/}
-				{/*		</AvatarFallback>*/}
-				{/*	</Avatar>*/}
-				{/*	<div>*/}
-				{/*		<p className='font-bold text-2xl text-[#151515]'>{tribune.author}</p>*/}
-				{/*		<p className='text-base text-[#595959] font-bold'>Archevêque de Saint-Michel</p>*/}
-				{/*	</div>*/}
-				{/*</div>*/}
-				<div className='relative w-full h-screen mb-10 rounded-4xl overflow-hidden'>
-					<Image
-						src={tribune.image}
-						alt={tribune.titre}
-						width={1920}
-						height={1080}
-						className='object-cover w-full h-full rounded-lg'
-					/>
-				</div>
-				<div className="prose max-w-none text-justify" dangerouslySetInnerHTML={{__html: tribune.contenu}}/>
-			</Section>
-			{/*<TribuneDetailsContent*/}
-			{/*	slug={slug}*/}
-			{/*/>*/}
+			<Publicite position='TRIBUNES_DETAILS_TOP' orientation='horizontal' />
+			<TribuneDetailsContent
+				slug={slug}
+			/>
 		</Content>
 	)
 }
