@@ -1,19 +1,14 @@
 "use client";
 import React from "react";
 import Section from "@/components/primitives/Section";
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
+import {Carousel, CarouselApi, CarouselContent, CarouselItem,} from "@/components/ui/carousel";
+import {cn} from "@/lib/utils";
 import Image from "next/image";
 import Title from "@/components/primitives/Title";
-import { useActualitesListQuery } from "@/features/actualite/queries/actualite-list.query";
+import {useActualitesListQuery} from "@/features/actualite/queries/actualite-list.query";
 import LoadingIndicator from "@/components/common/LoadingIndicator";
-import { dateFormat } from "@/utils/date-utils";
-import { useRouter } from "next/navigation";
+import {dateFormat} from "@/utils/date-utils";
+import {useRouter} from "next/navigation";
 
 const CarouselActualite = () => {
   const [api, setApi] = React.useState<CarouselApi>();
@@ -23,8 +18,6 @@ const CarouselActualite = () => {
   const {
     data: recentActualitesData,
     isLoading: recentActualitesLoading,
-    isError: recentActualitesError,
-    error: recentActualitesErrorDetails,
   } = useActualitesListQuery({ page: 1, limit: 3 });
 
   const actualites = recentActualitesData?.data || [];
@@ -85,8 +78,8 @@ const CarouselActualite = () => {
                 src={actualite.image}
                 alt="item-image"
                 className="w-full h-64 sm:h-72 lg:h-96 xl:h-[550px] overflow-hidden object-cover rounded-2xl"
-                width={400}
-                height={400}
+                width={1920}
+                height={1080}
               />
 
               <div className="absolute bottom-0 w-full bg-gray-200/90 overflow-hidden bg-opacity-90 px-3 py-2 sm:px-6 sm:py-3 lg:px-6 lg:py-6  rounded-b-2xl">

@@ -2,19 +2,19 @@
 import LoadingIndicator from '@/components/common/LoadingIndicator';
 import Section from '@/components/primitives/Section'
 import Title from '@/components/primitives/Title';
-import { Badge } from '@/components/ui/badge';
-import { useTribuneQuery } from '@/features/tribunes/queries/tribune-detail.query'
-import { dateFormat } from '@/utils/date-utils';
-import { Avatar } from '@heroui/react';
-import { Calendar } from 'lucide-react'
+import {Badge} from '@/components/ui/badge';
+import {useTribuneQuery} from '@/features/tribunes/queries/tribune-detail.query'
+import {dateFormat} from '@/utils/date-utils';
+import {Avatar} from '@heroui/react';
+import {Calendar} from 'lucide-react'
 import Image from 'next/image';
-import { notFound } from 'next/navigation';
+import {notFound} from 'next/navigation';
 import React from 'react'
 import {useStats} from "@/features/stats/hooks/use-stats";
 import {StatsType} from "@/features/stats/stats.type";
 
-export default function TribuneDetailsContent({ slug }: { slug: string }) {
-	const { data: tribune, isLoading, isError } = useTribuneQuery(slug);
+export default function TribuneDetailsContent({slug}: { slug: string }) {
+	const {data: tribune, isLoading, isError} = useTribuneQuery(slug);
 
 	useStats({
 		id: tribune?.id,
@@ -22,7 +22,7 @@ export default function TribuneDetailsContent({ slug }: { slug: string }) {
 	})
 
 	if (isLoading) {
-		return <LoadingIndicator />;
+		return <LoadingIndicator/>;
 	}
 
 	if (isError) {
@@ -38,7 +38,7 @@ export default function TribuneDetailsContent({ slug }: { slug: string }) {
 			<div className="flex items-center text-sm mb-10">
 				<Badge className="rounded-full text-sm bg-[#BEFFFF] px-4 mr-2">{tribune.theme || "theme"}</Badge>
 				<span className="ml-2 text-[#6B7280] inline-flex items-center text-sm tracking-normal">
-					<Calendar className='size-4 mr-2' />
+					<Calendar className='size-4 mr-2'/>
 					{dateFormat(tribune.published_at)}
 				</span>
 			</div>
@@ -66,7 +66,7 @@ export default function TribuneDetailsContent({ slug }: { slug: string }) {
 					className='object-cover w-full h-full rounded-lg'
 				/>
 			</div>
-			<div className="prose max-w-none text-justify" dangerouslySetInnerHTML={{ __html: tribune.contenu }} />
+			<div className="prose max-w-none text-justify" dangerouslySetInnerHTML={{__html: tribune.contenu}}/>
 			{/*<div className='flex justify-end mt-16'>*/}
 			{/*  <Button className='text-[#1D1D1D] rounded-full text-base' variant='outline' asChild>*/}
 			{/*    <Link href={`/auteur/${tribune.author}`}>*/}
