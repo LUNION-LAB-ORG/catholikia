@@ -66,7 +66,7 @@ export default function TribuneDetailsContent({slug}: { slug: string }) {
 					className='object-cover w-full h-full rounded-lg'
 				/>
 			</div>
-			<div className="prose max-w-none text-justify" dangerouslySetInnerHTML={{__html: tribune.contenu}}/>
+			<div className="rich-content prose max-w-none text-justify" dangerouslySetInnerHTML={{__html: tribune.contenu}}/>
 			{/*<div className='flex justify-end mt-16'>*/}
 			{/*  <Button className='text-[#1D1D1D] rounded-full text-base' variant='outline' asChild>*/}
 			{/*    <Link href={`/auteur/${tribune.author}`}>*/}

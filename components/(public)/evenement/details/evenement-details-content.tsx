@@ -53,7 +53,7 @@ function EvenementDetailsContent({slug}: { slug: string }) {
 							className='object-cover w-full h-full rounded-lg'
 						/>
 					</div>
-					<div className="prose max-w-none my-10 "
+					<div className="rich-content prose max-w-none my-10"
 					     dangerouslySetInnerHTML={{__html: event.contenu}}
 					/>
 					<MissionSignup/>

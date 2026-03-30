@@ -53,7 +53,7 @@ export default function EffataDetailsContent({ slug }: { slug: string }) {
           height={643}
           className="rounded-lg"
         />
-        <div className="text-justify" dangerouslySetInnerHTML={{ __html: data.contenu || "Contenu non défini" }} />
+        <div className="rich-content text-justify" dangerouslySetInnerHTML={{ __html: data.contenu || "Contenu non défini" }} />
         <div className="flex max-sm:flex-col items-center w-full gap-6">
           <ShareButton />
           {/*{false && <Button variant="bordered" className="rounded-full uppercase text-[#1D1D1D] font-bold border">*/}

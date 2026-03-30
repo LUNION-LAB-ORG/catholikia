@@ -14,7 +14,7 @@ function ActualiteContentDescription({ title, content, imageUrl }: ActualiteCont
       <Title as="h2" size="sm" className="font-sans font-bold text-[#151515] uppercase">
         {title}
       </Title>
-      <div className="font-medium mt-12 mb-8" dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="rich-content font-medium mt-12 mb-8" dangerouslySetInnerHTML={{ __html: content }} />
       <Image
         className="rounded-2xl"
         src={imageUrl}

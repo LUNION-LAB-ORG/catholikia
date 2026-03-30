@@ -112,3 +112,36 @@ h1,
 h2 {
   @apply font-bebas;
 }
+
+@layer components {
+  .rich-content {
+    @apply break-words;
+  }
+
+  .rich-content :where(img, video, iframe, canvas, svg) {
+    @apply max-w-full h-auto;
+  }
+
+  .rich-content :where(table) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rich-content :where(pre) {
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .rich-content :where(code) {
+    overflow-wrap: anywhere;
+  }
+
+  .rich-content :where(p, li, a, span) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
