@@ -5,7 +5,6 @@ import Title from '@/components/primitives/Title';
 import {Badge} from '@/components/ui/badge';
 import {useTribuneQuery} from '@/features/tribunes/queries/tribune-detail.query'
 import {dateFormat} from '@/utils/date-utils';
-import {Avatar} from '@heroui/react';
 import {Calendar} from 'lucide-react'
 import Image from 'next/image';
 import {notFound} from 'next/navigation';
@@ -45,19 +44,19 @@ export default function TribuneDetailsContent({slug}: { slug: string }) {
 			<Title className='font-normal mb-5'>
 				{tribune.titre}
 			</Title>
-			<div className='flex items-center mb-5'>
-				<Avatar
-					className='mr-5'
-					showFallback
-					name={tribune.author}
-					src="https://images.unsplash.com/broken"
-					size='lg'
-				/>
-				<div>
-					<p className='font-bold text-2xl text-[#151515]'>{tribune.author}</p>
-					<p className='text-base text-[#595959] font-bold'>Archevêque de Saint-Michel</p>
-				</div>
-			</div>
+			{/*<div className='flex items-center mb-5'>*/}
+			{/*	<Avatar*/}
+			{/*		className='mr-5'*/}
+			{/*		showFallback*/}
+			{/*		name={tribune.author}*/}
+			{/*		src="https://images.unsplash.com/broken"*/}
+			{/*		size='lg'*/}
+			{/*	/>*/}
+			{/*	<div>*/}
+			{/*		<p className='font-bold text-2xl text-[#151515]'>{tribune.author}</p>*/}
+			{/*		<p className='text-base text-[#595959] font-bold'>Archevêque de Saint-Michel</p>*/}
+			{/*	</div>*/}
+			{/*</div>*/}
 			<div className='relative w-full h-screen mb-10 rounded-4xl overflow-hidden'>
 				<Image
 					src={tribune.image}
