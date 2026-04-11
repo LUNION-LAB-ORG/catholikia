@@ -1,13 +1,17 @@
+"use client";
 import React from 'react';
 import Image from "next/image";
+import {Button} from "@heroui/react";
 
 type Props = {
 	title: string;
 	imageSrc: string;
 	description: string;
+	ctaMessage?: string;
+	handleClick?: () => void;
 }
 
-function InvolvementCard({title, imageSrc, description}:Props) {
+function InvolvementCard({title, imageSrc, description, ctaMessage, handleClick}:Props) {
 	return (
 		<div className="bg-gray-50 rounded-3xl p-6 text-center flex flex-col justify-between">
 			<div>
@@ -27,9 +31,15 @@ function InvolvementCard({title, imageSrc, description}:Props) {
 				</div>
 			</div>
 
-			<p className="text-gray-700 text-sm md:text-base leading-relaxed">
+			<p className="text-gray-700 text-sm md:text-base leading-relaxed mb-4">
 				{description}
 			</p>
+
+			<div>
+				<Button variant="solid" color="primary" onPress={handleClick}>
+					{ctaMessage || "En savoir plus"}
+				</Button>
+			</div>
 		</div>
 	);
 }

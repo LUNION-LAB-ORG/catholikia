@@ -17,6 +17,9 @@ import {getMessages} from "next-intl/server";
 import {notFound} from "next/navigation";
 import {NuqsAdapter} from "nuqs/adapters/next/app";
 import {getLangDir} from "rtl-detect";
+import AnalyticsProvider from "@/components/(public)/consent-provider/analytics-provider";
+import CookieBanner from "@/components/(public)/consent-provider/cookie-banner";
+import {ConsentProvider} from "@/components/(public)/consent-provider";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://www.catholikia.com"),
@@ -82,6 +85,7 @@ export default async function RootLayout({
 		<html lang="fr" dir={direction} className="light" data-theme="light" suppressHydrationWarning>
 		<head>
 			<meta name="apple-mobile-web-app-title" content="Catholikia"/>
+			<title>CATHOLIKIA</title>
 		</head>
 		<body
 			className={cn(
@@ -105,7 +109,11 @@ export default async function RootLayout({
 						<AuthProvider>
 							<MountedProvider>
 								<DirectionProvider direction={direction}>
-									{children}
+									<ConsentProvider>
+										{children}
+										<CookieBanner/>
+										<AnalyticsProvider/>
+									</ConsentProvider>
 								</DirectionProvider>
 							</MountedProvider>
 						</AuthProvider>

@@ -1,9 +1,16 @@
+"use client";
+import { useDisclosure } from "@heroui/react";
 import MediaPartnersLogos from "@/components/don/MediaPartnersLogos";
 import InvolvementCard from "@/components/don/involvement-section/involvement-card";
 import Section from "@/components/primitives/Section";
 import Title from "@/components/primitives/Title";
+import JoinTeamModal from "@/components/don/involvement-section/join-team-modal";
+import DonationModal from "@/components/don/involvement-section/donation-modal";
 
 export default function InvolvementSection() {
+	const donationDisclosure = useDisclosure();
+	const joinTeamDisclosure = useDisclosure();
+
 	return (
 		<Section className="custom-container bg-white">
 			<Title className="mb-12">
@@ -16,15 +23,29 @@ export default function InvolvementSection() {
 					title="Rejoignez un petit groupe"
 					imageSrc="/assets/don/improve_image1.webp"
 					description="Utilisez vos dons pour servir dans des domaines tels que le culte, l'hospitalité et l'évangélisation."
+					ctaMessage="Nous soutenir"
+					handleClick={donationDisclosure.onOpen}
 				/>
 
 				<InvolvementCard
 					title="Devenez bénévole"
 					imageSrc="/assets/don/improve_image2.webp"
 					description="Engagez-vous activement en tant que bénévole pour soutenir nos initiatives et faire une différence concrète."
+					ctaMessage="Rejoindre l'équipe"
+					handleClick={joinTeamDisclosure.onOpen}
 				/>
 			</div>
 			<MediaPartnersLogos />
+
+			{/* Modals */}
+			<DonationModal
+				isOpen={donationDisclosure.isOpen}
+				onOpenChange={donationDisclosure.onOpenChange}
+			/>
+			<JoinTeamModal
+				isOpen={joinTeamDisclosure.isOpen}
+				onOpenChange={joinTeamDisclosure.onOpenChange}
+			/>
 		</Section>
 	);
 }

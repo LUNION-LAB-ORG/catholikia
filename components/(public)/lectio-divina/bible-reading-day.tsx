@@ -19,7 +19,7 @@ export default function BibleReadingDay({ lectio }: { lectio: ILectio }) {
       {/* Main Content - Two Columns */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div className="border border-gray-300 rounded-lg bg-[#F5F5F5] p-4 min-h-[300px]">
-          <div className="max-h-80 overflow-hidden" dangerouslySetInnerHTML={{ __html: lectio.lecture }} />
+          <div className="rich-content max-h-80 overflow-hidden" dangerouslySetInnerHTML={{ __html: lectio.lecture }} />
           <Button
             size="sm"
             as={Link} href={`/lectio-divina/${lectio.id}`}
@@ -29,7 +29,7 @@ export default function BibleReadingDay({ lectio }: { lectio: ILectio }) {
           </Button>
         </div>
         <div className="border bg-[#F5F5F5] rounded-lg p-4">
-          <div className="max-h-80 overflow-hidden" dangerouslySetInnerHTML={{ __html: lectio.homelie }} />
+          <div className="rich-content max-h-80 overflow-hidden" dangerouslySetInnerHTML={{ __html: lectio.homelie }} />
           <div className="font-bold mt-4 text-right">
             Commenté par {lectio.contributor.title} {lectio.contributor.name}
           </div>

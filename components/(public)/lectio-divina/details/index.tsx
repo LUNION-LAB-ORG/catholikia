@@ -55,14 +55,14 @@ export default function LectioDetailsContent({id: slug}: { id: string }) {
 					height={643}
 					className="rounded-lg"
 				/>
-				<div className="text-justify" dangerouslySetInnerHTML={{__html: data.lecture}}/>
+				<div className="rich-content text-justify" dangerouslySetInnerHTML={{__html: data.lecture}}/>
 				<div className="flex items-center w-full space-x-6">
 					<ShareButton/>
 				</div>
 			</Section>
 			<div className="col-span-1">
 				<div className="sticky top-8 self-start border bg-[#F5F5F5] rounded-lg p-4">
-					<div dangerouslySetInnerHTML={{__html: data.homelie}}/>
+					<div className="rich-content" dangerouslySetInnerHTML={{__html: data.homelie}}/>
 					<div className="font-bold mt-4 text-right">
 						Commenté par {data.contributor.title} {data.contributor.name}
 					</div>

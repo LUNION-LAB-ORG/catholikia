@@ -11,13 +11,15 @@ type NavLinkProps = Omit<BaseNavItemProps, 'as' | 'children'>;
 
 function NavLink({item}: NavLinkProps) {
 	const tConfig = useTranslations("config");
+	const isCuturama = item.key === "Cuturama";
 
 	return (
-		<BaseNavItem item={item}>
+		<BaseNavItem item={item} className={isCuturama ? "!bg-[#fe0000] rounded-md" : ""}>
 			<NextLink
 				className={clsx(
 					linkStyles({color: "foreground"}),
-					"font-barlow"
+					"font-barlow",
+					isCuturama && "!text-white font-bold"
 				)}
 				color="foreground"
 				href={item.href}

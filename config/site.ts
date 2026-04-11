@@ -59,6 +59,11 @@ export const siteConfig = {
 			key: "a-propos",
 			label: "A propos",
 			href: "/a-propos",
+		},
+		{
+			key: "Cuturama",
+			label: "Cuturama",
+			href: "/cuturama",
 		}
 	],
 	socialLinks: [
