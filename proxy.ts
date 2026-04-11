@@ -19,7 +19,9 @@ export const publicRoutes = [
   "/coming-soon",
   "/lectio-divina",
   "/evenements",
-  "/mag"
+  "/mag",
+  "/cuturama"
+
 ];
 
 // Middleware d'internationalisation
