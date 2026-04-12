@@ -60,25 +60,27 @@ const CuturamaBanner: React.FC<TitleBannerProps> = ({
                         {title}
                     </h1>
                 )}
-                <div className="absolute border-1.5 flex justify-between  bg-[#fe0000] border-[#fe0000] w-full h-28 items-center bottom-0">
-                    <div className="relative  sm:h-15 w-56 md:left-24 lg:left-32  md:-translate-y-4">
+                <div className="absolute flex justify-between bg-[#fe0000] w-full min-h-16 md:h-28 items-end bottom-0 px-3 sm:px-4 md:px-0">
+                    <div className="relative flex-shrink-0 md:ml-24 lg:ml-32">
                         <Image
                             src="/assets/cuturama/vector_cuturama.png"
                             alt={title || "center image"}
                             width={100}
                             height={100}
-                            className="object-cover sm:w-[120px] sm:h-[120px]"
+                            className="object-cover w-[50px] h-[50px] sm:w-[70px] sm:h-[70px] md:w-[120px] md:h-[120px] block"
                         />
                     </div>
-                    <div className="px-56 md:py-10 md:text-md sm:text-xs lg:text-xl font-bold flex text-white">Bien plus qu'une billetterie, CULTURAMA est le pont entre vos idées et votre communauté.
-                        Profitez d'une interface intuitive pour transformer chaque projet en un succès mémorable.</div>
-                    <div className="absolute right-0 h-20 overflow-hidden rounded-tl-2xl bottom-0  ">
+                    <div className="flex-1 px-2 sm:px-4 md:px-8 py-2 text-[9px] sm:text-xs md:text-sm lg:text-xl font-bold text-white text-center leading-tight self-center">
+                        Bien plus qu&apos;une billetterie, CULTURAMA est le pont entre vos idées et votre communauté.
+                        Profitez d&apos;une interface intuitive pour transformer chaque projet en un succès mémorable.
+                    </div>
+                    <div className="flex-shrink-0 overflow-hidden rounded-tl-2xl">
                         <Image
                             src="/assets/cuturama/ariso.png"
                             alt={title || "center image"}
                             width={100}
                             height={100}
-                            className="object-cover sm:w-full sm:h-full"
+                            className="object-cover w-[48px] h-[48px] sm:w-[64px] sm:h-[64px] md:w-[130px] md:h-[80px] block"
                         />
                     </div>
                 </div>
