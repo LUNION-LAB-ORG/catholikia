@@ -17,10 +17,16 @@ import NavLink from "@/components/common/navbar/nav-link";
 import {Logo,} from "@/components/icons";
 import {siteConfig} from "@/config/site";
 import LocaleSwitcher from "../locale-switch";
-import {useState} from "react";
+import {useState, useEffect} from "react";
+import {usePathname} from "next/navigation";
 
 export const Navbar = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const pathname = usePathname();
+
+	useEffect(() => {
+		setIsMenuOpen(false);
+	}, [pathname]);
 
 	return (
 		<HeroUINavbar
@@ -28,6 +34,7 @@ export const Navbar = () => {
 			shouldHideOnScroll
 			className="custom-container md:rounded-b-4xl bg-white fixed"
 			isMenuOpen={isMenuOpen}
+			onMenuOpenChange={setIsMenuOpen}
 		>
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="">
