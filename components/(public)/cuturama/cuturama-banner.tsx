@@ -74,7 +74,7 @@ const CuturamaBanner: React.FC<TitleBannerProps> = ({
                         Bien plus qu&apos;une billetterie, CULTURAMA est le pont entre vos idées et votre communauté.
                         Profitez d&apos;une interface intuitive pour transformer chaque projet en un succès mémorable.
                     </div>
-                    <div className="flex-shrink-0 overflow-hidden rounded-tl-2xl">
+                    <div className="flex-shrink-0 overflow-hidden rounded-tl-2xl -mr-3 sm:-mr-4 md:mr-0">
                         <Image
                             src="/assets/cuturama/ariso.png"
                             alt={title || "center image"}
