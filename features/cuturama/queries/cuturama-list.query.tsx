@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { obtenirTousEvenementsAction } from "../actions/cuturama.action";
 import type { ICuturamaEventsParams } from "../types/cuturama.type";
 import { cuturamaKeyQuery } from "./index.query";
@@ -16,7 +16,7 @@ export const cuturamaEventsListQueryOption = (params: ICuturamaEventsParams) => 
         }
         return result.data!;
     },
-    placeholderData: (previousData: unknown) => previousData,
+    placeholderData: keepPreviousData,
     staleTime: 60 * 1000,
     refetchOnWindowFocus: false,
     refetchOnMount: true,
