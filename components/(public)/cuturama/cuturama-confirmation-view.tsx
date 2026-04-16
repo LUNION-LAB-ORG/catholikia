@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import {
     CheckCircle2,
     CalendarDays,
     MapPin,
     Ticket,
-    Download,
     Share2,
     Home,
 } from "lucide-react";
@@ -15,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/navigation";
+import { QRCodeSVG } from "qrcode.react";
+import { DownloadTicketButton } from "./cuturama-download-ticket-button";
 import type { CartItem, CuturamaEvent } from "./cuturama.types";
 import type { PaymentInfo } from "./cuturama-visitor-info-form";
 
@@ -32,6 +33,12 @@ function generateBookingRef() {
 export function ConfirmationView({ event, items, paymentInfo }: ConfirmationViewProps) {
     const bookingRef = useRef(generateBookingRef());
     const total = items.reduce((sum, { ticket, quantity }) => sum + ticket.price * quantity, 0);
+
+    // Sauvegarde en localStorage pour permettre le re-téléchargement via scan QR
+    useEffect(() => {
+        const data = { bookingRef: bookingRef.current, event, items, paymentInfo };
+        localStorage.setItem(`cuturama_ticket_${bookingRef.current}`, JSON.stringify(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="max-w-2xl mx-auto flex flex-col items-center gap-8 py-6">
@@ -55,12 +62,12 @@ export function ConfirmationView({ event, items, paymentInfo }: ConfirmationView
             <div className="w-full rounded-2xl border overflow-hidden shadow-sm">
                 {/* En-tête billet */}
                 <div className="bg-[#fe0000] px-6 py-4 flex items-center justify-between">
-                    <div className="relative w-10 h-10 shrink-0">
+                    <div className="relative w-28 h-10 shrink-0">
                         <Image
-                            src="/assets/cuturama/aris.png"
-                            alt="Cuturama"
+                            src="/logo/logo.png"
+                            alt="Catholikia"
                             fill
-                            className="object-contain"
+                            className="object-contain brightness-0 invert"
                         />
                     </div>
                     <div className="text-center flex-1 px-4">
@@ -153,6 +160,23 @@ export function ConfirmationView({ event, items, paymentInfo }: ConfirmationView
                             </span>
                         </div>
                     )}
+
+                    {/* Infos acheteur */}
+                    {paymentInfo?.firstName && (
+                        <>
+                            <Separator />
+                            <div className="flex flex-col gap-1">
+                                <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Acheteur</p>
+                                <p className="text-sm font-semibold">
+                                    {paymentInfo.firstName} {paymentInfo.lastName}
+                                </p>
+                                <p className="text-xs text-muted-foreground">{paymentInfo.email}</p>
+                                {paymentInfo.phone && (
+                                    <p className="text-xs text-muted-foreground">{paymentInfo.phone}</p>
+                                )}
+                            </div>
+                        </>
+                    )}
                 </div>
 
                 {/* Pied billet – tiret coupé */}
@@ -164,20 +188,16 @@ export function ConfirmationView({ event, items, paymentInfo }: ConfirmationView
                     </div>
                 </div>
 
-                {/* QR code simulé */}
+                {/* QR code réel → page de téléchargement du billet */}
                 <div className="bg-gray-50 px-6 py-5 flex items-center gap-5 border-t border-dashed">
                     <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border bg-white p-1">
-                        {/* QR code en SVG (pattern générique) */}
-                        <svg viewBox="0 0 100 100" className="w-full h-full">
-                            {[0,30,60].map(y =>
-                                [0,30,60].map(x => (
-                                    <rect key={`${x}-${y}`} x={x} y={y} width={22} height={22} rx="3" fill="#111" />
-                                ))
-                            )}
-                            {[10,40,70].map(i => (
-                                <rect key={`c${i}`} x={10} y={i} width={6} height={6} fill="white" />
-                            ))}
-                        </svg>
+                        <QRCodeSVG
+                            value={`${typeof window !== 'undefined' ? window.location.origin : 'https://catholikia.com'}/cuturama/ticket/${bookingRef.current}`}
+                            size={64}
+                            bgColor="#ffffff"
+                            fgColor="#111111"
+                            className="w-full h-full"
+                        />
                     </div>
                     <div className="flex flex-col gap-0.5">
                         <p className="text-xs font-bold uppercase tracking-wide">Votre e-billet</p>
@@ -190,14 +210,12 @@ export function ConfirmationView({ event, items, paymentInfo }: ConfirmationView
 
             {/* ── Actions ── */}
             <div className="flex flex-wrap gap-3 justify-center w-full">
-                <Button
-                    variant="outline"
-                    className="rounded-full gap-2 border-[#fe0000] text-[#fe0000] hover:bg-[#fe0000] hover:text-white"
-                    onClick={() => window.print()}
-                >
-                    <Download className="size-4" />
-                    Télécharger le billet
-                </Button>
+                <DownloadTicketButton
+                    event={event}
+                    items={items}
+                    bookingRef={bookingRef.current}
+                    paymentInfo={paymentInfo}
+                />
 
                 <Button
                     variant="outline"
@@ -219,6 +237,27 @@ export function ConfirmationView({ event, items, paymentInfo }: ConfirmationView
                     </Button>
                 </Link>
             </div>
+
+            {/* ── Attribution L'Union Lab ── */}
+            <a
+                href="https://www.lunion-lab.com/fr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-6 py-4 flex flex-col items-center gap-2 mt-2 hover:bg-slate-100 transition-colors"
+            >
+                <p className="text-xs text-slate-500 text-center">
+                    Solution de billetterie développée par
+                </p>
+                <div className="relative h-10 w-40">
+                    <Image
+                        src="/assets/logo/lunion_lab.png"
+                        alt="L'Union Lab"
+                        fill
+                        className="object-contain"
+                    />
+                </div>
+                <span className="text-xs text-slate-400">lunion-lab.com</span>
+            </a>
 
         </div>
     );
