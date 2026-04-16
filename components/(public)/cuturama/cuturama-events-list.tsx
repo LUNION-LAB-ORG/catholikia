@@ -4,60 +4,61 @@ import { useState } from "react";
 import { EventCard } from "./cuturama-event-card";
 import { EventFilters } from "./cuturama-event-filters";
 import { EventPagination } from "./cuturama-event-pagination";
-import { FAKE_EVENTS, ITEMS_PER_PAGE } from "./cuturama.data";
-import type { Category } from "./cuturama.types";
+import { useCuturamaList } from "@/features/cuturama/hooks/useCuturamaList";
+import type { Category, CuturamaEvent } from "./cuturama.types";
 
 export default function CuturamaEventsList() {
-    const [activeCategory, setActiveCategory] = useState<Category>("Tous");
-    const [search, setSearch] = useState("");
-    const [query, setQuery] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
+    const [searchInput, setSearchInput] = useState("");
 
-    const filtered = FAKE_EVENTS.filter((e) => {
-        const matchCategory = activeCategory === "Tous" || e.category === activeCategory;
-        const matchSearch =
-            query === "" ||
-            e.title.toLowerCase().includes(query.toLowerCase()) ||
-            e.organizer.toLowerCase().includes(query.toLowerCase());
-        return matchCategory && matchSearch;
-    });
+    const {
+        events,
+        total,
+        currentPage,
+        totalPages,
+        activeCategory,
+        isLoading,
+        onCategoryChange,
+        onSearchChange,
+        onPageChange,
+    } = useCuturamaList();
 
-    const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-    const paginated = filtered.slice(
-        (currentPage - 1) * ITEMS_PER_PAGE,
-        currentPage * ITEMS_PER_PAGE
-    );
-
-    const handleSearch = () => {
-        setQuery(search);
-        setCurrentPage(1);
+    const handleSearchSubmit = () => {
+        onSearchChange(searchInput);
     };
 
     const handleCategoryChange = (cat: Category) => {
-        setActiveCategory(cat);
-        setCurrentPage(1);
+        onCategoryChange(cat);
     };
 
     return (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Filtres + Recherche */}
             <EventFilters
-                activeCategory={activeCategory}
-                search={search}
+                activeCategory={activeCategory as Category}
+                search={searchInput}
                 onCategoryChange={handleCategoryChange}
-                onSearchChange={setSearch}
-                onSearchSubmit={handleSearch}
+                onSearchChange={setSearchInput}
+                onSearchSubmit={handleSearchSubmit}
             />
 
             {/* Compteur */}
             <h2 className="text-[#fe0000] font-extrabold text-2xl sm:text-3xl uppercase tracking-wide mb-6">
-                {filtered.length} événement{filtered.length > 1 ? "s" : ""} trouvé{filtered.length > 1 ? "s" : ""}
+                {total} événement{total > 1 ? "s" : ""} trouvé{total > 1 ? "s" : ""}
             </h2>
 
             {/* Grille d'événements */}
-            {paginated.length > 0 ? (
+            {isLoading ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {paginated.map((event) => (
+                    {Array.from({ length: 6 }).map((_, i) => (
+                        <div
+                            key={i}
+                            className="h-72 rounded-xl bg-muted animate-pulse"
+                        />
+                    ))}
+                </div>
+            ) : events.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {events.map((event: CuturamaEvent) => (
                         <EventCard key={event.id} event={event} />
                     ))}
                 </div>
@@ -71,7 +72,7 @@ export default function CuturamaEventsList() {
             <EventPagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                onPageChange={setCurrentPage}
+                onPageChange={onPageChange}
             />
         </section>
     );

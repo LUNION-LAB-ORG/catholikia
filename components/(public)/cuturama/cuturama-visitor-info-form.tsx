@@ -24,6 +24,9 @@ export interface PaymentInfo {
     method: string;
     phone: string;
     promo: string;
+    firstName: string;
+    lastName: string;
+    email: string;
 }
 
 interface VisitorInfoFormProps {
@@ -208,7 +211,7 @@ export function VisitorInfoForm({ selectedTicket, onNext, onBack }: VisitorInfoF
                     <Button
                         className="w-full rounded-full bg-[#f5a623] hover:bg-[#e09510] text-white font-bold"
                         disabled={!canSubmit}
-                        onClick={() => onNext({ method: paymentMethod!, phone, promo })}
+                        onClick={() => onNext({ method: paymentMethod!, phone, promo, firstName, lastName, email })}
                     >
                         SUIVANT
                     </Button>
