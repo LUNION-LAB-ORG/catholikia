@@ -28,14 +28,13 @@ function ActualiteCard({ actualite, orientation }: PropsCard) {
           )}
         >
           <div
-            className={`relative overflow-hidden rounded-xl ${orientation === 'vertical' ? 'aspect-video w-full' : 'min-h-[110px]'}`}
+            className={`relative overflow-hidden rounded-xl bg-gray-200 ${orientation === 'vertical' ? 'aspect-[4/3] w-full' : 'min-h-[250px]'}`}
           >
             <Image
               src={actualite.image}
               alt={actualite.titre}
-              className="h-full w-full group-hover:scale-105 transition-transform duration-300"
-              width={250}
-              height={200}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
               loading="eager"
             />
           </div>
