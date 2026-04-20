@@ -9,62 +9,67 @@ import Link from "next/link";
 
 type PropsCard = {
   actualite: IActualite;
-  orientation?: 'horizontal' | 'vertical';
-}
+  orientation?: "horizontal" | "vertical";
+};
 
 function ActualiteCard({ actualite, orientation }: PropsCard) {
   return (
-    <div className="flex flex-col justify-between space-y-2 h-full">
-      <Link
-        href={`/actualites/${actualite.slug}`}
-        className="group block h-full"
-      >
+    <div className="flex h-full flex-col justify-between space-y-2">
+      <Link href={`/actualites/${actualite.slug}`} className="group block h-full">
         <article
           className={cn(
-            "grid gap-4 items-stretch h-full transition transform duration-200",
-            orientation === "horizontal"
-              ? "grid-cols-[minmax(100px,40%)_1fr]"
-              : "grid-cols-1"
+            "grid h-full items-stretch gap-4 transition duration-200",
+            orientation === "horizontal" ? "grid-cols-[minmax(100px,40%)_1fr]" : "grid-cols-1"
           )}
         >
           <div
-            className={`relative overflow-hidden rounded-xl ${orientation === 'vertical' ? 'aspect-video w-full' : 'min-h-[110px]'}`}
+            className={cn(
+              "relative overflow-hidden rounded-xl bg-content2",
+              orientation === "vertical" ? "aspect-video w-full" : "min-h-[110px] h-full"
+            )}
           >
             <Image
               src={actualite.image}
               alt={actualite.titre}
-              className="h-full w-full group-hover:scale-105 transition-transform duration-300"
-              width={250}
-              height={200}
+              fill
+              sizes={orientation === "horizontal" ? "(max-width: 768px) 100vw, 40vw" : "100vw"}
+              className="object-contain transition-transform duration-300 group-hover:scale-105"
               loading="eager"
             />
           </div>
-          <div className={cn(orientation === 'vertical' ? 'mt-4' : '', "flex flex-col space-y-2")}>
+
+          <div className={cn(orientation === "vertical" ? "mt-4" : "", "flex flex-col space-y-2")}>
             <div className="flex items-center justify-between">
-              <Badge>
-                {actualite.categorie ? actualite.categorie.name : 'Général'}
-              </Badge>
-              <time className="text-[#595959] text-sm font-medium font-barlow flex items-center">
-                <span> <IconCalendarWeekFilled color="#0088FF" size={16} className="mr-1" /> </span>
+              <Badge>{actualite.categorie ? actualite.categorie.name : "Général"}</Badge>
+              <time className="font-barlow flex items-center text-sm font-medium text-[#595959]">
+                <span>
+                  <IconCalendarWeekFilled color="#0088FF" size={16} className="mr-1" />
+                </span>
                 <span>{dateFormat(actualite.date_publication)}</span>
               </time>
             </div>
             <h4
-              className={cn("group-hover:underline text-sm text-gray-800 font-semibold group-hover:text-gray-900 transition-colors duration-300 line-clamp-2 mb-2.5")}>
+              className={cn(
+                "mb-2.5 line-clamp-2 text-sm font-semibold text-gray-800 transition-colors duration-300 group-hover:text-gray-900 group-hover:underline"
+              )}
+            >
               {actualite.titre}
             </h4>
           </div>
         </article>
       </Link>
-      {orientation != 'horizontal' && <div className="flex justify-end">
-        <Button
-          as={Link}
-          href={`/actualites/${actualite.slug}`}
-          variant="bordered"
-          className={cn("uppercase text-[#1D1D1D] font-bold border")}>
-          Details
-        </Button>
-      </div>}
+      {orientation != "horizontal" && (
+        <div className="flex justify-end">
+          <Button
+            as={Link}
+            href={`/actualites/${actualite.slug}`}
+            variant="bordered"
+            className={cn("border font-bold uppercase text-[#1D1D1D]")}
+          >
+            Details
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
