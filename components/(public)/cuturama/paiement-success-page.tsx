@@ -18,8 +18,8 @@ type VerifyState =
 
 export default function PaiementSuccessPage() {
     const searchParams = useSearchParams();
-    const orderId = searchParams.get("order_id");
-    const transactionId = searchParams.get("transaction_id");
+    const orderId = searchParams?.get("order_id") ?? null;
+    const transactionId = searchParams?.get("transaction_id") ?? null;
 
     const [state, setState] = useState<VerifyState>(
         orderId ? { status: "loading" } : { status: "no-order" }
