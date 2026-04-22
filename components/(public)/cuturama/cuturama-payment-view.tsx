@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import type { CartItem } from "./cuturama.types";
+import type { CartItem, CuturamaEvent } from "./cuturama.types";
 import type { PaymentInfo } from "./cuturama-visitor-info-form";
 
 const PAYMENT_LOGOS: Record<string, string> = {
@@ -26,13 +26,14 @@ const PAYMENT_LOGOS: Record<string, string> = {
 };
 
 interface PaymentViewProps {
+    event: CuturamaEvent;
     items: CartItem[];
     paymentInfo?: PaymentInfo;
     onConfirm: () => void;
     onBack: () => void;
 }
 
-export function PaymentView({ items, paymentInfo, onConfirm, onBack }: PaymentViewProps) {
+export function PaymentView({ event, items, paymentInfo, onConfirm, onBack }: PaymentViewProps) {
     const [loading, setLoading] = useState(false);
 
     const total = items.reduce((sum, { ticket, quantity }) => sum + ticket.price * quantity, 0);
@@ -42,12 +43,13 @@ export function PaymentView({ items, paymentInfo, onConfirm, onBack }: PaymentVi
     const finalTotal = total - discount;
 
     const handlePay = () => {
+        // La commande a déjà été créée à l'étape précédente.
+        // Cette vue sert de récapitulatif pour les méthodes non-Wave.
         setLoading(true);
-        // Simule un appel réseau
         setTimeout(() => {
             setLoading(false);
             onConfirm();
-        }, 2000);
+        }, 1000);
     };
 
     return (

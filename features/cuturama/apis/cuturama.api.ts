@@ -4,6 +4,11 @@ import type {
     ICuturamaEventsParams,
     CuturamaEventsResponse,
     CuturamaEvent,
+    CreateOrderRequest,
+    CreateOrderResponse,
+    LancerPaiementRequest,
+    LancerPaiementResponse,
+    WaveVerifyResponse,
 } from "../types/cuturama.type";
 import type { SearchParams } from "ak-api-http";
 
@@ -21,6 +26,9 @@ const cuturamaApi = new Api({
 export interface ICuturamaAPI {
     obtenirTousEvenements(params: ICuturamaEventsParams): Promise<CuturamaEventsResponse>;
     obtenirEvenementParSlug(slug: string): Promise<CuturamaEvent>;
+    creerCommande(payload: CreateOrderRequest): Promise<CreateOrderResponse>;
+    lancerPaiement(orderId: string | number, payload: LancerPaiementRequest): Promise<LancerPaiementResponse>;
+    verifierPaiementWave(orderId: string | number): Promise<WaveVerifyResponse>;
 }
 
 export const cuturamaAPI: ICuturamaAPI = {
@@ -40,6 +48,32 @@ export const cuturamaAPI: ICuturamaAPI = {
         return cuturamaApi.request<CuturamaEvent>({
             endpoint: `/cuturama/events/${slug}`,
             method: "GET",
+        });
+    },
+
+    creerCommande(payload: CreateOrderRequest): Promise<CreateOrderResponse> {
+        return cuturamaApi.request<CreateOrderResponse>({
+            endpoint: `/v2/orders`,
+            method: "POST",
+            data: payload,
+            service: "public",
+        });
+    },
+
+    lancerPaiement(orderId: string | number, payload: LancerPaiementRequest): Promise<LancerPaiementResponse> {
+        return cuturamaApi.request<LancerPaiementResponse>({
+            endpoint: `/culturama/orders/${orderId}/pay`,
+            method: "POST",
+            data: payload,
+            service: "public",
+        });
+    },
+
+    verifierPaiementWave(orderId: string | number): Promise<WaveVerifyResponse> {
+        return cuturamaApi.request<WaveVerifyResponse>({
+            endpoint: `/culturama/orders/${orderId}/wave-verify`,
+            method: "GET",
+            service: "public",
         });
     },
 };
