@@ -8,7 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { addToast } from "@heroui/toast";
-import type { TicketType, CartItem } from "./cuturama.types";
+import type { TicketType, CartItem, CuturamaEvent } from "./cuturama.types";
 import Image from "next/image";
 import { cuturamaAPI } from "@/features/cuturama/apis/cuturama.api";
 
@@ -33,6 +33,7 @@ export interface PaymentInfo {
 }
 
 interface VisitorInfoFormProps {
+    event: CuturamaEvent;
     eventId: string;
     cartItems: CartItem[];
     selectedTicket?: TicketType;
@@ -40,7 +41,7 @@ interface VisitorInfoFormProps {
     onBack: () => void;
 }
 
-export function VisitorInfoForm({ eventId, cartItems, selectedTicket, onNext, onBack }: VisitorInfoFormProps) {
+export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onNext, onBack }: VisitorInfoFormProps) {
     const [firstName, setFirstName]         = useState("");
     const [lastName, setLastName]           = useState("");
     const [email, setEmail]                 = useState("");
@@ -95,6 +96,22 @@ export function VisitorInfoForm({ eventId, cartItems, selectedTicket, onNext, on
             });
 
             if (paiement.paymentUrl) {
+                // Sauvegarder le billet dans localStorage avant la redirection
+                // (Wave ouvre un autre navigateur, le localStorage sera vide au retour)
+                const bookingRef = order.data.reference;
+                const paymentInfo: PaymentInfo = {
+                    method: paymentMethod!,
+                    phone,
+                    promo,
+                    firstName,
+                    lastName,
+                    email,
+                    customer_phone: customerPhone,
+                };
+                localStorage.setItem(
+                    `cuturama_ticket_${bookingRef}`,
+                    JSON.stringify({ bookingRef, event, items: cartItems, paymentInfo })
+                );
                 window.location.href = paiement.paymentUrl;
                 return;
             }
