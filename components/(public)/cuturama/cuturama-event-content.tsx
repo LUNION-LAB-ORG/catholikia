@@ -57,6 +57,8 @@ export function EventContent({ event }: EventContentProps) {
 
                 {step === 2 && (
                     <VisitorInfoForm
+                        eventId={event.id}
+                        cartItems={cartItems}
                         selectedTicket={selectedTicket}
                         onNext={handleProceedToStep3}
                         onBack={() => setStep(1)}
@@ -65,6 +67,7 @@ export function EventContent({ event }: EventContentProps) {
 
                 {step === 3 && (
                     <PaymentView
+                        event={event}
                         items={cartItems}
                         paymentInfo={paymentInfo}
                         onConfirm={() => setStep(4)}

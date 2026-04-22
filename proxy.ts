@@ -20,7 +20,8 @@ export const publicRoutes = [
   "/lectio-divina",
   "/evenements",
   "/mag",
-  "/cuturama"
+  "/cuturama",
+  "/paiement"
 
 ];
 

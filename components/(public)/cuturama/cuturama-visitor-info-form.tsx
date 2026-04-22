@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { User, Mail, Phone, Tag, Ticket, ChevronRight } from "lucide-react";
+import { User, Mail, Phone, Tag, Ticket, ChevronRight, Loader2, CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import type { TicketType } from "./cuturama.types";
+import { addToast } from "@heroui/toast";
+import type { TicketType, CartItem } from "./cuturama.types";
 import Image from "next/image";
+import { cuturamaAPI } from "@/features/cuturama/apis/cuturama.api";
 
 // Logos moyens de paiement (texte stylisé en attendant les vraies images)
 const PAYMENT_METHODS = [
@@ -27,25 +29,95 @@ export interface PaymentInfo {
     firstName: string;
     lastName: string;
     email: string;
+    customer_phone: string;
 }
 
 interface VisitorInfoFormProps {
+    eventId: string;
+    cartItems: CartItem[];
     selectedTicket?: TicketType;
     onNext: (info: PaymentInfo) => void;
     onBack: () => void;
 }
 
-export function VisitorInfoForm({ selectedTicket, onNext, onBack }: VisitorInfoFormProps) {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName]   = useState("");
-    const [email, setEmail]         = useState("");
-    const [phone, setPhone]         = useState("");
-    const [promo, setPromo]         = useState("");
+export function VisitorInfoForm({ eventId, cartItems, selectedTicket, onNext, onBack }: VisitorInfoFormProps) {
+    const [firstName, setFirstName]         = useState("");
+    const [lastName, setLastName]           = useState("");
+    const [email, setEmail]                 = useState("");
+    const [customerPhone, setCustomerPhone] = useState("");
+    const [phone, setPhone]                 = useState("");
+    const [promo, setPromo]                 = useState("");
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
-    const [accepted, setAccepted]   = useState(false);
+    const [accepted, setAccepted]           = useState(false);
+    const [buyerSaved, setBuyerSaved]       = useState(false);
+    const [submitting, setSubmitting]       = useState(false);
 
-    const buyerComplete = firstName.trim() && lastName.trim() && email.trim();
-    const canSubmit = buyerComplete && paymentMethod && accepted;
+    const buyerComplete = !!(firstName.trim() && lastName.trim() && email.trim());
+    const canSubmit = buyerSaved && !!paymentMethod && accepted;
+
+    /** Validation locale — déverrouille la section réservation */
+    const handleEnregistrer = () => {
+        if (!buyerComplete) return;
+        setBuyerSaved(true);
+        addToast({
+            title: "Informations enregistrées",
+            description: "Choisissez un mode de paiement.",
+            color: "success",
+        });
+        setTimeout(() => {
+            document.getElementById("section-reservation")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+    };
+
+    /** Crée la commande puis lance le paiement */
+    const handleSuivant = async () => {
+        if (!canSubmit) return;
+        setSubmitting(true);
+        try {
+            // Étape 1 : créer la commande
+            const order = await cuturamaAPI.creerCommande({
+                event_id: Number(eventId),
+                customer_name: `${firstName.trim()} ${lastName.trim()}`,
+                customer_email: email.trim(),
+                customer_phone: customerPhone.trim(),
+                payment_method: paymentMethod!,
+                items: cartItems.map(({ ticket, quantity }) => ({
+                    ticket_class_id: ticket.id,
+                    quantity,
+                })),
+                promo_code: promo.trim() || undefined,
+            });
+
+            // Étape 2 : lancer le paiement
+            const paiement = await cuturamaAPI.lancerPaiement(order.data.id, {
+                paymentMethod: paymentMethod!,
+                phone: customerPhone.trim() || undefined,
+            });
+
+            if (paiement.paymentUrl) {
+                window.location.href = paiement.paymentUrl;
+                return;
+            }
+
+            // Méthodes sans redirection : passer à l'étape de confirmation
+            onNext({
+                method: paymentMethod!,
+                phone,
+                promo,
+                firstName,
+                lastName,
+                email,
+                customer_phone: customerPhone,
+            });
+        } catch (error) {
+            const apiErr = error as { message?: string; status?: number; code?: string; context?: string };
+            console.error("[paiement] error:", apiErr);
+            const msg = apiErr.message ?? JSON.stringify(error);
+            addToast({ title: "Erreur", description: msg, color: "danger" });
+        } finally {
+            setSubmitting(false);
+        }
+    };
 
     return (
         <div className="flex flex-col gap-6 max-w-4xl mx-auto">
@@ -93,6 +165,17 @@ export function VisitorInfoForm({ selectedTicket, onNext, onBack }: VisitorInfoF
                         />
                     </div>
 
+                    <div className="relative">
+                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                        <Input
+                            type="tel"
+                            placeholder="Numéro de téléphone du client"
+                            value={customerPhone}
+                            onChange={(e) => setCustomerPhone(e.target.value)}
+                            className="pl-9"
+                        />
+                    </div>
+
                     <Separator />
 
                     {/* Ticket sélectionné + navigation */}
@@ -118,16 +201,25 @@ export function VisitorInfoForm({ selectedTicket, onNext, onBack }: VisitorInfoF
                     </div>
 
                     <Button
-                        className="w-full rounded-full bg-[#f5a623] hover:bg-[#e09510] text-white font-bold"
-                        disabled={!buyerComplete}
+                        className="w-full rounded-full bg-[#f5a623] hover:bg-[#e09510] text-white font-bold gap-2"
+                        disabled={!buyerComplete || buyerSaved}
+                        onClick={handleEnregistrer}
+                        type="button"
                     >
-                        ENREGISTRER
+                        {buyerSaved ? (
+                            <>
+                                <CheckCircle2 className="size-4" />
+                                ENREGISTRÉ
+                            </>
+                        ) : (
+                            "ENREGISTRER"
+                        )}
                     </Button>
                 </div>
             </div>
 
             {/* ── INFORMATIONS SUR LA RÉSERVATION ── */}
-            <div className={cn("rounded-xl overflow-hidden border transition-opacity", !buyerComplete && "opacity-40 pointer-events-none select-none")}>
+            <div id="section-reservation" className={cn("rounded-xl overflow-hidden border transition-opacity", !buyerSaved && "opacity-40 pointer-events-none select-none")}>
                 {/* Header gris */}
                 <div className="bg-gray-300 flex items-center justify-center px-5 py-3">
                     <h2 className="text-gray-700 font-extrabold text-sm sm:text-base uppercase tracking-widest">
@@ -209,11 +301,19 @@ export function VisitorInfoForm({ selectedTicket, onNext, onBack }: VisitorInfoF
 
                     {/* Bouton Suivant */}
                     <Button
-                        className="w-full rounded-full bg-[#f5a623] hover:bg-[#e09510] text-white font-bold"
-                        disabled={!canSubmit}
-                        onClick={() => onNext({ method: paymentMethod!, phone, promo, firstName, lastName, email })}
+                        className="w-full rounded-full bg-[#f5a623] hover:bg-[#e09510] text-white font-bold gap-2"
+                        disabled={!canSubmit || submitting}
+                        onClick={handleSuivant}
+                        type="button"
                     >
-                        SUIVANT
+                        {submitting ? (
+                            <>
+                                <Loader2 className="size-4 animate-spin" />
+                                Traitement en cours…
+                            </>
+                        ) : (
+                            "SUIVANT"
+                        )}
                     </Button>
                 </div>
             </div>
