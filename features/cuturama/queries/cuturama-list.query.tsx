@@ -9,6 +9,7 @@ export const cuturamaEventsListQueryOption = (params: ICuturamaEventsParams) => 
     queryFn: async () => {
         const result = await obtenirTousEvenementsAction(params);
 
+        
         if (!result.success) {
             throw new Error(
                 result.error || "Erreur lors de la récupération des événements"
