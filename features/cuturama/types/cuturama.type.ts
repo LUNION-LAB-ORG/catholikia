@@ -18,7 +18,7 @@ export interface CuturamaEventsResponse {
 export type { CuturamaEvent };
 
 // ── Create Order (/api/v2/orders) ───────────────────────────────────────────
-export interface OrderItem {
+export interface CreateOrderItem {
     ticket_class_id: string;
     quantity: number;
 }
@@ -29,7 +29,7 @@ export interface CreateOrderRequest {
     customer_email: string;
     customer_phone: string;
     payment_method: string;
-    items: OrderItem[];
+    items: CreateOrderItem[];
     promo_code?: string;
     payment_reference?: string;
     notes?: string;
