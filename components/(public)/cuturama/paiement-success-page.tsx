@@ -20,6 +20,7 @@ export default function PaiementSuccessPage() {
     const searchParams = useSearchParams();
     const orderId = searchParams?.get("order_id") ?? null;
     const transactionId = searchParams?.get("transaction_id") ?? null;
+    const bookingRef = searchParams?.get("ref") ?? null;
 
     const [state, setState] = useState<VerifyState>(
         orderId ? { status: "loading" } : { status: "no-order" }
@@ -161,14 +162,14 @@ export default function PaiementSuccessPage() {
                 {/* Actions */}
                 {state.status !== "loading" && (
                     <div className="flex flex-col sm:flex-row gap-3 w-full">
-                        {isConfirmed && orderId && (
+                        {(isConfirmed || state.status === "no-order") && bookingRef && (
                             <Button
                                 asChild
                                 className="flex-1 rounded-full bg-[#fe0000] hover:bg-red-700 text-white font-bold gap-2"
                             >
-                                <Link href={`/cuturama`}>
+                                <Link href={`/cuturama/ticket/${bookingRef}`}>
                                     <Ticket className="size-4" />
-                                    Voir les événements
+                                    Télécharger mon billet
                                 </Link>
                             </Button>
                         )}
