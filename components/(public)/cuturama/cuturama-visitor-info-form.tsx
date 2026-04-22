@@ -14,12 +14,12 @@ import { cuturamaAPI } from "@/features/cuturama/apis/cuturama.api";
 
 // Logos moyens de paiement (texte stylisé en attendant les vraies images)
 const PAYMENT_METHODS = [
-    { id: "wave",        label: "/assets/cuturama/mobile/wave.jpg",      },
-    { id: "orange",      label: "/assets/cuturama/mobile/orange.png", },
-    { id: "mtn",         label: "/assets/cuturama/mobile/mtn.png",    },
-    { id: "moov",       label: "/assets/cuturama/mobile/moov.png",      },
-    { id: "visa",        label: "/assets/cuturama/mobile/visa.png",        },
-    { id: "mastercard",  label: "/assets/cuturama/mobile/master.png",  },
+    { id: "wave",        label: "/assets/cuturama/mobile/wave.jpg",      available: true  },
+    { id: "orange",      label: "/assets/cuturama/mobile/orange.png",    available: false },
+    { id: "mtn",         label: "/assets/cuturama/mobile/mtn.png",       available: false },
+    { id: "moov",        label: "/assets/cuturama/mobile/moov.png",      available: false },
+    { id: "visa",        label: "/assets/cuturama/mobile/visa.png",       available: false },
+    { id: "mastercard",  label: "/assets/cuturama/mobile/master.png",   available: false },
 ];
 
 export interface PaymentInfo {
@@ -252,19 +252,25 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
                             {PAYMENT_METHODS.map((pm) => (
                                 <div
                                     key={pm.id}
-                                    onClick={() => setPaymentMethod(pm.id)}
+                                    onClick={() => pm.available && setPaymentMethod(pm.id)}
                                     className={cn(
-                                        "rounded-lg py-3 relative px-2 text-[10px]   font-bold whitespace-pre-line text-center transition-all border-2",
-                                   
-                                        paymentMethod === pm.id
-                                            ? "border-[#fe0000] scale-105 shadow-md"
-                                            : "border-transparent opacity-80  hover:opacity-100"
+                                        "rounded-lg py-3 relative px-2 text-[10px] font-bold whitespace-pre-line text-center transition-all border-2",
+                                        pm.available
+                                            ? paymentMethod === pm.id
+                                                ? "border-[#fe0000] scale-105 shadow-md cursor-pointer"
+                                                : "border-transparent opacity-80 hover:opacity-100 cursor-pointer"
+                                            : "border-transparent opacity-30 grayscale cursor-not-allowed"
                                     )}
                                 >
                                     {pm.label.startsWith("/assets/") ? (
-                                        <Image src={pm.label} alt={pm.id}  width={200} height={200} className="mx-auto h-full w-full" />
-                                    ) : ( 
+                                        <Image src={pm.label} alt={pm.id} width={200} height={200} className="mx-auto h-full w-full" />
+                                    ) : (
                                         pm.label
+                                    )}
+                                    {!pm.available && (
+                                        <span className="absolute bottom-1 inset-x-0 text-center text-[8px] text-muted-foreground font-normal">
+                                            Bientôt
+                                        </span>
                                     )}
                                 </div>
                             ))}
