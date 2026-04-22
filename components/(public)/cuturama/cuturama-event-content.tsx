@@ -57,6 +57,7 @@ export function EventContent({ event }: EventContentProps) {
 
                 {step === 2 && (
                     <VisitorInfoForm
+                        event={event}
                         eventId={event.id}
                         cartItems={cartItems}
                         selectedTicket={selectedTicket}

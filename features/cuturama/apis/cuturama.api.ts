@@ -9,6 +9,7 @@ import type {
     LancerPaiementRequest,
     LancerPaiementResponse,
     WaveVerifyResponse,
+    GetOrderResponse,
 } from "../types/cuturama.type";
 import type { SearchParams } from "ak-api-http";
 
@@ -29,6 +30,7 @@ export interface ICuturamaAPI {
     creerCommande(payload: CreateOrderRequest): Promise<CreateOrderResponse>;
     lancerPaiement(orderId: string | number, payload: LancerPaiementRequest): Promise<LancerPaiementResponse>;
     verifierPaiementWave(orderId: string | number): Promise<WaveVerifyResponse>;
+    obtenirCommande(idOrRef: string | number): Promise<GetOrderResponse>;
 }
 
 export const cuturamaAPI: ICuturamaAPI = {
@@ -72,6 +74,14 @@ export const cuturamaAPI: ICuturamaAPI = {
     verifierPaiementWave(orderId: string | number): Promise<WaveVerifyResponse> {
         return cuturamaApi.request<WaveVerifyResponse>({
             endpoint: `/culturama/orders/${orderId}/wave-verify`,
+            method: "GET",
+            service: "public",
+        });
+    },
+
+    obtenirCommande(idOrRef: string | number): Promise<GetOrderResponse> {
+        return cuturamaApi.request<GetOrderResponse>({
+            endpoint: `/v2/orders/${idOrRef}`,
             method: "GET",
             service: "public",
         });

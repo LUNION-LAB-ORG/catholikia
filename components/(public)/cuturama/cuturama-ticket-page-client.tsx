@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { CheckCircle2, AlertCircle } from "lucide-react";
+import { CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import Image from "next/image";
 import { DownloadTicketButton } from "@/components/(public)/cuturama/cuturama-download-ticket-button";
 import type { CartItem, CuturamaEvent } from "@/components/(public)/cuturama/cuturama.types";
@@ -11,6 +11,8 @@ import { Separator } from "@/components/ui/separator";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
+import { cuturamaAPI } from "@/features/cuturama/apis/cuturama.api";
+import type { GetOrderResponse } from "@/features/cuturama/types/cuturama.type";
 
 interface SavedTicketData {
     bookingRef: string;
@@ -23,26 +25,74 @@ interface TicketPageClientProps {
     bookingRef: string;
 }
 
+/** Convertit la réponse API en format compatible avec les composants existants */
+function orderToTicketData(order: GetOrderResponse["data"]): SavedTicketData {
+    const event: CuturamaEvent = {
+        id: String(order.event.id),
+        slug: order.event.slug,
+        title: order.event.title,
+        image: order.event.image,
+        category: "Concerts", // valeur par défaut
+        location: "",
+        city: "",
+        date: new Date(order.created_at).toLocaleDateString("fr-FR"),
+        time: "",
+        organizer: "",
+        price: order.total_amount,
+    };
+    const items: CartItem[] = order.items.map((item) => ({
+        ticket: {
+            id: String(item.ticket_class.id),
+            name: item.ticket_class.name,
+            price: parseFloat(item.unit_price),
+        },
+        quantity: item.quantity,
+    }));
+    const paymentInfo: PaymentInfo = {
+        method: order.payment_method,
+        phone: order.customer_phone,
+        promo: order.promo_code ?? "",
+        firstName: order.customer_name.split(" ")[0] ?? "",
+        lastName: order.customer_name.split(" ").slice(1).join(" ") ?? "",
+        email: order.customer_email,
+        customer_phone: order.customer_phone,
+    };
+    return { bookingRef: order.reference, event, items, paymentInfo };
+}
+
 export function TicketPageClient({ bookingRef }: TicketPageClientProps) {
     const [data, setData] = useState<SavedTicketData | null>(null);
+    const [apiOrder, setApiOrder] = useState<GetOrderResponse["data"] | null>(null);
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
+        // 1. Essai localStorage
         const raw = localStorage.getItem(`cuturama_ticket_${bookingRef}`);
         if (raw) {
             try {
                 setData(JSON.parse(raw));
-            } catch {
-                // données corrompues
-            }
+                setLoaded(true);
+                // Charger quand même l'API pour avoir les QR codes individuels
+                cuturamaAPI.obtenirCommande(bookingRef)
+                    .then((res) => setApiOrder(res.data))
+                    .catch(() => null);
+                return;
+            } catch { /* données corrompues, on continue */ }
         }
-        setLoaded(true);
+        // 2. Fallback : charger depuis l'API
+        cuturamaAPI.obtenirCommande(bookingRef)
+            .then((res) => {
+                setApiOrder(res.data);
+                setData(orderToTicketData(res.data));
+            })
+            .catch(() => setData(null))
+            .finally(() => setLoaded(true));
     }, [bookingRef]);
 
     if (!loaded) {
         return (
             <div className="min-h-screen flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-muted animate-pulse" />
+                <Loader2 className="w-10 h-10 animate-spin text-muted-foreground" />
             </div>
         );
     }
@@ -152,18 +202,39 @@ export function TicketPageClient({ bookingRef }: TicketPageClientProps) {
                         </div>
                     </div>
 
-                    {/* QR pied */}
-                    <div className="bg-gray-50 px-6 py-5 flex items-center gap-5 border-t border-dashed">
-                        <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border bg-white p-1">
-                            <QRCodeSVG value={qrUrl} size={64} bgColor="#ffffff" fgColor="#111111" className="w-full h-full" />
-                        </div>
-                        <div className="flex flex-col gap-0.5">
-                            <p className="text-xs font-bold uppercase tracking-wide">Votre e-billet</p>
-                            <p className="text-[11px] text-muted-foreground leading-snug">
+                    {/* QR pied — un QR par ticket issu de l'API */}
+                    {apiOrder?.tickets && apiOrder.tickets.length > 0 ? (
+                        <div className="bg-gray-50 px-6 py-5 flex flex-col gap-4 border-t border-dashed">
+                            <p className="text-xs font-bold uppercase tracking-wide text-center">
+                                {apiOrder.tickets.length > 1 ? `${apiOrder.tickets.length} billets` : "Votre e-billet"}
+                            </p>
+                            <div className="flex flex-wrap justify-center gap-6">
+                                {apiOrder.tickets.map((ticket, i) => (
+                                    <div key={ticket.id} className="flex flex-col items-center gap-2">
+                                        <div className="w-20 h-20 shrink-0 rounded-lg overflow-hidden border bg-white p-1">
+                                            <QRCodeSVG value={ticket.qr_code} size={80} bgColor="#ffffff" fgColor="#111111" className="w-full h-full" />
+                                        </div>
+                                        <p className="text-[10px] text-muted-foreground">Billet {i + 1}</p>
+                                    </div>
+                                ))}
+                            </div>
+                            <p className="text-[11px] text-muted-foreground text-center leading-snug">
                                 Présentez ce QR code à l&apos;entrée. Il est strictement personnel.
                             </p>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="bg-gray-50 px-6 py-5 flex items-center gap-5 border-t border-dashed">
+                            <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border bg-white p-1">
+                                <QRCodeSVG value={bookingRef} size={64} bgColor="#ffffff" fgColor="#111111" className="w-full h-full" />
+                            </div>
+                            <div className="flex flex-col gap-0.5">
+                                <p className="text-xs font-bold uppercase tracking-wide">Votre e-billet</p>
+                                <p className="text-[11px] text-muted-foreground leading-snug">
+                                    Présentez ce QR code à l&apos;entrée. Il est strictement personnel.
+                                </p>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 {/* Actions */}
