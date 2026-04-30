@@ -38,13 +38,21 @@ function orderToTicketData(order: GetOrderResponse["data"]): SavedTicketData {
         date: new Date(order.created_at).toLocaleDateString("fr-FR"),
         time: "",
         organizer: "",
+        organizerDescription: null,
         price: order.total_amount,
+        description: "",
+        mapEmbedUrl: null,
+        adSpots: [],
+        ticketTypes: [],
     };
     const items: CartItem[] = order.items.map((item) => ({
         ticket: {
             id: String(item.ticket_class.id),
             name: item.ticket_class.name,
             price: parseFloat(item.unit_price),
+            capacity: item.ticket_class.capacity,
+            sold: item.ticket_class.capacity - item.ticket_class.remaining_capacity,
+            remaining: item.ticket_class.remaining_capacity,
         },
         quantity: item.quantity,
     }));
