@@ -33,26 +33,11 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
 
-    // ── Image événement (bannière pleine largeur) ──
-    eventImageWrapper: {
-        position: "relative",
-        height: 120,
-    },
-    eventImage: {
-        width: "100%",
-        height: 120,
-        objectFit: "cover",
-    },
-    eventImageOverlay: {
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        top: 0,
-        backgroundColor: "rgba(0,0,0,0.45)",
-        justifyContent: "flex-end",
-        paddingHorizontal: 20,
-        paddingBottom: 12,
+    // ── Bandeau nom événement (sans image) ──
+    eventTitleBand: {
+        backgroundColor: "#111827",
+        paddingHorizontal: 24,
+        paddingVertical: 14,
     },
 
     // ── Corps principal ──
@@ -91,7 +76,7 @@ const styles = StyleSheet.create({
     tearOffLine: {
         flex: 1,
         borderBottomWidth: 2,
-        borderBottomColor: "#e5e7eb",
+        borderBottomColor: "#d1d5db",
         borderBottomStyle: "dashed",
     },
     tearOffCircle: {
@@ -99,22 +84,19 @@ const styles = StyleSheet.create({
         height: 28,
         borderRadius: 14,
         backgroundColor: "#f3f4f6",
-        border: "1 solid #e5e7eb",
+        border: "1 solid #d1d5db",
         marginHorizontal: -14,
         zIndex: 1,
     },
 
-    // ── Pied QR ──
-    qrFooter: {
+    // ── Stub QR individuel ──
+    qrStub: {
         backgroundColor: "#f9fafb",
         paddingHorizontal: 24,
-        paddingVertical: 20,
-        flexDirection: "column",
+        paddingVertical: 16,
+        flexDirection: "row",
         alignItems: "center",
-        gap: 12,
-        borderTopWidth: 2,
-        borderTopColor: "#e5e7eb",
-        borderTopStyle: "dashed",
+        gap: 20,
     },
     qrImage: {
         width: 80,
@@ -200,28 +182,23 @@ export function TicketPDFDocument({
                     </View>
                 </View>
 
-                {/* ── Image événement pleine largeur ── */}
-                <View style={styles.eventImageWrapper}>
-                    <PdfImage src={event.image} style={styles.eventImage} />
-                    <View style={styles.eventImageOverlay}>
-                        <Text style={{ color: "#ffffff", fontSize: 14, fontFamily: "Helvetica-Bold" }}>
-                            {event.title}
+                {/* ── Bandeau nom événement (sans image) ── */}
+                <View style={styles.eventTitleBand}>
+                    <Text style={{ color: "#ffffff", fontSize: 15, fontFamily: "Helvetica-Bold" }}>
+                        {event.title}
+                    </Text>
+                    {(event.date || event.time) && (
+                        <Text style={{ color: "rgba(255,255,255,0.7)", fontSize: 9, marginTop: 4 }}>
+                            {[event.date, event.time].filter(Boolean).join(" · ")}
+                            {(event.location || event.city)
+                                ? "  –  " + [event.location, event.city].filter(Boolean).join(", ")
+                                : ""}
                         </Text>
-                    </View>
+                    )}
                 </View>
 
                 {/* ── Corps ── */}
                 <View style={styles.body}>
-
-                    {/* Date / lieu */}
-                    <Text style={{ fontSize: 10, color: MUTED }}>
-                        {[event.date, event.time].filter(Boolean).join(" · ")}
-                        {(event.location || event.city)
-                            ? "   " + [event.location, event.city].filter(Boolean).join(", ")
-                            : ""}
-                    </Text>
-
-                    <View style={styles.divider} />
 
                     {/* Lignes tickets */}
                     {items.map(({ ticket, quantity }) => (
@@ -265,36 +242,35 @@ export function TicketPDFDocument({
                     )}
                 </View>
 
-                {/* ── Tear-off ── */}
-                <View style={styles.tearOff}>
-                    <View style={styles.tearOffCircle} />
-                    <View style={styles.tearOffLine} />
-                    <View style={styles.tearOffCircle} />
-                </View>
+                {/* ── Un stub par QR code, séparés par un tear-off ── */}
+                {qrDataUrls.map((url, i) => (
+                    <View key={i}>
+                        {/* Tear-off */}
+                        <View style={styles.tearOff}>
+                            <View style={styles.tearOffCircle} />
+                            <View style={styles.tearOffLine} />
+                            <View style={styles.tearOffCircle} />
+                        </View>
 
-                {/* ── Pied QR ── */}
-                <View style={styles.qrFooter}>
-                    <Text style={{ fontSize: 9, fontFamily: "Helvetica-Bold", textTransform: "uppercase", letterSpacing: 1.5, color: "#374151" }}>
-                        {ticketCount > 1 ? `${ticketCount} billets` : "Votre e-billet"}
-                    </Text>
-
-                    <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "center", gap: 16 }}>
-                        {qrDataUrls.map((url, i) => (
-                            <View key={i} style={{ alignItems: "center", gap: 6 }}>
-                                {url ? (
-                                    <PdfImage src={url} style={styles.qrImage} />
-                                ) : null}
-                                {ticketCount > 1 && (
-                                    <Text style={{ fontSize: 8, color: GRAY }}>Billet {i + 1}</Text>
-                                )}
+                        {/* Stub QR */}
+                        <View style={styles.qrStub}>
+                            {url ? (
+                                <PdfImage src={url} style={styles.qrImage} />
+                            ) : null}
+                            <View style={{ flex: 1 }}>
+                                <Text style={{ fontSize: 9, fontFamily: "Helvetica-Bold", textTransform: "uppercase", letterSpacing: 1.5, color: "#374151", marginBottom: 4 }}>
+                                    {ticketCount > 1 ? `Billet ${i + 1} / ${ticketCount}` : "Votre e-billet"}
+                                </Text>
+                                <Text style={{ fontSize: 10, fontFamily: "Helvetica-Bold", marginBottom: 2 }}>
+                                    {event.title}
+                                </Text>
+                                <Text style={{ fontSize: 8, color: GRAY }}>
+                                    Présentez ce QR code à l&apos;entrée.{"\n"}Il est strictement personnel et non transférable.
+                                </Text>
                             </View>
-                        ))}
+                        </View>
                     </View>
-
-                    <Text style={{ fontSize: 9, color: GRAY, textAlign: "center" }}>
-                        Présentez ce QR code à l&apos;entrée. Il est strictement personnel.
-                    </Text>
-                </View>
+                ))}
 
                 {/* ── Attribution L'Union Lab ── */}
                 <View style={styles.attribution}>
