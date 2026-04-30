@@ -48,32 +48,52 @@ export function EventHero({ event }: EventHeroProps) {
 
                 {/* Bandeau bas : spot publicitaire */}
                 <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-4 py-3">
-                    <span className="text-white font-extrabold text-sm sm:text-lg uppercase tracking-widest">
-                        Spot Publicitaire
-                    </span>
+                    {event.adSpots.length > 0 ? (() => {
+                        const spot = event.adSpots[0];
+                        const inner = (
+                            <>
+                                <span className="text-white font-extrabold text-sm sm:text-lg uppercase tracking-widest">
+                                    Spot Publicitaire
+                                </span>
 
-                    {/* Miniature vidéo */}
-                    <div className="relative w-20 sm:w-28 h-12 sm:h-16 rounded overflow-hidden border-2 border-white/60 shrink-0">
-                        <Image
-                            src={event.image}
-                            alt="Aperçu publicitaire"
-                            fill
-                            className="object-cover opacity-80"
-                            sizes="112px"
-                        />
-                        {/* Play icon overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-6 h-6 rounded-full bg-white/80 flex items-center justify-center">
-                                <svg
-                                    className="w-3 h-3 text-[#fe0000] ml-0.5"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path d="M8 5v14l11-7z" />
-                                </svg>
+                                <div className="relative w-20 sm:w-28 h-12 sm:h-16 rounded overflow-hidden border-2 border-white/60 shrink-0">
+                                    <Image
+                                        src={spot.image}
+                                        alt={spot.title}
+                                        fill
+                                        className="object-cover opacity-80"
+                                        sizes="112px"
+                                    />
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <div className="w-6 h-6 rounded-full bg-white/80 flex items-center justify-center">
+                                            <svg
+                                                className="w-3 h-3 text-[#fe0000] ml-0.5"
+                                                fill="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </>
+                        );
+
+                        return spot.linkUrl ? (
+                            <a
+                                href={spot.linkUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-between w-full"
+                            >
+                                {inner}
+                            </a>
+                        ) : (
+                            <div className="flex items-center justify-between w-full">
+                                {inner}
                             </div>
-                        </div>
-                    </div>
+                        );
+                    })() : null}
                 </div>
             </div>
         </div>

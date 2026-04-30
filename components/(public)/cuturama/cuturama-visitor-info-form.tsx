@@ -195,6 +195,23 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
 
                     <Separator />
 
+                    {/* Récapitulatif du total */}
+                    <div className="flex flex-col gap-2 bg-gray-50 rounded-lg px-4 py-3">
+                        {cartItems.map(({ ticket, quantity }) => (
+                            <div key={ticket.id} className="flex items-center justify-between text-xs text-muted-foreground">
+                                <span>{ticket.name} × {quantity}</span>
+                                <span>{(ticket.price * quantity).toLocaleString("fr-CI")} FCFA</span>
+                            </div>
+                        ))}
+                        <Separator className="my-1" />
+                        <div className="flex items-center justify-between font-extrabold text-sm">
+                            <span>Total</span>
+                            <span className="text-[#fe0000]">
+                                {cartItems.reduce((sum, { ticket, quantity }) => sum + ticket.price * quantity, 0).toLocaleString("fr-CI")} FCFA
+                            </span>
+                        </div>
+                    </div>
+
                     {/* Ticket sélectionné + navigation */}
                     <div className="flex items-center justify-between">
                         {selectedTicket ? (
