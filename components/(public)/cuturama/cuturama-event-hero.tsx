@@ -79,15 +79,16 @@ export function EventHero({ event }: EventHeroProps) {
                             </>
                         );
 
+                        
                         return spot.linkUrl ? (
-                            <a
+                            <Link
                                 href={spot.linkUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-between w-full"
+                                className="flex items-center justify-between w-full cursor-pointer"
                             >
                                 {inner}
-                            </a>
+                            </Link>
                         ) : (
                             <div className="flex items-center justify-between w-full">
                                 {inner}
