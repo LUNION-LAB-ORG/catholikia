@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
     CheckCircle2,
@@ -15,6 +15,7 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/navigation";
 import { QRCodeSVG } from "qrcode.react";
+import { cuturamaAPI } from "@/features/cuturama/apis/cuturama.api";
 import { DownloadTicketButton } from "./cuturama-download-ticket-button";
 import type { CartItem, CuturamaEvent } from "./cuturama.types";
 import type { PaymentInfo } from "./cuturama-visitor-info-form";
@@ -31,12 +32,26 @@ interface ConfirmationViewProps {
 
 export function ConfirmationView({ event, items, paymentInfo, bookingRef }: ConfirmationViewProps) {
     const total = items.reduce((sum, { ticket, quantity }) => sum + ticket.price * quantity, 0);
+    const [qrCodes, setQrCodes] = useState<string[]>([bookingRef]);
+    const [qrCodeLoading, setQrCodeLoading] = useState(true);
+
+    // Fetch tous les qr_code depuis l'API (le backend les génère après la commande)
+    useEffect(() => {
+        setQrCodeLoading(true);
+        cuturamaAPI.obtenirCommande(bookingRef)
+            .then((res) => {
+                const codes = res.data.tickets?.map((t) => t.qr_code).filter(Boolean);
+                if (codes && codes.length > 0) setQrCodes(codes);
+            })
+            .catch(() => null)
+            .finally(() => setQrCodeLoading(false));
+    }, [bookingRef]);
 
     // Sauvegarde en localStorage pour permettre le re-téléchargement via scan QR
     useEffect(() => {
-        const data = { bookingRef, event, items, paymentInfo };
+        const data = { bookingRef, qrCodes, event, items, paymentInfo };
         localStorage.setItem(`cuturama_ticket_${bookingRef}`, JSON.stringify(data));
-    }, [bookingRef]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [bookingRef, qrCodes]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="max-w-2xl mx-auto flex flex-col items-center gap-8 py-6">
@@ -186,23 +201,24 @@ export function ConfirmationView({ event, items, paymentInfo, bookingRef }: Conf
                     </div>
                 </div>
 
-                {/* QR code réel → page de téléchargement du billet */}
-                <div className="bg-gray-50 px-6 py-5 flex items-center gap-5 border-t border-dashed">
-                    <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border bg-white p-1">
-                        <QRCodeSVG
-                            value={bookingRef}
-                            size={64}
-                            bgColor="#ffffff"
-                            fgColor="#111111"
-                            className="w-full h-full"
-                        />
+                {/* QR codes – un par ticket */}
+                <div className="bg-gray-50 px-6 py-5 flex flex-col gap-4 border-t border-dashed">
+                    <p className="text-xs font-bold uppercase tracking-wide text-center">
+                        {qrCodes.length > 1 ? `${qrCodes.length} billets` : "Votre e-billet"}
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-4">
+                        {qrCodes.map((code, i) => (
+                            <div key={i} className="flex flex-col items-center gap-1">
+                                <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border bg-white p-1">
+                                    <QRCodeSVG value={code} size={64} bgColor="#ffffff" fgColor="#111111" className="w-full h-full" />
+                                </div>
+                                {qrCodes.length > 1 && <p className="text-[10px] text-muted-foreground">Billet {i + 1}</p>}
+                            </div>
+                        ))}
                     </div>
-                    <div className="flex flex-col gap-0.5">
-                        <p className="text-xs font-bold uppercase tracking-wide">Votre e-billet</p>
-                        <p className="text-[11px] text-muted-foreground leading-snug">
-                            Présentez ce QR code à l&apos;entrée. Il est strictement personnel et non transférable.
-                        </p>
-                    </div>
+                    <p className="text-[11px] text-muted-foreground text-center leading-snug">
+                        Présentez ce QR code à l&apos;entrée. Il est strictement personnel et non transférable.
+                    </p>
                 </div>
             </div>
 
@@ -212,6 +228,8 @@ export function ConfirmationView({ event, items, paymentInfo, bookingRef }: Conf
                     event={event}
                     items={items}
                     bookingRef={bookingRef}
+                    qrCodes={qrCodes}
+                    qrCodeLoading={qrCodeLoading}
                     paymentInfo={paymentInfo}
                 />
 

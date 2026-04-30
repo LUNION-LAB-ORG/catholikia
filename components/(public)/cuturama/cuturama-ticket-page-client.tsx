@@ -16,6 +16,7 @@ import type { GetOrderResponse } from "@/features/cuturama/types/cuturama.type";
 
 interface SavedTicketData {
     bookingRef: string;
+    qrCode?: string;
     event: CuturamaEvent;
     items: CartItem[];
     paymentInfo?: PaymentInfo;
@@ -65,7 +66,7 @@ function orderToTicketData(order: GetOrderResponse["data"]): SavedTicketData {
         email: order.customer_email,
         customer_phone: order.customer_phone,
     };
-    return { bookingRef: order.reference, event, items, paymentInfo };
+    return { bookingRef: order.reference, qrCode: order.tickets[0]?.qr_code, event, items, paymentInfo };
 }
 
 export function TicketPageClient({ bookingRef }: TicketPageClientProps) {
@@ -250,7 +251,12 @@ export function TicketPageClient({ bookingRef }: TicketPageClientProps) {
                     <DownloadTicketButton
                         event={event}
                         items={items}
-                        bookingRef={bookingRef}
+                        bookingRef={data.bookingRef}
+                        qrCodes={
+                            apiOrder?.tickets && apiOrder.tickets.length > 0
+                                ? apiOrder.tickets.map((t) => t.qr_code)
+                                : [data.qrCode ?? data.bookingRef]
+                        }
                         paymentInfo={paymentInfo}
                     />
                     <Link href="/cuturama">
