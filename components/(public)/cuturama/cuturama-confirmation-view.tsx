@@ -190,7 +190,7 @@ export function ConfirmationView({ event, items, paymentInfo, bookingRef }: Conf
                 <div className="bg-gray-50 px-6 py-5 flex items-center gap-5 border-t border-dashed">
                     <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border bg-white p-1">
                         <QRCodeSVG
-                            value={`${typeof window !== 'undefined' ? window.location.origin : 'https://catholikia.com'}/cuturama/ticket/${bookingRef}`}
+                            value={bookingRef}
                             size={64}
                             bgColor="#ffffff"
                             fgColor="#111111"
