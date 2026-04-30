@@ -55,7 +55,7 @@ export function EventCard({ event }: EventCardProps) {
                     </span>
                     <div className="flex items-center gap-1 text-[#fe0000] font-bold text-xs">
                         <Ticket className="size-3.5" />
-                        <span>{event.price}</span>
+                        <span>{event.price ?? "Gratuit"}</span>
                     </div>
                 </div>
 

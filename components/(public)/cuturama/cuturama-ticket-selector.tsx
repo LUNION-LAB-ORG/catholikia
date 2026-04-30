@@ -18,7 +18,7 @@ interface TicketSelectorProps {
 }
 
 export function TicketSelector({ event, onProceed }: TicketSelectorProps) {
-    const tickets = event.ticketTypes ?? [];
+    const tickets = event.ticketTypes;
 
     const [contactOpen, setContactOpen] = useState(false);
     const [quantities, setQuantities] = useState<TicketQuantities>(
@@ -45,29 +45,39 @@ export function TicketSelector({ event, onProceed }: TicketSelectorProps) {
 
                     <div className="flex flex-col gap-3">
                         {tickets.map((ticket) => (
-                            <div key={ticket.id} className="flex items-center justify-between">
-                                <span className="text-xs text-muted-foreground">{ticket.name}</span>
-                                <div className="flex items-center gap-2">
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="size-6 rounded-full border-[#fe0000] text-[#fe0000] hover:bg-[#fe0000] hover:text-white"
-                                        onClick={() => decrement(ticket.id)}
-                                        disabled={quantities[ticket.id] === 0}
-                                    >
-                                        <Minus className="size-3" />
-                                    </Button>
-                                    <span className="w-5 text-center text-sm font-medium">
-                                        {quantities[ticket.id] ?? 0}
-                                    </span>
-                                    <Button
-                                        variant="outline"
-                                        size="icon"
-                                        className="size-6 rounded-full border-[#fe0000] text-[#fe0000] hover:bg-[#fe0000] hover:text-white"
-                                        onClick={() => increment(ticket.id)}
-                                    >
-                                        <Plus className="size-3" />
-                                    </Button>
+                            <div key={ticket.id} className="flex flex-col gap-1">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex flex-col">
+                                        <span className="text-xs text-muted-foreground">{ticket.name}</span>
+                                        {ticket.remaining === 0 ? (
+                                            <span className="text-[10px] text-red-500 font-medium">Épuisé</span>
+                                        ) : (
+                                            <span className="text-[10px] text-muted-foreground">{ticket.remaining} place{ticket.remaining > 1 ? "s" : ""} restante{ticket.remaining > 1 ? "s" : ""}</span>
+                                        )}
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            className="size-6 rounded-full border-[#fe0000] text-[#fe0000] hover:bg-[#fe0000] hover:text-white"
+                                            onClick={() => decrement(ticket.id)}
+                                            disabled={quantities[ticket.id] === 0}
+                                        >
+                                            <Minus className="size-3" />
+                                        </Button>
+                                        <span className="w-5 text-center text-sm font-medium">
+                                            {quantities[ticket.id] ?? 0}
+                                        </span>
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            className="size-6 rounded-full border-[#fe0000] text-[#fe0000] hover:bg-[#fe0000] hover:text-white"
+                                            onClick={() => increment(ticket.id)}
+                                            disabled={ticket.remaining === 0 || (quantities[ticket.id] ?? 0) >= ticket.remaining}
+                                        >
+                                            <Plus className="size-3" />
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         ))}

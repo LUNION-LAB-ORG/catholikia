@@ -16,11 +16,10 @@ export function EventDetail({ event }: EventDetailProps) {
                     Détails
                 </h2>
 
-                {event.description && (
-                    <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line mb-6">
-                        {event.description}
-                    </p>
-                )}
+                <div
+                    className="text-sm text-muted-foreground leading-relaxed mb-6"
+                    dangerouslySetInnerHTML={{ __html: event.description }}
+                />
 
                 <Card>
                     <CardContent className="p-0 divide-y">
@@ -63,7 +62,7 @@ export function EventDetail({ event }: EventDetailProps) {
                             </span>
                             <div className="flex items-center gap-2 text-sm text-[#fe0000] font-medium">
                                 <Ticket className="size-4 shrink-0" />
-                                <span>Ticket : {event.price}</span>
+                                <span>Ticket : {event.price ?? "Gratuit"}</span>
                             </div>
                         </div>
                     </CardContent>
