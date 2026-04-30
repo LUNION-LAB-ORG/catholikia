@@ -13,6 +13,8 @@ interface DownloadTicketButtonProps {
     event: CuturamaEvent;
     items: CartItem[];
     bookingRef: string;
+    qrCodes: string[];
+    qrCodeLoading?: boolean;
     paymentInfo?: PaymentInfo;
 }
 
@@ -20,18 +22,21 @@ export function DownloadTicketButton({
     event,
     items,
     bookingRef,
+    qrCodes,
+    qrCodeLoading = false,
     paymentInfo,
 }: DownloadTicketButtonProps) {
     const [loading, setLoading] = useState(false);
-    // Canvas caché pour extraire le QR code en data-URL
-    const qrCanvasRef = useRef<HTMLDivElement>(null);
+    const qrCanvasContainerRef = useRef<HTMLDivElement>(null);
 
     const handleDownload = useCallback(async () => {
         setLoading(true);
         try {
-            // 1. Extraire le data-URL du canvas QR code
-            const canvas = qrCanvasRef.current?.querySelector("canvas");
-            const qrDataUrl = canvas ? canvas.toDataURL("image/png") : "";
+            // 1. Extraire les data-URLs de tous les canvas QR code
+            const canvases = qrCanvasContainerRef.current?.querySelectorAll("canvas");
+            const qrDataUrls = canvases
+                ? Array.from(canvases).map((c) => c.toDataURL("image/png"))
+                : qrCodes.map(() => "");
 
             // 2. Charger les logos en data-URL
             const toDataUrl = async (path: string) => {
@@ -55,13 +60,13 @@ export function DownloadTicketButton({
                     items={items}
                     bookingRef={bookingRef}
                     paymentInfo={paymentInfo}
-                    qrDataUrl={qrDataUrl}
+                    qrDataUrls={qrDataUrls}
                     logoDataUrl={logoDataUrl}
                     lunionLabDataUrl={lunionLabDataUrl}
                 />
             ).toBlob();
 
-            // 3. Déclencher le téléchargement
+            // 4. Déclencher le téléchargement
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
@@ -71,26 +76,25 @@ export function DownloadTicketButton({
         } finally {
             setLoading(false);
         }
-    }, [event, items, bookingRef, paymentInfo]);
-
-    // QR pointe vers la page de téléchargement (scannable par l'organisateur)
-    const qrValue = bookingRef;
+    }, [event, items, bookingRef, qrCodes, paymentInfo]);
 
     return (
         <>
-            {/* Canvas QR caché – sert uniquement à générer le PNG pour le PDF */}
-            <div ref={qrCanvasRef} className="hidden">
-                <QRCodeCanvas value={qrValue} size={256} />
+            {/* Canvas QR cachés – un par ticket */}
+            <div ref={qrCanvasContainerRef} className="hidden">
+                {qrCodes.map((code, i) => (
+                    <QRCodeCanvas key={i} value={code} size={256} />
+                ))}
             </div>
 
             <Button
                 variant="outline"
                 className="rounded-full gap-2 border-[#fe0000] text-[#fe0000] hover:bg-[#fe0000] hover:text-white"
                 onClick={handleDownload}
-                disabled={loading}
+                disabled={loading || qrCodeLoading}
             >
                 <Download className="size-4" />
-                {loading ? "Génération…" : "Télécharger le billet"}
+                {qrCodeLoading ? "Chargement du billet…" : loading ? "Génération…" : "Télécharger le billet"}
             </Button>
         </>
     );

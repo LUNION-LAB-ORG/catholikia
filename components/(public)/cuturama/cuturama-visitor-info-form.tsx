@@ -37,7 +37,7 @@ interface VisitorInfoFormProps {
     eventId: string;
     cartItems: CartItem[];
     selectedTicket?: TicketType;
-    onNext: (info: PaymentInfo, bookingRef: string) => void;
+    onNext: (info: PaymentInfo, reference: string) => void;
     onBack: () => void;
 }
 
@@ -89,9 +89,12 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
                 promo_code: promo.trim() || undefined,
             });
 
-            // Étape 2 : récupérer le qr_code du ticket
-            const orderDetails = await cuturamaAPI.obtenirCommande(order.data.id);
-            const bookingRef = orderDetails.data.tickets?.[0]?.qr_code ?? order.data.reference;
+            // Étape 2 : lancer le paiement
+            const reference = order.data.reference;
+            const paiement = await cuturamaAPI.lancerPaiement(order.data.id, {
+                paymentMethod: paymentMethod!,
+                phone: customerPhone.trim() || undefined,
+            });
 
             const paymentInfo: PaymentInfo = {
                 method: paymentMethod!,
@@ -103,25 +106,19 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
                 customer_phone: customerPhone,
             };
 
-            // Étape 3 : lancer le paiement
-            const paiement = await cuturamaAPI.lancerPaiement(order.data.id, {
-                paymentMethod: paymentMethod!,
-                phone: customerPhone.trim() || undefined,
-            });
-
             if (paiement.paymentUrl) {
                 // Sauvegarder le billet dans localStorage avant la redirection
                 // (Wave ouvre un autre navigateur, le localStorage sera vide au retour)
                 localStorage.setItem(
-                    `cuturama_ticket_${bookingRef}`,
-                    JSON.stringify({ bookingRef, event, items: cartItems, paymentInfo })
+                    `cuturama_ticket_${reference}`,
+                    JSON.stringify({ bookingRef: reference, event, items: cartItems, paymentInfo })
                 );
                 window.location.href = paiement.paymentUrl;
                 return;
             }
 
             // Méthodes sans redirection : passer à l'étape de confirmation
-            onNext(paymentInfo, bookingRef);
+            onNext(paymentInfo, reference);
         } catch (error) {
             const apiErr = error as { message?: string; status?: number; code?: string; context?: string };
             console.error("[paiement] error:", apiErr);
@@ -249,7 +246,7 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
             </div>
 
             {/* ── INFORMATIONS SUR LA RÉSERVATION ── */}
-            <div id="section-reservation" className={cn("rounded-xl overflow-hidden border transition-opacity", !buyerSaved && "opacity-40 pointer-events-none select-none")}>
+            <div id="section-reservation" className={cn("rounded-xl overflow-hidden border", !buyerSaved ? "opacity-40 pointer-events-none select-none" : "opacity-100")}>
                 {/* Header gris */}
                 <div className="bg-gray-300 flex items-center justify-center px-5 py-3">
                     <h2 className="text-gray-700 font-extrabold text-sm sm:text-base uppercase tracking-widest">
@@ -313,6 +310,7 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
                         />
                         <Button
                             size="icon"
+                            type="button"
                             className="absolute right-0 rounded-r-md rounded-l-none bg-[#fe0000] hover:bg-red-700 text-white h-full"
                         >
                             <ChevronRight className="size-4" />
