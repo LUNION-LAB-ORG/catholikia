@@ -48,7 +48,7 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
     const [customerPhone, setCustomerPhone] = useState("");
     const [phone, setPhone]                 = useState("");
     const [promo, setPromo]                 = useState("");
-    const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
+    const [paymentMethod, setPaymentMethod] = useState<string | null>("wave");
     const [accepted, setAccepted]           = useState(false);
     const [buyerSaved, setBuyerSaved]       = useState(false);
     const [submitting, setSubmitting]       = useState(false);
