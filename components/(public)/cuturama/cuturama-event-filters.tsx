@@ -1,23 +1,22 @@
 "use client";
 
-import Image from "next/image";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { CATEGORIES } from "./cuturama.data";
-import type { Category } from "./cuturama.types";
 
 interface EventFiltersProps {
-    activeCategory: Category;
+    activeCategory: string;
+    categories: string[];
     search: string;
-    onCategoryChange: (category: Category) => void;
+    onCategoryChange: (category: string) => void;
     onSearchChange: (value: string) => void;
     onSearchSubmit: () => void;
 }
 
 export function EventFilters({
     activeCategory,
+    categories,
     search,
     onCategoryChange,
     onSearchChange,
@@ -26,8 +25,8 @@ export function EventFilters({
     return (
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
             {/* Onglets catégories */}
-            <div className="flex items-center  p-5  gap-2 flex-wrap">
-                {CATEGORIES.map(({ label, image }) => (
+            <div className="flex items-center p-5 gap-2 flex-wrap">
+                {categories.map((label) => (
                     <Button
                         key={label}
                         variant={activeCategory === label ? "default" : "outline"}
@@ -37,20 +36,9 @@ export function EventFilters({
                             "rounded-full gap-2",
                             activeCategory === label
                                 ? "bg-[#fe0000] cursor-pointer hover:bg-red-700 border-[#fe0000] text-white"
-                                : "hover:border-[#fe0000]  py-2 cursor-pointer hover:text-[#fe0000]"
+                                : "hover:border-[#fe0000] py-2 cursor-pointer hover:text-[#fe0000]"
                         )}
                     >
-                        {image && (
-                            <div className="relative size-5 rounded-full overflow-hidden shrink-0">
-                                <Image
-                                    src={image}
-                                    alt={label}
-                                    fill
-                                    className="object-cover"
-                                    sizes="20px"
-                                />
-                            </div>
-                        )}
                         {label}
                     </Button>
                 ))}
