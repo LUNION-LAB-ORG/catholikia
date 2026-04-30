@@ -19,6 +19,7 @@ export function EventContent({ event }: EventContentProps) {
     const [selectedTicket, setSelectedTicket] = useState<TicketType | undefined>();
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [paymentInfo, setPaymentInfo] = useState<PaymentInfo | undefined>();
+    const [bookingRef, setBookingRef] = useState<string>("");
 
     const handleProceedToStep2 = (items: CartItem[], ticket?: TicketType) => {
         setCartItems(items);
@@ -26,8 +27,9 @@ export function EventContent({ event }: EventContentProps) {
         setStep(2);
     };
 
-    const handleProceedToStep3 = (info: PaymentInfo) => {
+    const handleProceedToStep3 = (info: PaymentInfo, ref: string) => {
         setPaymentInfo(info);
+        setBookingRef(ref);
         setStep(3);
     };
 
@@ -71,6 +73,7 @@ export function EventContent({ event }: EventContentProps) {
                         event={event}
                         items={cartItems}
                         paymentInfo={paymentInfo}
+                        bookingRef={bookingRef}
                         onConfirm={() => setStep(4)}
                         onBack={() => setStep(2)}
                     />
@@ -81,6 +84,7 @@ export function EventContent({ event }: EventContentProps) {
                         event={event}
                         items={cartItems}
                         paymentInfo={paymentInfo}
+                        bookingRef={bookingRef}
                     />
                 )}
             </div>

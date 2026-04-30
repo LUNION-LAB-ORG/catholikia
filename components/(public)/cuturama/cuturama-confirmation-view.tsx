@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import {
     CheckCircle2,
@@ -23,22 +23,20 @@ interface ConfirmationViewProps {
     event: CuturamaEvent;
     items: CartItem[];
     paymentInfo?: PaymentInfo;
+    bookingRef: string;
 }
 
 /** Génère un numéro de réservation lisible */
-function generateBookingRef() {
-    return "CUT-" + Math.random().toString(36).toUpperCase().slice(2, 8);
-}
+// supprimé : le bookingRef vient désormais du backend (qr_code du ticket)
 
-export function ConfirmationView({ event, items, paymentInfo }: ConfirmationViewProps) {
-    const bookingRef = useRef(generateBookingRef());
+export function ConfirmationView({ event, items, paymentInfo, bookingRef }: ConfirmationViewProps) {
     const total = items.reduce((sum, { ticket, quantity }) => sum + ticket.price * quantity, 0);
 
     // Sauvegarde en localStorage pour permettre le re-téléchargement via scan QR
     useEffect(() => {
-        const data = { bookingRef: bookingRef.current, event, items, paymentInfo };
-        localStorage.setItem(`cuturama_ticket_${bookingRef.current}`, JSON.stringify(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+        const data = { bookingRef, event, items, paymentInfo };
+        localStorage.setItem(`cuturama_ticket_${bookingRef}`, JSON.stringify(data));
+    }, [bookingRef]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div className="max-w-2xl mx-auto flex flex-col items-center gap-8 py-6">
@@ -75,7 +73,7 @@ export function ConfirmationView({ event, items, paymentInfo }: ConfirmationView
                             Référence de réservation
                         </p>
                         <p className="text-white font-extrabold text-lg tracking-widest">
-                            {bookingRef.current}
+                            {bookingRef}
                         </p>
                     </div>
                     <Ticket className="size-6 text-white/60 shrink-0" />
@@ -192,7 +190,7 @@ export function ConfirmationView({ event, items, paymentInfo }: ConfirmationView
                 <div className="bg-gray-50 px-6 py-5 flex items-center gap-5 border-t border-dashed">
                     <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border bg-white p-1">
                         <QRCodeSVG
-                            value={`${typeof window !== 'undefined' ? window.location.origin : 'https://catholikia.com'}/cuturama/ticket/${bookingRef.current}`}
+                            value={`${typeof window !== 'undefined' ? window.location.origin : 'https://catholikia.com'}/cuturama/ticket/${bookingRef}`}
                             size={64}
                             bgColor="#ffffff"
                             fgColor="#111111"
@@ -213,7 +211,7 @@ export function ConfirmationView({ event, items, paymentInfo }: ConfirmationView
                 <DownloadTicketButton
                     event={event}
                     items={items}
-                    bookingRef={bookingRef.current}
+                    bookingRef={bookingRef}
                     paymentInfo={paymentInfo}
                 />
 

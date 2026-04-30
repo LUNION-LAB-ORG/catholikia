@@ -29,11 +29,12 @@ interface PaymentViewProps {
     event: CuturamaEvent;
     items: CartItem[];
     paymentInfo?: PaymentInfo;
+    bookingRef: string;
     onConfirm: () => void;
     onBack: () => void;
 }
 
-export function PaymentView({ event, items, paymentInfo, onConfirm, onBack }: PaymentViewProps) {
+export function PaymentView({ event, items, paymentInfo, bookingRef, onConfirm, onBack }: PaymentViewProps) {
     const [loading, setLoading] = useState(false);
 
     const total = items.reduce((sum, { ticket, quantity }) => sum + ticket.price * quantity, 0);

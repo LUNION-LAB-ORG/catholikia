@@ -37,7 +37,7 @@ interface VisitorInfoFormProps {
     eventId: string;
     cartItems: CartItem[];
     selectedTicket?: TicketType;
-    onNext: (info: PaymentInfo) => void;
+    onNext: (info: PaymentInfo, bookingRef: string) => void;
     onBack: () => void;
 }
 
@@ -95,19 +95,23 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
                 phone: customerPhone.trim() || undefined,
             });
 
+            // Récupérer le qr_code depuis les tickets de la commande
+            const orderDetails = await cuturamaAPI.obtenirCommande(order.data.id);
+            const bookingRef = orderDetails.data.tickets?.[0]?.qr_code ?? order.data.reference;
+
+            const paymentInfo: PaymentInfo = {
+                method: paymentMethod!,
+                phone,
+                promo,
+                firstName,
+                lastName,
+                email,
+                customer_phone: customerPhone,
+            };
+
             if (paiement.paymentUrl) {
                 // Sauvegarder le billet dans localStorage avant la redirection
                 // (Wave ouvre un autre navigateur, le localStorage sera vide au retour)
-                const bookingRef = order.data.reference;
-                const paymentInfo: PaymentInfo = {
-                    method: paymentMethod!,
-                    phone,
-                    promo,
-                    firstName,
-                    lastName,
-                    email,
-                    customer_phone: customerPhone,
-                };
                 localStorage.setItem(
                     `cuturama_ticket_${bookingRef}`,
                     JSON.stringify({ bookingRef, event, items: cartItems, paymentInfo })
@@ -117,15 +121,7 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
             }
 
             // Méthodes sans redirection : passer à l'étape de confirmation
-            onNext({
-                method: paymentMethod!,
-                phone,
-                promo,
-                firstName,
-                lastName,
-                email,
-                customer_phone: customerPhone,
-            });
+            onNext(paymentInfo, bookingRef);
         } catch (error) {
             const apiErr = error as { message?: string; status?: number; code?: string; context?: string };
             console.error("[paiement] error:", apiErr);
