@@ -5,7 +5,7 @@ import { EventCard } from "./cuturama-event-card";
 import { EventFilters } from "./cuturama-event-filters";
 import { EventPagination } from "./cuturama-event-pagination";
 import { useCuturamaList } from "@/features/cuturama/hooks/useCuturamaList";
-import type { Category, CuturamaEvent } from "./cuturama.types";
+import type { CuturamaEvent } from "./cuturama.types";
 
 export default function CuturamaEventsList() {
     const [searchInput, setSearchInput] = useState("");
@@ -16,6 +16,7 @@ export default function CuturamaEventsList() {
         currentPage,
         totalPages,
         activeCategory,
+        categories,
         isLoading,
         onCategoryChange,
         onSearchChange,
@@ -26,17 +27,14 @@ export default function CuturamaEventsList() {
         onSearchChange(searchInput);
     };
 
-    const handleCategoryChange = (cat: Category) => {
-        onCategoryChange(cat);
-    };
-
     return (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             {/* Filtres + Recherche */}
             <EventFilters
-                activeCategory={activeCategory as Category}
+                activeCategory={activeCategory}
+                categories={categories}
                 search={searchInput}
-                onCategoryChange={handleCategoryChange}
+                onCategoryChange={onCategoryChange}
                 onSearchChange={setSearchInput}
                 onSearchSubmit={handleSearchSubmit}
             />

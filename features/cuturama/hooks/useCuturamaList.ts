@@ -21,6 +21,13 @@ export const useCuturamaList = () => {
 
     const { data, isLoading, error } = useCuturamaEventsListQuery(params);
 
+    // Requête sans filtre pour extraire toutes les catégories disponibles
+    const { data: allData } = useCuturamaEventsListQuery({ page: 1 });
+    const categories: string[] = useMemo(() => {
+        const cats = allData?.data.map((e) => e.category) ?? [];
+        return ["Tous", ...Array.from(new Set(cats))];
+    }, [allData]);
+
     const onCategoryChange = (category: string) => {
         setFilters({ ...filters, category, page: 1 });
     };
@@ -44,6 +51,7 @@ export const useCuturamaList = () => {
         totalPages,
         activeCategory: filters.category || "Tous",
         search: filters.search || "",
+        categories,
         isLoading,
         error,
         onCategoryChange,
