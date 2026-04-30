@@ -74,7 +74,7 @@ export function DownloadTicketButton({
     }, [event, items, bookingRef, paymentInfo]);
 
     // QR pointe vers la page de téléchargement (scannable par l'organisateur)
-    const qrValue = `${typeof window !== "undefined" ? window.location.origin : "https://catholikia.com"}/cuturama/ticket/${bookingRef}`;
+    const qrValue = bookingRef;
 
     return (
         <>

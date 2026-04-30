@@ -89,13 +89,7 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
                 promo_code: promo.trim() || undefined,
             });
 
-            // Étape 2 : lancer le paiement
-            const paiement = await cuturamaAPI.lancerPaiement(order.data.id, {
-                paymentMethod: paymentMethod!,
-                phone: customerPhone.trim() || undefined,
-            });
-
-            // Récupérer le qr_code depuis les tickets de la commande
+            // Étape 2 : récupérer le qr_code du ticket
             const orderDetails = await cuturamaAPI.obtenirCommande(order.data.id);
             const bookingRef = orderDetails.data.tickets?.[0]?.qr_code ?? order.data.reference;
 
@@ -108,6 +102,12 @@ export function VisitorInfoForm({ event, eventId, cartItems, selectedTicket, onN
                 email,
                 customer_phone: customerPhone,
             };
+
+            // Étape 3 : lancer le paiement
+            const paiement = await cuturamaAPI.lancerPaiement(order.data.id, {
+                paymentMethod: paymentMethod!,
+                phone: customerPhone.trim() || undefined,
+            });
 
             if (paiement.paymentUrl) {
                 // Sauvegarder le billet dans localStorage avant la redirection
