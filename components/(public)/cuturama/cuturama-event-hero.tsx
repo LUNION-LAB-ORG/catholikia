@@ -80,6 +80,7 @@ export function EventHero({ event }: EventHeroProps) {
                         );
 
                         
+                        
                         return spot.linkUrl ? (
                             <Link
                                 href={spot.linkUrl}
