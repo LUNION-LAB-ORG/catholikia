@@ -100,7 +100,7 @@ jobs:
               --memory "200m" \
               --cpus "1.0" \
               --env-file /var/www/test-env/catholikia/catholikia/.env \
-              -p 3002:3000 \
+              -p 127.0.0.1:3002:3000 \
               \$IMAGE
           
             echo "Cleaning unused images..."
